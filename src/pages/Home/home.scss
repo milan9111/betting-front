@@ -1,0 +1,26 @@
+.home {
+  width: 70%;
+  &__container {
+    padding: 50px 0px;
+  }
+  &__banner {
+    background: url("./../../assets/images/banner.jpg") 0 0 / cover no-repeat;
+    border-radius: 10px;
+    height: 700px;
+  }
+  &__title {
+    padding-top: 150px;
+    margin-left: 100px;
+    margin-bottom: 25px;
+    font-size: 42px;
+    font-weight: 600;
+    color: #fff;
+  }
+  &__subtitle {
+    max-width: 500px;
+    margin-left: 100px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #ff4d00;
+  }
+}
