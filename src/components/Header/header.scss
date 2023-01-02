@@ -1,44 +1,43 @@
 .header {
-    background: linear-gradient(90deg, #18243d 0%, #160f1f 100%);
-    &__container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0px 20px;
+  background: linear-gradient(90deg, #18243d 0%, #160f1f 100%);
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+  }
+  &__logo {
+    &_img {
+      max-width: 150px;
     }
-    &__logo {
-        &_img {
-            max-width: 150px;
-        }
+  }
+  &__menu {
+    ul {
+      display: flex;
     }
-    &__menu {
-        ul {
-            display: flex;
-        }
+  }
+  &__link {
+    margin: 0px 15px;
+    a {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
     }
-    &__link {
-        margin: 0px 15px;
-        a {
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-        }
+  }
+  &__buttons {
+    ul {
+      display: flex;
     }
-    &__buttons {
-        ul {
-            display: flex;
-        }
+  }
+  &__button {
+    margin: 0px 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 0);
+    a {
+      color: #160f1f;
+      font-size: 16px;
+      font-weight: 600;
     }
-    &__button {
-        margin: 0px 15px;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: rgb(255, 255, 0);
-        a {
-            color: #160f1f;
-            font-size: 16px;
-            font-weight: 600;
-        }
-    }
-    
+  }
 }

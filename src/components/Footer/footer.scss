@@ -1,0 +1,22 @@
+.footer {
+  background: linear-gradient(90deg, #18243d 0%, #160f1f 100%);
+  &__container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__menu {
+    padding: 20px 0px;
+    margin-right: 20px;
+    ul {
+      display: flex;
+    }
+  }
+  &__link {
+    margin: 0px 10px;
+    a {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}

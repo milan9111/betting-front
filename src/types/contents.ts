@@ -1,3 +1,5 @@
+import { StringLiteral } from "typescript";
+
 interface IHeaderLogo {
   src: string;
   link: string;
@@ -37,4 +39,22 @@ export interface IMenuContent {
 export interface IHomeContent {
   title: string;
   subtitle: string;
+  button: string;
+}
+
+export interface IAsideContent {
+  title: string;
+  img: string;
+  userTitle: string;
+  chatTitle: string;
+}
+
+interface IFooterLink {
+  id: number;
+  name: string;
+  link: string;
+}
+
+export interface IFooterContent {
+  links: IFooterLink[];
 }

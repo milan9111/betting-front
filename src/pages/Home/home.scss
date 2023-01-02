@@ -6,7 +6,7 @@
   &__banner {
     background: url("./../../assets/images/banner.jpg") 0 0 / cover no-repeat;
     border-radius: 10px;
-    height: 700px;
+    height: 100vh;
   }
   &__title {
     padding-top: 150px;
@@ -22,5 +22,15 @@
     font-size: 28px;
     font-weight: 600;
     color: #ff4d00;
+  }
+  &__button {
+    margin-left: 100px;
+    margin-top: 25px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 0);
+    color: #160f1f;
+    font-size: 16px;
+    font-weight: 600;
   }
 }
