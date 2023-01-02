@@ -1,0 +1,68 @@
+import React from "react";
+import { Table, Image, Button } from "antd";
+import { ILeagueInFederation } from "../../types/leagues";
+import uefa from "../../assets/images/uefa.png";
+
+interface LeagueProps {
+  result: ILeagueInFederation[];
+}
+
+const LeagueTable: React.FC<LeagueProps> = ({ result }) => {
+  const resultForTable = result.map((item) => {
+    return { ...item, key: item.league_key };
+  });
+
+  const columns = [
+    {
+      title: "Country flag",
+      dataIndex: "country_logo",
+      key: "country_logo",
+      render: (el: any, item: ILeagueInFederation) => (
+        <Image height={30} src={item.country_logo} />
+      ),
+      align: "center" as "center",
+    },
+    {
+      title: "Country",
+      dataIndex: "country_name",
+      key: "country_name",
+      align: "center" as "center",
+    },
+    {
+      title: "Logo",
+      dataIndex: "league_logo",
+      key: "league_logo",
+      render: (el: any, item: ILeagueInFederation) => {
+        if (item.league_logo) {
+          return <Image height={75} src={item.league_logo} />;
+        } else {
+          return <Image height={75} src={uefa} />;
+        }
+      },
+      align: "center" as "center",
+    },
+    {
+      title: "League",
+      dataIndex: "league_name",
+      key: "league_name",
+      align: "center" as "center",
+    },
+    {
+      title: "Open",
+      dataIndex: "open",
+      key: "open",
+      render: () => <Button type="primary">Open</Button>,
+      align: "center" as "center",
+    },
+  ];
+
+  return (
+    <Table
+      columns={columns}
+      dataSource={resultForTable}
+      pagination={{ className: "pagination" }}
+    />
+  );
+};
+
+export default LeagueTable;

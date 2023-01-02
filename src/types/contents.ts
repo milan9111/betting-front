@@ -1,5 +1,3 @@
-import { StringLiteral } from "typescript";
-
 interface IHeaderLogo {
   src: string;
   link: string;
@@ -58,3 +56,11 @@ interface IFooterLink {
 export interface IFooterContent {
   links: IFooterLink[];
 }
+
+interface IAppPath {
+  path: string;
+}
+
+export interface IAppContent {
+  paths: IAppPath[];
+} 

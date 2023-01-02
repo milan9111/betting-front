@@ -37,8 +37,8 @@ export const headerContent: IHeaderContent = {
   buttons: [
     {
       id: 0,
-      link: "/singup",
-      name: "Singup",
+      link: "/signup",
+      name: "Signup",
     },
     {
       id: 1,
