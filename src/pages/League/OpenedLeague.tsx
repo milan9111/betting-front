@@ -14,8 +14,6 @@ const OpenedLeague: React.FC<OpenedLeagueProps> = ({
   matches,
   openedLeagueContent,
 }) => {
-  console.log(matches);
-
   return (
     <div className="openedLeague">
       <div className="openedLeague__container">

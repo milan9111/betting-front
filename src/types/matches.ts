@@ -1,6 +1,10 @@
 export enum IMatchesActionTypes {
   GET_MATCHES = "GET_MATCHES",
   SET_MATCHES = "SET_MATCHES",
+  SHOW_DISTRIBUTE_PRIZES_MODAL = "SHOW_DISTRIBUTE_PRIZES_MODAL",
+  SET_DISTRIBUTE_PRIZES_MODAL = "SET_DISTRIBUTE_PRIZES_MODAL",
+  GET_ITEM_DISTRIBUTE_PRIZES_MODAL = "GET_ITEM_DISTRIBUTE_PRIZES_MODAL",
+  SET_ITEM_DISTRIBUTE_PRIZES_MODAL = "SET_ITEM_DISTRIBUTE_PRIZES_MODAL",
 }
 
 export interface ITodayMatch {
@@ -177,19 +181,22 @@ export interface IFinishedTodayMatch {
 }
 
 export interface ITodayOdd {
-  odd_1: number,
-  odd_2: number,
-  odd_x: number,
+  odd_1: number;
+  odd_2: number;
+  odd_x: number;
 }
 
 export interface ITodayOdds {
-  [index: string]: ITodayOdd[]
+  [index: string]: ITodayOdd[];
 }
 
 export interface IMatchesState {
   todayMatches: ITodayMatch[];
   finishedTodayMatches: IFinishedTodayMatch[];
-  liveTodayMatches: ITodayMatch[]; //temporary
+  liveTodayMatches: IFinishedTodayMatch[];
+  oddsTodayMatches: ITodayOdds;
+  isDistributePrizesModal: boolean;
+  itemDistributePizesModal: IFinishedTodayMatch | null;
 }
 
 export interface IMatchesParams {
@@ -199,10 +206,12 @@ export interface IMatchesParams {
 }
 
 export interface IOpenedLeagueState {
-  todayMatches: ITodayMatch[],
-  finishedTodayMatches: IFinishedTodayMatch[],
-  liveTodayMatches: IFinishedTodayMatch[], //temporary
-  oddsTodayMatches: ITodayOdds,
+  todayMatches: ITodayMatch[];
+  finishedTodayMatches: IFinishedTodayMatch[];
+  liveTodayMatches: IFinishedTodayMatch[];
+  oddsTodayMatches: ITodayOdds;
+  isDistributePrizesModal: boolean;
+  itemDistributePizesModal: IFinishedTodayMatch | null;
 }
 
 export interface IOpenedLeagueReducer {
@@ -210,10 +219,25 @@ export interface IOpenedLeagueReducer {
 }
 
 export interface IGetMatchesAction {
-  type:
-    | IMatchesActionTypes.GET_MATCHES
-    | IMatchesActionTypes.SET_MATCHES;
+  type: IMatchesActionTypes.GET_MATCHES | IMatchesActionTypes.SET_MATCHES;
   payload: IMatchesParams | ITodayMatch[] | IFinishedTodayMatch[];
 }
 
-export type IMatchesAction = IGetMatchesAction;
+export interface IShowModalsAction {
+  type:
+    | IMatchesActionTypes.SHOW_DISTRIBUTE_PRIZES_MODAL
+    | IMatchesActionTypes.SET_DISTRIBUTE_PRIZES_MODAL;
+  payload: boolean;
+}
+
+export interface IGetItemModalsAction {
+  type:
+    | IMatchesActionTypes.GET_ITEM_DISTRIBUTE_PRIZES_MODAL
+    | IMatchesActionTypes.SET_ITEM_DISTRIBUTE_PRIZES_MODAL;
+  payload: IFinishedTodayMatch;
+}
+
+export type IMatchesAction =
+  | IGetMatchesAction
+  | IShowModalsAction
+  | IGetItemModalsAction;

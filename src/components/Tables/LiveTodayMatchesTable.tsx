@@ -51,6 +51,15 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
       align: "center" as "center",
     },
     {
+      title: "Live",
+      dataIndex: "event_status",
+      key: "event_status",
+      align: "center" as "center",
+      render: (el: any, item: IFinishedTodayMatch) => (
+        <div style={{ color: "red" }}>{item.event_status}'</div>
+      ),
+    },
+    {
       title: "Current result",
       dataIndex: "event_final_result",
       key: "event_final_result",

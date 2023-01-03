@@ -1,5 +1,5 @@
 import { ILeaguesActionTypes } from "../../types/leagues";
-import { IMatchesActionTypes } from "../../types/matches";
+import { IFinishedTodayMatch, IMatchesActionTypes } from "../../types/matches";
 
 export const getLeagues = (countryId: string) => {
   return {
@@ -18,3 +18,17 @@ export const getMatches = (
     payload: { date, countryId, leagueId },
   };
 };
+
+export const showDistributePrizesModal = (value: boolean) => {
+  return {
+    type: IMatchesActionTypes.SHOW_DISTRIBUTE_PRIZES_MODAL,
+    payload: value,
+  }
+}
+
+export const getItemDistributePizesModal = (item: IFinishedTodayMatch) => {
+  return {
+    type: IMatchesActionTypes.GET_ITEM_DISTRIBUTE_PRIZES_MODAL,
+    payload: item,
+  }
+}
