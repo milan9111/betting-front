@@ -63,4 +63,10 @@ interface IAppPath {
 
 export interface IAppContent {
   paths: IAppPath[];
-} 
+}
+
+export interface IOpenedLeagueContent {
+  titleNextMatches: string;
+  titleFinishedMatches: string;
+  titleLiveMatches: string;
+}

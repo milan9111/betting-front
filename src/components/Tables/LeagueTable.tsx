@@ -2,6 +2,7 @@ import React from "react";
 import { Table, Image, Button } from "antd";
 import { ILeagueInFederation } from "../../types/leagues";
 import uefa from "../../assets/images/uefa.png";
+import { Link } from "react-router-dom";
 
 interface LeagueProps {
   result: ILeagueInFederation[];
@@ -23,7 +24,7 @@ const LeagueTable: React.FC<LeagueProps> = ({ result }) => {
       align: "center" as "center",
     },
     {
-      title: "Country",
+      title: "Country name",
       dataIndex: "country_name",
       key: "country_name",
       align: "center" as "center",
@@ -51,7 +52,11 @@ const LeagueTable: React.FC<LeagueProps> = ({ result }) => {
       title: "Open",
       dataIndex: "open",
       key: "open",
-      render: () => <Button type="primary">Open</Button>,
+      render: (el: any, item: ILeagueInFederation) => (
+        <Button type="primary" className="league__button">
+          <Link to={`${item.league_key}`}>Open</Link>
+        </Button>
+      ),
       align: "center" as "center",
     },
   ];

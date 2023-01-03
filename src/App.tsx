@@ -11,10 +11,14 @@ import ContactContainer from "./pages/Contact/ContactContainer";
 import LeagueContainer from "./pages/League/LeagueContainer";
 import SignupContainer from "./pages/Signup/SignupContainer";
 import LoginContainer from "./pages/Login/LoginContainer";
+import OpenedLeagueContainer from "./pages/League/OpenedLeagueContainer";
 
 const App = () => {
   const leaguesPaths = appContent.paths.map(({ path }, index) => (
-    <Route path={path} element={<LeagueContainer />} key={index} />
+    <React.Fragment key={index}>
+      <Route path={path} element={<LeagueContainer />} />
+      <Route path={path + "/:id"} element={<OpenedLeagueContainer />} />
+    </React.Fragment>
   ));
 
   return (

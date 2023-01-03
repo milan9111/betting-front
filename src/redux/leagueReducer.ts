@@ -1,14 +1,21 @@
-import { ILeagueAction, ILeaguesActionTypes, ILeaguesInFederationState } from "../types/leagues"
+import {
+  ILeagueAction,
+  ILeaguesActionTypes,
+  ILeaguesInFederationState,
+} from "../types/leagues";
 
 export const initialState = {
-    result: [],
-}
+  result: [],
+};
 
-export const leagueReducer = (state: ILeaguesInFederationState = initialState, action: ILeagueAction) => {
-    switch(action.type) {
-        case ILeaguesActionTypes.GET_LEAGUE_SUCCESS:
-            return {...state, result: action.payload};
-        default: 
-            return state;
-    }
-}
+export const leagueReducer = (
+  state: ILeaguesInFederationState = initialState,
+  action: ILeagueAction
+) => {
+  switch (action.type) {
+    case ILeaguesActionTypes.SET_LEAGUE:
+      return { ...state, result: action.payload };
+    default:
+      return state;
+  }
+};

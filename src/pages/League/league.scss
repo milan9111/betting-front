@@ -3,7 +3,26 @@
   margin-top: 50px;
 }
 
+.league {
+  &__button {
+    background-color: #ffff00;
+    a {
+      color: #ff4d00;
+    }
+  }
+  &__button:hover {
+    background-color: #ff4d00 !important;
+    a {
+      color: #ffff00;
+    }
+  }
+}
 
+.openedLeague {
+  
+}
+
+// ant design
 .ant-table
   .ant-table-container
   .ant-table-content
@@ -14,3 +33,27 @@
   font-weight: 600;
 }
 
+.ant-pagination .ant-pagination-item-active {
+  background-color: #ff4d00;
+  border-color: #ff4d00;
+}
+
+.ant-pagination .ant-pagination-item-active:hover {
+  border-color: #ffff00;
+}
+
+.ant-pagination .ant-pagination-item-active a {
+  color: #ffffff;
+}
+
+.ant-pagination .ant-pagination-item-active:hover a {
+  color: #ffffff;
+}
+
+.ant-pagination .ant-pagination-item a {
+  color: #ffff00;
+}
+
+.ant-pagination-item-link {
+  background-color: #ffff00 !important;
+}
