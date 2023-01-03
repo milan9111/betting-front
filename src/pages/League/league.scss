@@ -19,7 +19,18 @@
 }
 
 .openedLeague {
-  
+  width: 100%;
+  &__title {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+  }
+  &__table {
+    margin-bottom: 50px;
+  }
 }
 
 // ant design
@@ -56,4 +67,10 @@
 
 .ant-pagination-item-link {
   background-color: #ffff00 !important;
+}
+
+.ant-table-placeholder {
+  font-size: 18px !important;
+  color: #000 !important;
+  font-weight: 600 !important;
 }

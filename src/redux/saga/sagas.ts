@@ -26,15 +26,14 @@ function* sagaGetMatches(
   action: IGetMatchesAction
 ) : Generator<Effect, void, ITodayMatch[] | IFinishedTodayMatch[]> {
   try{
-    const todayMatches = yield call(MatchesApi.getTodayMatches, action.payload as IMatchesParams); 
+    const todayMatches = yield call(MatchesApi.getTodayMatches, action.payload as IMatchesParams);
+    const todayOdds:any = yield call(MatchesApi.getTodayOdds, action.payload as IMatchesParams); 
     yield put({
       type: IMatchesActionTypes.SET_MATCHES,
-      payload: todayMatches,
+      payload: {todayMatches, todayOdds}
     });
-
   } catch(error) {
     console.log(error);
-    
   }
 }
 

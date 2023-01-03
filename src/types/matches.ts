@@ -176,6 +176,16 @@ export interface IFinishedTodayMatch {
   statistics: IStatistic[];
 }
 
+export interface ITodayOdd {
+  odd_1: number,
+  odd_2: number,
+  odd_x: number,
+}
+
+export interface ITodayOdds {
+  [index: string]: ITodayOdd[]
+}
+
 export interface IMatchesState {
   todayMatches: ITodayMatch[];
   finishedTodayMatches: IFinishedTodayMatch[];
@@ -192,6 +202,7 @@ export interface IOpenedLeagueState {
   todayMatches: ITodayMatch[],
   finishedTodayMatches: IFinishedTodayMatch[],
   liveTodayMatches: IFinishedTodayMatch[], //temporary
+  oddsTodayMatches: ITodayOdds,
 }
 
 export interface IOpenedLeagueReducer {

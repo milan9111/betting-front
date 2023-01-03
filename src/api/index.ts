@@ -29,4 +29,11 @@ export class MatchesApi {
     );
     return res.data.result;
   }
+
+  static async getTodayOdds(params: IMatchesParams) {
+    const res = await axios.get(
+      `https://apiv2.allsportsapi.com/football/?met=Odds&APIkey=${APIkey}&from=${params.date}&to=${params.date}&countryId=${params.countryId}&leagueId=${params.leagueId}`
+    );
+    return res.data.result;
+  }
 }

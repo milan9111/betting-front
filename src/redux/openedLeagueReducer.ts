@@ -10,6 +10,7 @@ export const initialState = {
   todayMatches: [],
   finishedTodayMatches: [],
   liveTodayMatches: [],
+  oddsTodayMatches: {},
 };
 
 export const openedLeagueReducer = (
@@ -19,10 +20,11 @@ export const openedLeagueReducer = (
   switch (action.type) {
     case IMatchesActionTypes.SET_MATCHES:
       const allTodayMatches: any = action.payload;
+      const oddsTodayMatches: any = action.payload;
       const nextTodayMatches: ITodayMatch[] = [];
       const finishedTodayMatches: IFinishedTodayMatch[] = [];
       // const liveTodayMatch!
-      allTodayMatches.forEach((item: any) => {
+      allTodayMatches.todayMatches?.forEach((item: any) => {
         if (!item.event_status) {
           nextTodayMatches.push(item);
         } else {
@@ -33,6 +35,8 @@ export const openedLeagueReducer = (
         ...state,
         todayMatches: nextTodayMatches,
         finishedTodayMatches: finishedTodayMatches,
+        // liveTodayMatches,
+        oddsTodayMatches: { ...oddsTodayMatches.todayOdds },
       };
     default:
       return state;
