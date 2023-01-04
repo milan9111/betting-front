@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 export enum IMatchesActionTypes {
   GET_MATCHES = "GET_MATCHES",
   SET_MATCHES = "SET_MATCHES",
@@ -7,6 +9,7 @@ export enum IMatchesActionTypes {
   SET_ITEM_DISTRIBUTE_PRIZES_MODAL = "SET_ITEM_DISTRIBUTE_PRIZES_MODAL",
   SHOW_CREATE_GAME_MODAL = "SHOW_CREATE_GAME_MODAL",
   SET_CREATE_GAME_MODAL = "SET_CREATE_GAME_MODAL",
+  CREATE_GAME = "CREATE_GAME",
   GET_ITEM_CREATE_GAME_MODAL = "GET_ITEM_CREATE_GAME_MODAL",
   SET_ITEM_CREATE_GAME_MODAL = "SET_ITEM_CREATE_GAME_MODAL",
   SHOW_BET_MODAL = "SHOW_BET_MODAL",
@@ -44,6 +47,9 @@ export interface ITodayMatch {
   event_home_formation: string;
   event_away_formation: string;
   fk_stage_key: number;
+  odds_1?:number;
+  odds_2?:number;
+  odds_x?:number;
   stage_name: string;
   league_group: null | string;
   goalscorers: [];
@@ -261,7 +267,18 @@ export interface IGetItemModalsAction {
   payload: IFinishedTodayMatch;
 }
 
+export interface ICreateGamePayload {
+  item: ITodayMatch;
+  contract: ethers.Contract;
+}
+
+export interface ICreateGameAction {
+  type: IMatchesActionTypes.CREATE_GAME;
+  payload: ICreateGamePayload;
+}
+
 export type IMatchesAction =
   | IGetMatchesAction
   | IShowModalsAction
-  | IGetItemModalsAction;
+  | IGetItemModalsAction
+  | ICreateGameAction;

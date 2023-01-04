@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import { IEthersActionTypes } from "../../types/ethers";
 import { ILeaguesActionTypes } from "../../types/leagues";
 import {
@@ -49,6 +50,13 @@ export const getItemCreateGameModal = (item: ITodayMatch) => {
   return {
     type: IMatchesActionTypes.GET_ITEM_CREATE_GAME_MODAL,
     payload: item,
+  };
+};
+
+export const createGame = (item: ITodayMatch, contract: ethers.Contract) => {
+  return {
+    type: IMatchesActionTypes.CREATE_GAME,
+    payload: {item, contract}
   };
 };
 

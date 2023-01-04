@@ -7,6 +7,7 @@ import {
   ILeaguesInFederationState,
 } from "../../types/leagues";
 import {
+  ICreateGameAction,
   IFinishedTodayMatch,
   IGetItemModalsAction,
   IGetMatchesAction,
@@ -16,6 +17,7 @@ import {
   ITodayMatch,
 } from "../../types/matches";
 import { connectWallet } from "../../web3/connectWallet";
+import { createGameInContract } from "../../web3/createGame";
 
 function* sagaGetLeagues(
   action: IGetAction
@@ -89,6 +91,18 @@ function* sagaGetItemCreateGameModal(
   });
 }
 
+function* sagaCreateGame(
+  action: ICreateGameAction
+): Generator<Effect, void> {
+  try {
+    const CreatedGameTx = yield call(createGameInContract, action.payload);
+    console.log(CreatedGameTx); // alert
+  } catch(error) {
+    console.log(error);
+  }
+  
+}
+
 function* sagaShowBetModal(action: IShowModalsAction): Generator<Effect, void> {
   yield put({
     type: IMatchesActionTypes.SET_BET_MODAL,
@@ -136,6 +150,7 @@ export function* sagaWatcher(): Generator<Effect, void> {
     IMatchesActionTypes.GET_ITEM_CREATE_GAME_MODAL,
     sagaGetItemCreateGameModal
   );
+  yield takeEvery(IMatchesActionTypes.CREATE_GAME, sagaCreateGame);
   yield takeEvery(IMatchesActionTypes.SHOW_BET_MODAL, sagaShowBetModal);
   yield takeEvery(IMatchesActionTypes.GET_ITEM_BET_MODAL, sagaGetItemBetModal);
   yield takeEvery(IEthersActionTypes.GET_USER_ACCOUNT, sagaGetUserAccount);

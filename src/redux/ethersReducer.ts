@@ -7,6 +7,7 @@ import {
 export const initialState = {
   userAccount: "",
   userBalance: "0",
+  contract: null,
 };
 
 export const ethersReducer = (
@@ -19,6 +20,7 @@ export const ethersReducer = (
         ...state,
         userAccount: action.payload?.userAccount,
         userBalance: action.payload?.userBalance,
+        contract: action.payload?.contract,
       };
     default:
       return state;

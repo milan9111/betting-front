@@ -8,12 +8,14 @@ import {
 } from "../../types/matches";
 import CreateGameModal from "../Modals/CreateGameModal";
 import {
+  createGame,
   getItemBetModal,
   getItemCreateGameModal,
   showBetModal,
   showCreateGameModal,
 } from "../../redux/actions";
 import BetModal from "../Modals/BetModal";
+import { ethers } from "ethers";
 
 interface TodayMatchesProps {
   matches: ITodayMatch[];
@@ -51,9 +53,15 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({ matches, odds }) => {
   };
 
   const handleCreateGameModalOk = (
-    e: React.MouseEvent<HTMLElement, MouseEvent>
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    item: ITodayMatch,
+    contract: ethers.Contract
   ) => {
     dispatch(showCreateGameModal(false));
+    dispatch(createGame(item, contract));
+    contract.on("MatchCreated", (index) => {
+      console.log(index.toString()); // dispatch with ethIndex, item, userAccount
+   });
   };
 
   const handleCreateGameModalCancel = (

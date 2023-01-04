@@ -1,0 +1,405 @@
+{
+	"compiler": {
+		"version": "0.8.17+commit.8df45f5f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bool",
+						"name": "finished",
+						"type": "bool"
+					},
+					{
+						"indexed": true,
+						"internalType": "address payable[]",
+						"name": "arrayWinners",
+						"type": "address[]"
+					}
+				],
+				"name": "DistributedPrizes",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "MatchCreated",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "AmountDraw",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "AmountOne",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "AmountTwo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "player",
+						"type": "address"
+					}
+				],
+				"name": "checkPlayerExists",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_coefficientOne",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_coefficientTwo",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_coefficientDraw",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startMatch",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endMatch",
+						"type": "uint256"
+					}
+				],
+				"name": "createMatch",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "creators",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "teamWinner",
+						"type": "uint256"
+					}
+				],
+				"name": "distributePrizes",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "failedPrizes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_teamSelected",
+						"type": "uint8"
+					}
+				],
+				"name": "makeBet",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "matches",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalBetOne",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalBetTwo",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalBetDraw",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "numberOfBets",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "coefficientOne",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "coefficientTwo",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "coefficientDraw",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startMatch",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endMatch",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "finished",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "maxBet",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "minimumBet",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "putStorageBetting",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "transferStorageBetting",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"MyContract/Betting.sol": "Betting"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"MyContract/Betting.sol": {
+			"keccak256": "0xe47c43c5581383ff5dcc1a749560cf5502e4e98a0d95cd76db4c24a88fa9e2ea",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c725ce081a2e350d579aab8e5b3c14a224bcdf305f5760296fa216caf2d4295",
+				"dweb:/ipfs/Qmb7NDCcfuqJ3d4pcDtJc1zVpzEtifF3M3WfSUCf9QBDeY"
+			]
+		}
+	},
+	"version": 1
+}

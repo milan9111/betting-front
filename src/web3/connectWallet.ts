@@ -1,4 +1,7 @@
 import { ethers } from "ethers";
+import contractArtifact from './abi.json';
+
+const contractAddress = '0xf2bdC8E5fECa33Ab8C3Bfd32c89D8551f22d8dA4';
 
 
 export const connectWallet = async () => {
@@ -12,7 +15,13 @@ export const connectWallet = async () => {
    }
    [userAccount] = await provider.send("eth_requestAccounts", []);
    userBalance = (await provider.getBalance(userAccount)).toString();
-   return {userAccount, userBalance};
+
+   const contract = new ethers.Contract( contractAddress , contractArtifact.output.abi , provider.getSigner(0));
+
+   console.log(provider.getSigner(0));
+   
+
+   return {userAccount, userBalance, contract};
 }
  
 

@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 export enum IEthersActionTypes {
   GET_USER_ACCOUNT = "GET_USER_ACCOUNT",
   SET_USER_ACCOUNT = "SET_USER_ACCOUNT",
@@ -6,6 +8,7 @@ export enum IEthersActionTypes {
 export interface IEthersState {
   userAccount: string;
   userBalance: string;
+  contract: ethers.Contract | null;
 }
 
 export interface IEthersReducer {
@@ -15,6 +18,7 @@ export interface IEthersReducer {
 export interface IEthersAccount {
   userAccount: string;
   userBalance: string;
+  contract: ethers.Contract | null;
 }
 
 export interface IEthersAction {
