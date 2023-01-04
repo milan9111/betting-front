@@ -3,7 +3,10 @@ import { Table, Image, Button } from "antd";
 import { IFinishedTodayMatch, IOpenedLeagueReducer } from "../../types/matches";
 import DistributePrizesModal from "../Modals/DistributePrizesModal";
 import { useDispatch, useSelector } from "react-redux";
-import { getItemDistributePizesModal, showDistributePrizesModal } from "../../redux/actions";
+import {
+  getItemDistributePizesModal,
+  showDistributePrizesModal,
+} from "../../redux/actions";
 
 interface FinishedTodayMatchesProps {
   matches: IFinishedTodayMatch[];
@@ -12,21 +15,20 @@ interface FinishedTodayMatchesProps {
 const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
   matches,
 }) => {
-  const isDistributePrizesModal = useSelector(
-    (state: IOpenedLeagueReducer) =>
-      state.openedLeagueReducer.isDistributePrizesModal
+  const { isDistributePrizesModal, itemDistributePizesModal } = useSelector(
+    (state: IOpenedLeagueReducer) => state.openedLeagueReducer
   );
-  const itemDistributePizesModal = useSelector(
-    (state: IOpenedLeagueReducer) =>
-      state.openedLeagueReducer.itemDistributePizesModal
-  );
+
   const dispatch = useDispatch();
 
   const resultForTable = matches.map((item) => {
     return { ...item, key: item.event_key };
   });
 
-  const showModal = (e: React.MouseEvent<HTMLElement, MouseEvent>, item:IFinishedTodayMatch) => {
+  const openModal = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    item: IFinishedTodayMatch
+  ) => {
     dispatch(getItemDistributePizesModal(item));
     dispatch(showDistributePrizesModal(true));
   };
@@ -101,7 +103,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
         <Button
           type="primary"
           style={{ backgroundColor: "#ff4d00" }}
-          onClick={e => showModal(e, item)}
+          onClick={(e) => openModal(e, item)}
           disabled={false}
         >
           Distribute

@@ -69,6 +69,40 @@ function* sagaGetItemDistributePizesModal(
   });
 }
 
+function* sagaShowCreateGameModal(
+  action: IShowModalsAction
+): Generator<Effect, void> {
+  yield put({
+    type: IMatchesActionTypes.SET_CREATE_GAME_MODAL,
+    payload: action.payload,
+  });
+}
+
+function* sagaGetItemCreateGameModal(
+  action: IGetItemModalsAction
+): Generator<Effect, void> {
+  yield put({
+    type: IMatchesActionTypes.SET_ITEM_CREATE_GAME_MODAL,
+    payload: action.payload,
+  });
+}
+
+function* sagaShowBetModal(action: IShowModalsAction): Generator<Effect, void> {
+  yield put({
+    type: IMatchesActionTypes.SET_BET_MODAL,
+    payload: action.payload,
+  });
+}
+
+function* sagaGetItemBetModal(
+  action: IGetItemModalsAction
+): Generator<Effect, void> {
+  yield put({
+    type: IMatchesActionTypes.SET_ITEM_BET_MODAL,
+    payload: action.payload,
+  });
+}
+
 export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(ILeaguesActionTypes.GET_LEAGUE, sagaGetLeagues);
   yield takeEvery(IMatchesActionTypes.GET_MATCHES, sagaGetMatches);
@@ -80,4 +114,14 @@ export function* sagaWatcher(): Generator<Effect, void> {
     IMatchesActionTypes.GET_ITEM_DISTRIBUTE_PRIZES_MODAL,
     sagaGetItemDistributePizesModal
   );
+  yield takeEvery(
+    IMatchesActionTypes.SHOW_CREATE_GAME_MODAL,
+    sagaShowCreateGameModal
+  );
+  yield takeEvery(
+    IMatchesActionTypes.GET_ITEM_CREATE_GAME_MODAL,
+    sagaGetItemCreateGameModal
+  );
+  yield takeEvery(IMatchesActionTypes.SHOW_BET_MODAL, sagaShowBetModal);
+  yield takeEvery(IMatchesActionTypes.GET_ITEM_BET_MODAL, sagaGetItemBetModal);
 }

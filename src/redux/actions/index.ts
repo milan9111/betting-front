@@ -1,5 +1,9 @@
 import { ILeaguesActionTypes } from "../../types/leagues";
-import { IFinishedTodayMatch, IMatchesActionTypes } from "../../types/matches";
+import {
+  IFinishedTodayMatch,
+  IMatchesActionTypes,
+  ITodayMatch,
+} from "../../types/matches";
 
 export const getLeagues = (countryId: string) => {
   return {
@@ -23,12 +27,40 @@ export const showDistributePrizesModal = (value: boolean) => {
   return {
     type: IMatchesActionTypes.SHOW_DISTRIBUTE_PRIZES_MODAL,
     payload: value,
-  }
-}
+  };
+};
 
 export const getItemDistributePizesModal = (item: IFinishedTodayMatch) => {
   return {
     type: IMatchesActionTypes.GET_ITEM_DISTRIBUTE_PRIZES_MODAL,
     payload: item,
-  }
-}
+  };
+};
+
+export const showCreateGameModal = (value: boolean) => {
+  return {
+    type: IMatchesActionTypes.SHOW_CREATE_GAME_MODAL,
+    payload: value,
+  };
+};
+
+export const getItemCreateGameModal = (item: ITodayMatch) => {
+  return {
+    type: IMatchesActionTypes.GET_ITEM_CREATE_GAME_MODAL,
+    payload: item,
+  };
+};
+
+export const showBetModal = (value: boolean) => {
+  return {
+    type: IMatchesActionTypes.SHOW_BET_MODAL,
+    payload: value,
+  };
+};
+
+export const getItemBetModal = (item: ITodayMatch) => {
+  return {
+    type: IMatchesActionTypes.GET_ITEM_BET_MODAL,
+    payload: item,
+  };
+};

@@ -13,6 +13,10 @@ export const initialState = {
   oddsTodayMatches: {},
   isDistributePrizesModal: false,
   itemDistributePizesModal: null,
+  isCreateGameModal: false,
+  itemCreateGameModal: null,
+  isBetModal: false,
+  itemBetModal: null,
 };
 
 export const openedLeagueReducer = (
@@ -46,6 +50,14 @@ export const openedLeagueReducer = (
       return { ...state, isDistributePrizesModal: action.payload };
     case IMatchesActionTypes.SET_ITEM_DISTRIBUTE_PRIZES_MODAL:
       return { ...state, itemDistributePizesModal: action.payload };
+    case IMatchesActionTypes.SET_CREATE_GAME_MODAL:
+      return { ...state, isCreateGameModal: action.payload };
+    case IMatchesActionTypes.SET_ITEM_CREATE_GAME_MODAL:
+      return { ...state, itemCreateGameModal: action.payload };
+    case IMatchesActionTypes.SET_BET_MODAL:
+      return { ...state, isBetModal: action.payload };
+    case IMatchesActionTypes.SET_ITEM_BET_MODAL:
+      return { ...state, itemBetModal: action.payload };
     default:
       return state;
   }

@@ -24,9 +24,7 @@ const DistributePrizesModal: React.FC<DistributePrizesModalProps> = ({
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <p>Coming soon...</p>
     </Modal>
   );
 };

@@ -1,6 +1,19 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Table, Image, Button } from "antd";
-import { ITodayMatch, ITodayOdds } from "../../types/matches";
+import {
+  IOpenedLeagueReducer,
+  ITodayMatch,
+  ITodayOdds,
+} from "../../types/matches";
+import CreateGameModal from "../Modals/CreateGameModal";
+import {
+  getItemBetModal,
+  getItemCreateGameModal,
+  showBetModal,
+  showCreateGameModal,
+} from "../../redux/actions";
+import BetModal from "../Modals/BetModal";
 
 interface TodayMatchesProps {
   matches: ITodayMatch[];
@@ -8,15 +21,64 @@ interface TodayMatchesProps {
 }
 
 const TodayMatchesTable: React.FC<TodayMatchesProps> = ({ matches, odds }) => {
-  const resultForTable = matches.map((item) => {
-    return {
-      ...item,
-      key: item.event_key,
-      odds_1: odds[item.event_key][0].odd_1,
-      odds_2: odds[item.event_key][0].odd_2,
-      odds_x: odds[item.event_key][0].odd_x,
-    };
-  });
+  const { isCreateGameModal, itemCreateGameModal, isBetModal, itemBetModal } =
+    useSelector((state: IOpenedLeagueReducer) => state.openedLeagueReducer);
+
+  const dispatch = useDispatch();
+
+  const resultForTable = matches
+    .map((item) => {
+      return {
+        ...item,
+        key: item.event_key,
+        odds_1: odds[item.event_key][0].odd_1,
+        odds_2: odds[item.event_key][0].odd_2,
+        odds_x: odds[item.event_key][0].odd_x,
+      };
+    })
+    .sort(
+      (a, b) =>
+        new Date(`${a.event_date} ${a.event_time}`).getTime() -
+        new Date(`${b.event_date} ${b.event_time}`).getTime()
+    );
+
+  const openCreateGameModal = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    item: ITodayMatch
+  ) => {
+    dispatch(getItemCreateGameModal(item));
+    dispatch(showCreateGameModal(true));
+  };
+
+  const handleCreateGameModalOk = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
+    dispatch(showCreateGameModal(false));
+  };
+
+  const handleCreateGameModalCancel = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
+    dispatch(showCreateGameModal(false));
+  };
+
+  const openBetModal = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    item: ITodayMatch
+  ) => {
+    dispatch(getItemBetModal(item));
+    dispatch(showBetModal(true));
+  };
+
+  const handleBetModalOk = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    dispatch(showBetModal(false));
+  };
+
+  const handleBetModalCancel = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
+    dispatch(showBetModal(false));
+  };
 
   const columns = [
     {
@@ -84,7 +146,13 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({ matches, odds }) => {
       dataIndex: "create_game",
       key: "create_game",
       render: (el: any, item: ITodayMatch) => (
-        <Button type="primary" disabled={false}>
+        <Button
+          type="primary"
+          onClick={(e) => {
+            openCreateGameModal(e, item);
+          }}
+          disabled={false}
+        >
           Create
         </Button>
       ),
@@ -98,6 +166,9 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({ matches, odds }) => {
         <Button
           type="primary"
           style={{ backgroundColor: "#ff4d00" }}
+          onClick={(e) => {
+            openBetModal(e, item);
+          }}
           disabled={false}
         >
           Bet
@@ -108,12 +179,26 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({ matches, odds }) => {
   ];
 
   return (
-    <Table
-      columns={columns}
-      dataSource={resultForTable}
-      pagination={{ className: "pagination" }}
-      locale={{ emptyText: "No matches today!" }}
-    />
+    <>
+      <Table
+        columns={columns}
+        dataSource={resultForTable}
+        pagination={{ className: "pagination" }}
+        locale={{ emptyText: "No matches today!" }}
+      />
+      <CreateGameModal
+        handleCreateGameModalOk={handleCreateGameModalOk}
+        handleCreateGameModalCancel={handleCreateGameModalCancel}
+        isCreateGameModal={isCreateGameModal}
+        itemCreateGameModal={itemCreateGameModal}
+      />
+      <BetModal
+        handleBetModalOk={handleBetModalOk}
+        handleBetModalCancel={handleBetModalCancel}
+        isBetModal={isBetModal}
+        itemBetModal={itemBetModal}
+      />
+    </>
   );
 };
 

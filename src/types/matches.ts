@@ -5,6 +5,14 @@ export enum IMatchesActionTypes {
   SET_DISTRIBUTE_PRIZES_MODAL = "SET_DISTRIBUTE_PRIZES_MODAL",
   GET_ITEM_DISTRIBUTE_PRIZES_MODAL = "GET_ITEM_DISTRIBUTE_PRIZES_MODAL",
   SET_ITEM_DISTRIBUTE_PRIZES_MODAL = "SET_ITEM_DISTRIBUTE_PRIZES_MODAL",
+  SHOW_CREATE_GAME_MODAL = "SHOW_CREATE_GAME_MODAL",
+  SET_CREATE_GAME_MODAL = "SET_CREATE_GAME_MODAL",
+  GET_ITEM_CREATE_GAME_MODAL = "GET_ITEM_CREATE_GAME_MODAL",
+  SET_ITEM_CREATE_GAME_MODAL = "SET_ITEM_CREATE_GAME_MODAL",
+  SHOW_BET_MODAL = "SHOW_BET_MODAL",
+  SET_BET_MODAL = "SET_BET_MODAL",
+  GET_ITEM_BET_MODAL = "GET_ITEM_BET_MODAL",
+  SET_ITEM_BET_MODAL = "SET_ITEM_BET_MODAL",
 }
 
 export interface ITodayMatch {
@@ -197,6 +205,10 @@ export interface IMatchesState {
   oddsTodayMatches: ITodayOdds;
   isDistributePrizesModal: boolean;
   itemDistributePizesModal: IFinishedTodayMatch | null;
+  isCreateGameModal: boolean;
+  itemCreateGameModal: ITodayMatch | null;
+  isBetModal: boolean;
+  itemBetModal: ITodayMatch | null;
 }
 
 export interface IMatchesParams {
@@ -212,6 +224,10 @@ export interface IOpenedLeagueState {
   oddsTodayMatches: ITodayOdds;
   isDistributePrizesModal: boolean;
   itemDistributePizesModal: IFinishedTodayMatch | null;
+  isCreateGameModal: boolean;
+  itemCreateGameModal: ITodayMatch | null;
+  isBetModal: boolean;
+  itemBetModal: ITodayMatch | null;
 }
 
 export interface IOpenedLeagueReducer {
@@ -226,14 +242,22 @@ export interface IGetMatchesAction {
 export interface IShowModalsAction {
   type:
     | IMatchesActionTypes.SHOW_DISTRIBUTE_PRIZES_MODAL
-    | IMatchesActionTypes.SET_DISTRIBUTE_PRIZES_MODAL;
+    | IMatchesActionTypes.SET_DISTRIBUTE_PRIZES_MODAL
+    | IMatchesActionTypes.SHOW_CREATE_GAME_MODAL
+    | IMatchesActionTypes.SET_CREATE_GAME_MODAL
+    | IMatchesActionTypes.SHOW_BET_MODAL
+    | IMatchesActionTypes.SET_BET_MODAL;
   payload: boolean;
 }
 
 export interface IGetItemModalsAction {
   type:
     | IMatchesActionTypes.GET_ITEM_DISTRIBUTE_PRIZES_MODAL
-    | IMatchesActionTypes.SET_ITEM_DISTRIBUTE_PRIZES_MODAL;
+    | IMatchesActionTypes.SET_ITEM_DISTRIBUTE_PRIZES_MODAL
+    | IMatchesActionTypes.GET_ITEM_CREATE_GAME_MODAL
+    | IMatchesActionTypes.SET_ITEM_CREATE_GAME_MODAL
+    | IMatchesActionTypes.GET_ITEM_BET_MODAL
+    | IMatchesActionTypes.SET_ITEM_BET_MODAL;
   payload: IFinishedTodayMatch;
 }
 
