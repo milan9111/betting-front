@@ -1,14 +1,23 @@
 import React from "react";
+import { ethers } from "ethers";
 import { IAsideContent } from "../../types/contents";
 
 interface asideProps {
   asideContent: IAsideContent;
+  userAccount: string;
+  userBalance: string;
 }
 
-const Aside: React.FC<asideProps> = ({ asideContent }) => {
-  const temporaryAccount = "0x44a6Cb6Cb07A78fc843a5F0F8BD81F98c27A4537";
+const Aside: React.FC<asideProps> = ({
+  asideContent,
+  userAccount,
+  userBalance,
+}) => {
   const editedAccount =
-    temporaryAccount.slice(0, 4) + "...." + temporaryAccount.slice(-4);
+    userAccount.slice(0, 4) + "...." + userAccount.slice(-4);
+  const editedBalance = Number(ethers.utils.formatEther(userBalance)).toFixed(
+    5
+  );
 
   return (
     <aside className="aside">
@@ -25,15 +34,13 @@ const Aside: React.FC<asideProps> = ({ asideContent }) => {
           <div className="aside__user-info_account">
             Account: {editedAccount}
           </div>
-          <div className="aside__user-info_balance">Balance: 1.6 GoerliETH</div>
+          <div className="aside__user-info_balance">
+            Balance: {editedBalance} ETH
+          </div>
         </div>
         <div className="aside__chat">
-            <div className="aside__chat_title">
-                {asideContent.chatTitle}
-            </div>
-            <div className="aside__chat_body">
-                Coming soon...
-            </div>
+          <div className="aside__chat_title">{asideContent.chatTitle}</div>
+          <div className="aside__chat_body">Coming soon...</div>
         </div>
       </div>
     </aside>

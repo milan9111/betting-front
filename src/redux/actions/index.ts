@@ -1,3 +1,4 @@
+import { IEthersActionTypes } from "../../types/ethers";
 import { ILeaguesActionTypes } from "../../types/leagues";
 import {
   IFinishedTodayMatch,
@@ -62,5 +63,12 @@ export const getItemBetModal = (item: ITodayMatch) => {
   return {
     type: IMatchesActionTypes.GET_ITEM_BET_MODAL,
     payload: item,
+  };
+};
+
+
+export const getUserAccount = () => {
+  return {
+    type: IEthersActionTypes.GET_USER_ACCOUNT,
   };
 };

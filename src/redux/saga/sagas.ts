@@ -1,5 +1,6 @@
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
 import { LeaguesApi, MatchesApi } from "../../api";
+import { IEthersAction, IEthersActionTypes } from "../../types/ethers";
 import {
   IGetAction,
   ILeaguesActionTypes,
@@ -14,6 +15,7 @@ import {
   IShowModalsAction,
   ITodayMatch,
 } from "../../types/matches";
+import { connectWallet } from "../../web3/connectWallet";
 
 function* sagaGetLeagues(
   action: IGetAction
@@ -103,6 +105,18 @@ function* sagaGetItemBetModal(
   });
 }
 
+function* sagaGetUserAccount(action: IEthersAction): Generator<Effect, void> {
+  try {
+    const accountUser = yield call(connectWallet);
+    yield put({
+      type: IEthersActionTypes.SET_USER_ACCOUNT,
+      payload: accountUser,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(ILeaguesActionTypes.GET_LEAGUE, sagaGetLeagues);
   yield takeEvery(IMatchesActionTypes.GET_MATCHES, sagaGetMatches);
@@ -124,4 +138,5 @@ export function* sagaWatcher(): Generator<Effect, void> {
   );
   yield takeEvery(IMatchesActionTypes.SHOW_BET_MODAL, sagaShowBetModal);
   yield takeEvery(IMatchesActionTypes.GET_ITEM_BET_MODAL, sagaGetItemBetModal);
+  yield takeEvery(IEthersActionTypes.GET_USER_ACCOUNT, sagaGetUserAccount);
 }

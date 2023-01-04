@@ -1,9 +1,6 @@
 export enum ILeaguesActionTypes {
   GET_LEAGUE = "GET_LEAGUE",
   SET_LEAGUE = "SET_LEAGUE",
-  // CREATE_BID = "CREATE_BID",
-  // COMPLETE_BID = "COMPLETE_BID",
-  // DISTRIBUTE_PRIZES = "DISTRIBUTE_PRIZES",
 }
 
 export interface ILeagueInFederation {

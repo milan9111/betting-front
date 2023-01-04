@@ -19,7 +19,7 @@ const LeagueTable: React.FC<LeagueProps> = ({ result }) => {
       dataIndex: "country_logo",
       key: "country_logo",
       render: (el: any, item: ILeagueInFederation) => (
-        <Image height={30} src={item.country_logo} />
+        <Image style={{ maxWidth: "30px" }} src={item.country_logo} />
       ),
       align: "center" as "center",
     },
@@ -35,9 +35,9 @@ const LeagueTable: React.FC<LeagueProps> = ({ result }) => {
       key: "league_logo",
       render: (el: any, item: ILeagueInFederation) => {
         if (item.league_logo) {
-          return <Image height={75} src={item.league_logo} />;
+          return <Image style={{ maxWidth: "70px" }} src={item.league_logo} />;
         } else {
-          return <Image height={75} src={uefa} />;
+          return <Image style={{ maxWidth: "70px" }} src={uefa} />;
         }
       },
       align: "center" as "center",
@@ -47,6 +47,7 @@ const LeagueTable: React.FC<LeagueProps> = ({ result }) => {
       dataIndex: "league_name",
       key: "league_name",
       align: "center" as "center",
+      ellipsis: true,
     },
     {
       title: "Open",
