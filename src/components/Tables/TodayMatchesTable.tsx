@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Table, Image, Button } from "antd";
 import {
   IOpenedLeagueReducer,
+  ITodayCreatedMatches,
   ITodayMatch,
   ITodayOdds,
 } from "../../types/matches";
@@ -19,23 +20,38 @@ import { ethers } from "ethers";
 
 interface TodayMatchesProps {
   matches: ITodayMatch[];
+  createdMatches: ITodayCreatedMatches[];
   odds: ITodayOdds;
 }
 
-const TodayMatchesTable: React.FC<TodayMatchesProps> = ({ matches, odds }) => {
+const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
+  matches,
+  createdMatches,
+  odds,
+}) => {
   const { isCreateGameModal, itemCreateGameModal, isBetModal, itemBetModal } =
     useSelector((state: IOpenedLeagueReducer) => state.openedLeagueReducer);
 
   const dispatch = useDispatch();
 
+  console.log(createdMatches);
+  console.log(matches);
+
   const resultForTable = matches
     .map((item) => {
+      let createdInContract: boolean = false;
+      createdMatches.forEach((el) => {
+        if (item.event_key === el.odds_id) {
+          createdInContract = true;
+        }
+      });
       return {
         ...item,
         key: item.event_key,
         odds_1: odds[item.event_key][0].odd_1,
         odds_2: odds[item.event_key][0].odd_2,
         odds_x: odds[item.event_key][0].odd_x,
+        created_in_contract: createdInContract,
       };
     })
     .sort(
@@ -55,13 +71,11 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({ matches, odds }) => {
   const handleCreateGameModalOk = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     item: ITodayMatch,
-    contract: ethers.Contract
+    contract: ethers.Contract,
+    userAccount: string
   ) => {
     dispatch(showCreateGameModal(false));
-    dispatch(createGame(item, contract));
-    contract.on("MatchCreated", (index) => {
-      console.log(index.toString()); // dispatch with ethIndex, item, userAccount
-   });
+    dispatch(createGame(item, contract, userAccount));
   };
 
   const handleCreateGameModalCancel = (
@@ -159,7 +173,7 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({ matches, odds }) => {
           onClick={(e) => {
             openCreateGameModal(e, item);
           }}
-          disabled={false}
+          disabled={item.created_in_contract}
         >
           Create
         </Button>

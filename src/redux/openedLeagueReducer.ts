@@ -3,11 +3,13 @@ import {
   IMatchesAction,
   IMatchesActionTypes,
   IMatchesState,
+  ITodayCreatedMatches,
   ITodayMatch,
 } from "../types/matches";
 
 export const initialState = {
   todayMatches: [],
+  todayCreatedMatches: [],
   finishedTodayMatches: [],
   liveTodayMatches: [],
   oddsTodayMatches: {},
@@ -28,6 +30,7 @@ export const openedLeagueReducer = (
       const allTodayMatches: any = action.payload;
       const oddsTodayMatches: any = action.payload;
       const nextTodayMatches: ITodayMatch[] = [];
+      const nextTodayCreatedMatches: any = action.payload;
       const finishedTodayMatches: IFinishedTodayMatch[] = [];
       const liveTodayMatches: IFinishedTodayMatch[] = [];
       allTodayMatches.todayMatches?.forEach((item: any) => {
@@ -42,6 +45,7 @@ export const openedLeagueReducer = (
       return {
         ...state,
         todayMatches: nextTodayMatches,
+        todayCreatedMatches: nextTodayCreatedMatches.todayCreatedMatches,
         finishedTodayMatches: finishedTodayMatches,
         liveTodayMatches: liveTodayMatches,
         oddsTodayMatches: { ...oddsTodayMatches.todayOdds },

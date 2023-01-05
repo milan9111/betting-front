@@ -24,6 +24,7 @@ const OpenedLeague: React.FC<OpenedLeagueProps> = ({
           <TodayMatchesTable
             matches={matches.todayMatches}
             odds={matches.oddsTodayMatches}
+            createdMatches={matches.todayCreatedMatches}
           />
         </div>
         <div className="openedLeague__title">

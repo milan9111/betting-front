@@ -1,9 +1,21 @@
+import { MatchesApi } from "../api";
 import { ICreateGamePayload } from "../types/matches";
 
 export const createGameInContract = async ({
   item,
   contract,
+  userAccount,
 }: ICreateGamePayload) => {
+
+  contract.on("MatchCreated", (index) => {
+    const createGame = async () => {
+    const result = await MatchesApi.createGame(item, userAccount, index.toString());
+    console.log(result);
+     
+    } 
+    createGame();
+  });
+
   const coefficientOne =
     item.odds_1 && Math.floor(Number(item.odds_1.toFixed(2)) * 100);
   const coefficientTwo =

@@ -47,9 +47,10 @@ export interface ITodayMatch {
   event_home_formation: string;
   event_away_formation: string;
   fk_stage_key: number;
-  odds_1?:number;
-  odds_2?:number;
-  odds_x?:number;
+  odds_1?: number;
+  odds_2?: number;
+  odds_x?: number;
+  created_in_contract?: boolean;
   stage_name: string;
   league_group: null | string;
   goalscorers: [];
@@ -70,6 +71,23 @@ export interface ITodayMatch {
     };
   };
   statistics: [];
+}
+
+export interface ITodayCreatedMatches {
+  _id: string;
+  odds_id: number;
+  eth_index: number;
+  home_team: string;
+  away_team: string;
+  event_date: string;
+  event_time: string;
+  finished: boolean;
+  odd_1: number;
+  odd_x: number;
+  odd_2: number;
+  creator: string;
+  winners: string[];
+  __v: number;
 }
 
 export interface IGoalscorers {
@@ -206,6 +224,7 @@ export interface ITodayOdds {
 
 export interface IMatchesState {
   todayMatches: ITodayMatch[];
+  todayCreatedMatches: ITodayCreatedMatches[]; 
   finishedTodayMatches: IFinishedTodayMatch[];
   liveTodayMatches: IFinishedTodayMatch[];
   oddsTodayMatches: ITodayOdds;
@@ -225,6 +244,7 @@ export interface IMatchesParams {
 
 export interface IOpenedLeagueState {
   todayMatches: ITodayMatch[];
+  todayCreatedMatches: ITodayCreatedMatches[];
   finishedTodayMatches: IFinishedTodayMatch[];
   liveTodayMatches: IFinishedTodayMatch[];
   oddsTodayMatches: ITodayOdds;
@@ -242,7 +262,11 @@ export interface IOpenedLeagueReducer {
 
 export interface IGetMatchesAction {
   type: IMatchesActionTypes.GET_MATCHES | IMatchesActionTypes.SET_MATCHES;
-  payload: IMatchesParams | ITodayMatch[] | IFinishedTodayMatch[];
+  payload:
+    | IMatchesParams
+    | ITodayMatch[]
+    | ITodayCreatedMatches[]
+    | IFinishedTodayMatch[];
 }
 
 export interface IShowModalsAction {
@@ -270,6 +294,7 @@ export interface IGetItemModalsAction {
 export interface ICreateGamePayload {
   item: ITodayMatch;
   contract: ethers.Contract;
+  userAccount: string;
 }
 
 export interface ICreateGameAction {

@@ -10,7 +10,8 @@ interface CreateGameModalProps {
   handleCreateGameModalOk: (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     item: ITodayMatch,
-    contract: ethers.Contract
+    contract: ethers.Contract,
+    userAccount: string
   ) => void;
   handleCreateGameModalCancel: (
     e: React.MouseEvent<HTMLElement, MouseEvent>
@@ -25,8 +26,8 @@ const CreateGameModal: React.FC<CreateGameModalProps> = ({
   isCreateGameModal,
   itemCreateGameModal,
 }) => {
-  const contract = useSelector(
-    (state: IEthersReducer) => state.ethersReducer.contract
+  const { contract, userAccount } = useSelector(
+    (state: IEthersReducer) => state.ethersReducer
   );
 
   return (
@@ -37,7 +38,8 @@ const CreateGameModal: React.FC<CreateGameModalProps> = ({
         handleCreateGameModalOk(
           e,
           itemCreateGameModal as ITodayMatch,
-          contract as ethers.Contract
+          contract as ethers.Contract,
+          userAccount
         );
       }}
       onCancel={handleCreateGameModalCancel}

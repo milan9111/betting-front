@@ -53,10 +53,14 @@ export const getItemCreateGameModal = (item: ITodayMatch) => {
   };
 };
 
-export const createGame = (item: ITodayMatch, contract: ethers.Contract) => {
+export const createGame = (
+  item: ITodayMatch,
+  contract: ethers.Contract,
+  userAccount: string
+) => {
   return {
     type: IMatchesActionTypes.CREATE_GAME,
-    payload: {item, contract}
+    payload: { item, contract, userAccount },
   };
 };
 
@@ -73,7 +77,6 @@ export const getItemBetModal = (item: ITodayMatch) => {
     payload: item,
   };
 };
-
 
 export const getUserAccount = () => {
   return {

@@ -14,6 +14,7 @@ import {
   IMatchesActionTypes,
   IMatchesParams,
   IShowModalsAction,
+  ITodayCreatedMatches,
   ITodayMatch,
 } from "../../types/matches";
 import { connectWallet } from "../../web3/connectWallet";
@@ -36,7 +37,7 @@ function* sagaGetLeagues(
 
 function* sagaGetMatches(
   action: IGetMatchesAction
-): Generator<Effect, void, ITodayMatch[] | IFinishedTodayMatch[]> {
+): Generator<Effect, void, ITodayMatch[] | IFinishedTodayMatch[] | ITodayCreatedMatches[]> {
   try {
     const todayMatches = yield call(
       MatchesApi.getTodayMatches,
@@ -46,9 +47,10 @@ function* sagaGetMatches(
       MatchesApi.getTodayOdds,
       action.payload as IMatchesParams
     );
+    const todayCreatedMatches = yield call(MatchesApi.getTodayCreatedMatches);
     yield put({
       type: IMatchesActionTypes.SET_MATCHES,
-      payload: { todayMatches, todayOdds },
+      payload: { todayMatches, todayOdds, todayCreatedMatches },
     });
   } catch (error) {
     console.log(error);
@@ -91,16 +93,13 @@ function* sagaGetItemCreateGameModal(
   });
 }
 
-function* sagaCreateGame(
-  action: ICreateGameAction
-): Generator<Effect, void> {
+function* sagaCreateGame(action: ICreateGameAction): Generator<Effect, void> {
   try {
-    const CreatedGameTx = yield call(createGameInContract, action.payload);
-    console.log(CreatedGameTx); // alert
-  } catch(error) {
+    const tx = yield call(createGameInContract, action.payload);
+    console.log(tx); // alert
+  } catch (error) {
     console.log(error);
   }
-  
 }
 
 function* sagaShowBetModal(action: IShowModalsAction): Generator<Effect, void> {
