@@ -1,19 +1,27 @@
 import React from "react";
 import { Table, Image, Button } from "antd";
-import { IFinishedTodayMatch, IOpenedLeagueReducer } from "../../types/matches";
+import {
+  IFinishedTodayMatch,
+  IOpenedLeagueReducer,
+  ITodayCreatedMatches,
+} from "../../types/matches";
 import DistributePrizesModal from "../Modals/DistributePrizesModal";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  distributePrizes,
   getItemDistributePizesModal,
   showDistributePrizesModal,
 } from "../../redux/actions";
+import { ethers } from "ethers";
 
 interface FinishedTodayMatchesProps {
   matches: IFinishedTodayMatch[];
+  createdMatches: ITodayCreatedMatches[];
 }
 
 const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
   matches,
+  createdMatches,
 }) => {
   const { isDistributePrizesModal, itemDistributePizesModal } = useSelector(
     (state: IOpenedLeagueReducer) => state.openedLeagueReducer
@@ -22,6 +30,13 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
   const dispatch = useDispatch();
 
   const resultForTable = matches.map((item) => {
+    createdMatches.forEach((el) => {
+      if (item.event_key === el.odds_id) {
+        item.eth_index = el.eth_index;
+        item._idMongo = el._id;
+        item.created_in_contract = true;
+      }
+    });
     return { ...item, key: item.event_key };
   });
 
@@ -33,7 +48,14 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
     dispatch(showDistributePrizesModal(true));
   };
 
-  const handleOk = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handleOk = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    _idMongo: string | undefined,
+    ethIndex: number | undefined,
+    winner: string | undefined,
+    contract: ethers.Contract | null
+  ) => {
+    dispatch(distributePrizes(_idMongo, ethIndex, winner, contract));
     dispatch(showDistributePrizesModal(false));
   };
 
@@ -104,7 +126,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
           type="primary"
           style={{ backgroundColor: "#ff4d00" }}
           onClick={(e) => openModal(e, item)}
-          disabled={false}
+          disabled={!item.created_in_contract}
         >
           Distribute
         </Button>

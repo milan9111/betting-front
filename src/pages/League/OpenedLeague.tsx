@@ -37,7 +37,10 @@ const OpenedLeague: React.FC<OpenedLeagueProps> = ({
           {openedLeagueContent.titleFinishedMatches}
         </div>
         <div className="openedLeague__table">
-          <FinishedTodayMatchesTable matches={matches.finishedTodayMatches} />
+          <FinishedTodayMatchesTable
+            matches={matches.finishedTodayMatches}
+            createdMatches={matches.todayCreatedMatches}
+          />
         </div>
       </div>
     </div>

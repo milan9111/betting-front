@@ -42,11 +42,10 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
 
   const resultForTable = matches
     .map((item) => {
-      let createdInContract: boolean = false;
       createdMatches.forEach((el) => {
         if (item.event_key === el.odds_id) {
           item.eth_index = el.eth_index;
-          createdInContract = true;
+          item.created_in_contract = true;
         }
       });
       return {
@@ -55,7 +54,6 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
         odds_1: odds[item.event_key][0].odd_1,
         odds_2: odds[item.event_key][0].odd_2,
         odds_x: odds[item.event_key][0].odd_x,
-        created_in_contract: createdInContract,
       };
     })
     .sort(

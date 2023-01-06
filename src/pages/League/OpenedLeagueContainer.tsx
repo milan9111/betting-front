@@ -7,6 +7,7 @@ import { getMatches } from "../../redux/actions";
 import {
   IOpenedLeagueReducer,
   ISocketEventCreatedGame,
+  ISocketEventUpdatedGame,
 } from "../../types/matches";
 import { openedLeagueContent } from "../../content/openedLeague";
 import OpenedLeague from "./OpenedLeague";
@@ -16,11 +17,17 @@ const OpenedLeagueContainer = () => {
     (state: IOpenedLeagueReducer) => state.openedLeagueReducer
   );
   const [idCreatedGame, setIdCreatedGame] = useState<number>(0);
+  const [updateTimeGame, setUpdateTimeGame] = useState<number>(0);
   const dispatch = useDispatch();
   const location = useLocation();
 
-  socket.on("messages", (data: ISocketEventCreatedGame) => {
+  socket.on("createdMatch", (data: ISocketEventCreatedGame) => {
     setIdCreatedGame(data.odds_id);
+    // alert
+  });
+  socket.on("updatedMatch", (data: ISocketEventUpdatedGame) => {
+    setUpdateTimeGame(data.updateTime);
+    // alert
   });
 
   useEffect(() => {
@@ -31,7 +38,7 @@ const OpenedLeagueContainer = () => {
     const leagueId = location.pathname.split("/")[2];
 
     page?.countryId && dispatch(getMatches(date, page.countryId, leagueId));
-  }, [location.pathname, dispatch, idCreatedGame]);
+  }, [location.pathname, dispatch, idCreatedGame, updateTimeGame]);
 
   return (
     <OpenedLeague matches={state} openedLeagueContent={openedLeagueContent} />

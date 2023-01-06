@@ -69,4 +69,5 @@ export interface IOpenedLeagueContent {
   titleNextMatches: string;
   titleFinishedMatches: string;
   titleLiveMatches: string;
+  textDistributePrizesModal: string,
 }

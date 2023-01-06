@@ -9,6 +9,7 @@ import {
 import {
   IBidMatchAction,
   ICreateGameAction,
+  IDistributePrizesAction,
   IFinishedTodayMatch,
   IGetItemModalsAction,
   IGetMatchesAction,
@@ -21,6 +22,7 @@ import {
 import { betMatchInContract } from "../../web3/betMatch";
 import { connectWallet } from "../../web3/connectWallet";
 import { createGameInContract } from "../../web3/createGame";
+import { distributePrizesInContract } from "../../web3/distributePrizes";
 
 function* sagaGetLeagues(
   action: IGetAction
@@ -133,6 +135,17 @@ function* sagaBidMatch(action: IBidMatchAction): Generator<Effect, void> {
   }
 }
 
+function* sagaDistributePrizes(
+  action: IDistributePrizesAction
+): Generator<Effect, void> {
+  try {
+    const tx = yield call(distributePrizesInContract, action.payload);
+    console.log(tx); // alert
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* sagaGetUserAccount(action: IEthersAction): Generator<Effect, void> {
   try {
     const accountUser = yield call(connectWallet);
@@ -156,6 +169,7 @@ export function* sagaWatcher(): Generator<Effect, void> {
     IMatchesActionTypes.GET_ITEM_DISTRIBUTE_PRIZES_MODAL,
     sagaGetItemDistributePizesModal
   );
+  yield takeEvery(IMatchesActionTypes.DISTRIBUTE_PRIZES, sagaDistributePrizes);
   yield takeEvery(
     IMatchesActionTypes.SHOW_CREATE_GAME_MODAL,
     sagaShowCreateGameModal

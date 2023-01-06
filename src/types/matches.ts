@@ -7,6 +7,7 @@ export enum IMatchesActionTypes {
   SET_DISTRIBUTE_PRIZES_MODAL = "SET_DISTRIBUTE_PRIZES_MODAL",
   GET_ITEM_DISTRIBUTE_PRIZES_MODAL = "GET_ITEM_DISTRIBUTE_PRIZES_MODAL",
   SET_ITEM_DISTRIBUTE_PRIZES_MODAL = "SET_ITEM_DISTRIBUTE_PRIZES_MODAL",
+  DISTRIBUTE_PRIZES = "DISTRIBUTE_PRIZES",
   SHOW_CREATE_GAME_MODAL = "SHOW_CREATE_GAME_MODAL",
   SET_CREATE_GAME_MODAL = "SET_CREATE_GAME_MODAL",
   CREATE_GAME = "CREATE_GAME",
@@ -192,6 +193,9 @@ export interface IFinishedTodayMatch {
   event_home_formation: string;
   event_away_formation: string;
   fk_stage_key: number;
+  eth_index?: number;
+  created_in_contract?: boolean;
+  _idMongo?: string;
   stage_name: string;
   league_group: null | string;
   goalscorers: IGoalscorers[] | [];
@@ -316,6 +320,18 @@ export interface IBidMatchAction {
   payload: IBidMatchPayload;
 }
 
+export interface IDistributePrizesPayload {
+  _idMongo: string;
+  ethIndex: number;
+  winner: string;
+  contract: ethers.Contract;
+}
+
+export interface IDistributePrizesAction {
+  type: IMatchesActionTypes.DISTRIBUTE_PRIZES;
+  payload: IDistributePrizesPayload;
+}
+
 export type IMatchesAction =
   | IGetMatchesAction
   | IShowModalsAction
@@ -327,5 +343,12 @@ export type IMatchesAction =
 export interface ISocketEventCreatedGame {
   eth_index: number;
   odds_id: number;
+  text: string;
+}
+
+export interface ISocketEventUpdatedGame {
+  finished: boolean;
+  finalResult: string;
+  updateTime: number;
   text: string;
 }

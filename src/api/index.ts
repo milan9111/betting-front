@@ -66,7 +66,21 @@ export class MatchesApi {
       const res = await axios.post(`${host}matches`, payload);
       return res.data;
     } catch (error) {
-      console.log(error);
+      console.log(error); //alert
     }
   }
+
+  // static async distributePrizes(
+     
+  // ): Promise<any> {
+  //   try {
+  //     const payload = {
+       
+  //     };
+  //     const res = await axios.put(`${host}matches/${_idMongo}`, payload);
+  //     return res.data;
+  //   } catch (error) {
+  //     console.log(error); //alert
+  //   }
+  // }
 }

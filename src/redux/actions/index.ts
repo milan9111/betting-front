@@ -39,6 +39,18 @@ export const getItemDistributePizesModal = (item: IFinishedTodayMatch) => {
   };
 };
 
+export const distributePrizes = (
+  _idMongo: string | undefined,
+  ethIndex: number | undefined,
+  winner: string | undefined,
+  contract: ethers.Contract | null
+) => {
+  return {
+    type: IMatchesActionTypes.DISTRIBUTE_PRIZES,
+    payload: { _idMongo, ethIndex, winner, contract },
+  };
+};
+
 export const showCreateGameModal = (value: boolean) => {
   return {
     type: IMatchesActionTypes.SHOW_CREATE_GAME_MODAL,
@@ -68,12 +80,12 @@ export const bidMatch = (
   ethIndex: number | undefined,
   teamSelected: number,
   bidValue: string,
-  contract: ethers.Contract | null,
+  contract: ethers.Contract | null
 ) => {
   return {
     type: IMatchesActionTypes.BID_MATCH,
-    payload: { ethIndex, teamSelected, bidValue, contract }
-  }
+    payload: { ethIndex, teamSelected, bidValue, contract },
+  };
 };
 
 export const showBetModal = (value: boolean) => {
