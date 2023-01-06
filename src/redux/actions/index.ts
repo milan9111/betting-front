@@ -64,6 +64,18 @@ export const createGame = (
   };
 };
 
+export const bidMatch = (
+  ethIndex: number | undefined,
+  teamSelected: number,
+  bidValue: string,
+  contract: ethers.Contract | null,
+) => {
+  return {
+    type: IMatchesActionTypes.BID_MATCH,
+    payload: { ethIndex, teamSelected, bidValue, contract }
+  }
+};
+
 export const showBetModal = (value: boolean) => {
   return {
     type: IMatchesActionTypes.SHOW_BET_MODAL,

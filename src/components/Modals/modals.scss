@@ -1,38 +1,132 @@
 .createGameModal {
-    &__container {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
+  &__container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 
-    &__home {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        &_name {
-            font-size: 20px;
-            color: #000;
-            font-weight: 600;
-            margin-top: 15px;
-        }
+  &__home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_name {
+      font-size: 20px;
+      color: #000;
+      font-weight: 600;
+      margin-top: 15px;
     }
+  }
 
-    &__away {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        &_name {
-            font-size: 20px;
-            color: #000;
-            font-weight: 600;
-            margin-top: 15px;
-        }
+  &__away {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_name {
+      font-size: 20px;
+      color: #000;
+      font-weight: 600;
+      margin-top: 15px;
     }
+  }
 
-    &__info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_name {
+      text-align: center;
     }
+  }
+}
+
+.betModal {
+  &__container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+  }
+
+  &__home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_name {
+      font-size: 20px;
+      color: #000;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+    &_odds {
+      margin-top: 15px;
+      color: #000;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    &_value {
+      margin-top: 15px;
+    }
+    &_button {
+      margin-top: 15px;
+    }
+  }
+
+  &__away {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_name {
+      font-size: 20px;
+      color: #000;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+    &_odds {
+      margin-top: 15px;
+      color: #000;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    &_value {
+      margin-top: 15px;
+    }
+    &_button {
+      margin-top: 15px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_name {
+      text-align: center;
+    }
+    &_odds {
+      margin-top: 95px;
+      color: #000;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    &_value {
+      margin-top: 15px;
+    }
+    &_button {
+      margin-top: 15px;
+    }
+    &_error-visible {
+      margin-top: 10px;
+      color: #ff0000;
+      font-size: 16px;
+      font-weight: 600;
+      visibility: visible;
+    }
+    &_error-hidden {
+      margin-top: 10px;
+      color: #ff0000;
+      font-size: 16px;
+      font-weight: 600;
+      visibility: hidden;
+    }
+  }
 }

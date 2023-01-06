@@ -16,6 +16,7 @@ export enum IMatchesActionTypes {
   SET_BET_MODAL = "SET_BET_MODAL",
   GET_ITEM_BET_MODAL = "GET_ITEM_BET_MODAL",
   SET_ITEM_BET_MODAL = "SET_ITEM_BET_MODAL",
+  BID_MATCH = "BID_MATCH",
 }
 
 export interface ITodayMatch {
@@ -50,6 +51,7 @@ export interface ITodayMatch {
   odds_1?: number;
   odds_2?: number;
   odds_x?: number;
+  eth_index?: number;
   created_in_contract?: boolean;
   stage_name: string;
   league_group: null | string;
@@ -224,7 +226,7 @@ export interface ITodayOdds {
 
 export interface IMatchesState {
   todayMatches: ITodayMatch[];
-  todayCreatedMatches: ITodayCreatedMatches[]; 
+  todayCreatedMatches: ITodayCreatedMatches[];
   finishedTodayMatches: IFinishedTodayMatch[];
   liveTodayMatches: IFinishedTodayMatch[];
   oddsTodayMatches: ITodayOdds;
@@ -302,8 +304,28 @@ export interface ICreateGameAction {
   payload: ICreateGamePayload;
 }
 
+export interface IBidMatchPayload {
+  ethIndex: number;
+  teamSelected: number;
+  bidValue: string;
+  contract: ethers.Contract;
+}
+
+export interface IBidMatchAction {
+  type: IMatchesActionTypes.BID_MATCH;
+  payload: IBidMatchPayload;
+}
+
 export type IMatchesAction =
   | IGetMatchesAction
   | IShowModalsAction
   | IGetItemModalsAction
   | ICreateGameAction;
+
+//sockets
+
+export interface ISocketEventCreatedGame {
+  eth_index: number;
+  odds_id: number;
+  text: string;
+}

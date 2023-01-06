@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Table, Image, Button } from "antd";
 import {
@@ -9,6 +9,7 @@ import {
 } from "../../types/matches";
 import CreateGameModal from "../Modals/CreateGameModal";
 import {
+  bidMatch,
   createGame,
   getItemBetModal,
   getItemCreateGameModal,
@@ -32,16 +33,19 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
   const { isCreateGameModal, itemCreateGameModal, isBetModal, itemBetModal } =
     useSelector((state: IOpenedLeagueReducer) => state.openedLeagueReducer);
 
-  const dispatch = useDispatch();
+  const [bidValueHomeTeam, setBidValueHomeTeam] = useState<string>("");
+  const [bidValueAwayTeam, setBidValueAwayTeam] = useState<string>("");
+  const [bidValueDraw, setBidValueDraw] = useState<string>("");
+  const [errorInput, setErrorInput] = useState<boolean>(false);
 
-  console.log(createdMatches);
-  console.log(matches);
+  const dispatch = useDispatch();
 
   const resultForTable = matches
     .map((item) => {
       let createdInContract: boolean = false;
       createdMatches.forEach((el) => {
         if (item.event_key === el.odds_id) {
+          item.eth_index = el.eth_index;
           createdInContract = true;
         }
       });
@@ -94,12 +98,39 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
 
   const handleBetModalOk = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     dispatch(showBetModal(false));
+    setBidValueHomeTeam("");
+    setBidValueAwayTeam("");
+    setBidValueDraw("");
   };
 
   const handleBetModalCancel = (
     e: React.MouseEvent<HTMLElement, MouseEvent>
   ) => {
     dispatch(showBetModal(false));
+    setBidValueHomeTeam("");
+    setBidValueAwayTeam("");
+    setBidValueDraw("");
+  };
+
+  const onBidValue = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    ethIndex: number | undefined,
+    teamSelected: number,
+    bidValue: string,
+    contract: ethers.Contract | null
+  ) => {
+    if (/^\s*[\d]+([,\.][\d]+)?\s*$/.test(bidValue)) {
+      dispatch(showBetModal(false));
+      dispatch(bidMatch(ethIndex, teamSelected, bidValue, contract));
+      setBidValueHomeTeam("");
+      setBidValueAwayTeam("");
+      setBidValueDraw("");
+    } else {
+      setErrorInput(true);
+      setTimeout(() => {
+        setErrorInput(false);
+      }, 1000);
+    }
   };
 
   const columns = [
@@ -191,7 +222,7 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
           onClick={(e) => {
             openBetModal(e, item);
           }}
-          disabled={false}
+          disabled={!item.created_in_contract}
         >
           Bet
         </Button>
@@ -219,6 +250,14 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
         handleBetModalCancel={handleBetModalCancel}
         isBetModal={isBetModal}
         itemBetModal={itemBetModal}
+        onBidValue={onBidValue}
+        bidValueHomeTeam={bidValueHomeTeam}
+        bidValueAwayTeam={bidValueAwayTeam}
+        bidValueDraw={bidValueDraw}
+        errorInput={errorInput}
+        setBidValueHomeTeam={setBidValueHomeTeam}
+        setBidValueAwayTeam={setBidValueAwayTeam}
+        setBidValueDraw={setBidValueDraw}
       />
     </>
   );
