@@ -70,17 +70,26 @@ export class MatchesApi {
     }
   }
 
-  // static async distributePrizes(
-     
-  // ): Promise<any> {
-  //   try {
-  //     const payload = {
-       
-  //     };
-  //     const res = await axios.put(`${host}matches/${_idMongo}`, payload);
-  //     return res.data;
-  //   } catch (error) {
-  //     console.log(error); //alert
-  //   }
-  // }
+  static async distributePrizes(
+    _idMongo: string,
+    winner: string,
+    indexResult: number,
+    success: boolean
+  ): Promise<any> {
+    try {
+      const payload = {
+        final_time: Date.now(),
+        final_result: winner,
+        penalties_result: "", //in developing
+        team_winner: indexResult,
+        finished: success,
+        creator_bonus: "", //in developing
+        winners: [], //in developing
+      };
+      const res = await axios.put(`${host}matches/${_idMongo}`, payload);
+      return res.data;
+    } catch (error) {
+      console.log(error); //alert
+    }
+  }
 }

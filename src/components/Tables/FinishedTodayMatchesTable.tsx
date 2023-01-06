@@ -35,6 +35,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
         item.eth_index = el.eth_index;
         item._idMongo = el._id;
         item.created_in_contract = true;
+        item.finished = el.finished ? true : false;
       }
     });
     return { ...item, key: item.event_key };
@@ -126,7 +127,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
           type="primary"
           style={{ backgroundColor: "#ff4d00" }}
           onClick={(e) => openModal(e, item)}
-          disabled={!item.created_in_contract}
+          disabled={!item.created_in_contract && !item.finished}
         >
           Distribute
         </Button>

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { appContent } from "./content/appContent";
 import MainLayouts from "./layouts/MainLayouts";
 import HomeContainer from "./pages/Home/HomeContainer";
@@ -12,8 +13,18 @@ import LeagueContainer from "./pages/League/LeagueContainer";
 import SignupContainer from "./pages/Signup/SignupContainer";
 import LoginContainer from "./pages/Login/LoginContainer";
 import OpenedLeagueContainer from "./pages/League/OpenedLeagueContainer";
+import { getUserAccount } from "./redux/actions";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserAccount());
+    window.ethereum.on("accountsChanged", async () => {
+      dispatch(getUserAccount());
+    });
+  }, [dispatch]);
+
   const leaguesPaths = appContent.paths.map(({ path }, index) => (
     <React.Fragment key={index}>
       <Route path={path} element={<LeagueContainer />} />

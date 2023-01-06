@@ -7,27 +7,22 @@ export const distributePrizesInContract = async ({
   winner,
   contract,
 }: IDistributePrizesPayload) => {
-
   let indexResult: number;
 
-  contract.on("DistributedPrizes", (data) => {
-    console.log(data);
-    // const distributedPrizes = async () => {
-    //   const result = await MatchesApi.distributePrizes(
-    //     _idMongo,
-    //     ethIndex,
-    //     indexResult,
-         
-    //   );
-    //   console.log(result); // alert
-    // };
-    // distributedPrizes();
-  });
+  contract.on("DistributedPrizes", (success, accountWinners) => {
+    console.log(accountWinners); //in developing
 
-  contract.on("DistributedPrizes", (success, winners) => {
-    console.log(success);
-    console.log(winners);
-  })
+    const distributedPrizes = async () => {
+      const result = await MatchesApi.distributePrizes(
+        _idMongo,
+        winner,
+        indexResult,
+        success
+      );
+      console.log(result); // alert
+    };
+    distributedPrizes();
+  });
 
   if (winner.split(" - ")[0] > winner.split(" - ")[1]) {
     indexResult = 1;

@@ -196,6 +196,7 @@ export interface IFinishedTodayMatch {
   eth_index?: number;
   created_in_contract?: boolean;
   _idMongo?: string;
+  finished?: boolean;
   stage_name: string;
   league_group: null | string;
   goalscorers: IGoalscorers[] | [];

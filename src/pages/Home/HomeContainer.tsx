@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./home.scss";
 import { homeContent } from "../../content/homeContent";
 import Home from "./Home";
