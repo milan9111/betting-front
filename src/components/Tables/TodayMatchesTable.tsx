@@ -48,13 +48,21 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
           item.created_in_contract = true;
         }
       });
-      return {
-        ...item,
-        key: item.event_key,
-        odds_1: odds[item.event_key][0].odd_1,
-        odds_2: odds[item.event_key][0].odd_2,
-        odds_x: odds[item.event_key][0].odd_x,
-      };
+      //if...else becouse can be free api broken
+      if (odds[item.event_key]) {
+        return {
+          ...item,
+          key: item.event_key,
+          odds_1: odds[item.event_key][0].odd_1,
+          odds_2: odds[item.event_key][0].odd_2,
+          odds_x: odds[item.event_key][0].odd_x,
+        };
+      } else {
+        return {
+          ...item,
+          key: item.event_key,
+        };
+      }
     })
     .sort(
       (a, b) =>

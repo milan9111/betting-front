@@ -7,7 +7,7 @@ export const createGameInContract = async ({
   userAccount,
 }: ICreateGamePayload) => {
 
-  contract.on("MatchCreated", (index) => {
+  contract.once("MatchCreated", (index) => {
     const createGame = async () => {
     const result = await MatchesApi.createGame(item, userAccount, index.toString());
     console.log(result); // alert

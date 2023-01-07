@@ -11,6 +11,7 @@ import {
 } from "../../types/matches";
 import { openedLeagueContent } from "../../content/openedLeague";
 import OpenedLeague from "./OpenedLeague";
+import { notificationSuccess } from "../../helpers/notificationSuccess";
 
 const OpenedLeagueContainer = () => {
   const state = useSelector(
@@ -22,12 +23,13 @@ const OpenedLeagueContainer = () => {
   const location = useLocation();
 
   socket.on("createdMatch", (data: ISocketEventCreatedGame) => {
+    console.log(data);
     setIdCreatedGame(data.odds_id);
-    // alert
+    notificationSuccess(data);
   });
   socket.on("updatedMatch", (data: ISocketEventUpdatedGame) => {
     setUpdateTimeGame(data.updateTime);
-    // alert
+    notificationSuccess(data);
   });
 
   useEffect(() => {

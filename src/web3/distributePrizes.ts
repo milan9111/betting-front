@@ -9,7 +9,7 @@ export const distributePrizesInContract = async ({
 }: IDistributePrizesPayload) => {
   let indexResult: number;
 
-  contract.on("DistributedPrizes", (success, accountWinners) => {
+  contract.once("DistributedPrizes", (success, accountWinners) => {
     console.log(accountWinners); //in developing
 
     const distributedPrizes = async () => {

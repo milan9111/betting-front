@@ -127,7 +127,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
           type="primary"
           style={{ backgroundColor: "#ff4d00" }}
           onClick={(e) => openModal(e, item)}
-          disabled={!item.created_in_contract && !item.finished}
+          disabled={!item.created_in_contract || item.finished}
         >
           Distribute
         </Button>

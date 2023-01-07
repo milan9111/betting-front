@@ -7,7 +7,7 @@ export const betMatchInContract = async ({
   bidValue,
   contract,
 }: IBidMatchPayload) => {
-  const bidValueToWei = Number(ethers.utils.parseUnits(bidValue, "ether"));
+  const bidValueToWei = String(ethers.utils.parseUnits(bidValue, "ether"));
 
   const tx = await contract.makeBet(ethIndex, teamSelected, {
     value: bidValueToWei,

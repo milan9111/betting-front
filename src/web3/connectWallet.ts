@@ -1,4 +1,6 @@
 import { ethers } from "ethers";
+import { notificationError } from "../helpers/notificationError";
+import { notificationSuccess } from "../helpers/notificationSuccess";
 import contractArtifact from "./abi.json";
 
 const contractAddress = "0xf2bdC8E5fECa33Ab8C3Bfd32c89D8551f22d8dA4";
@@ -9,7 +11,7 @@ export const connectWallet = async () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   if (window.ethereum === undefined) {
-    console.log("Please install Metamask!"); // alert
+    notificationError({ message: "Please install Metamask!" });
     return;
   }
   [userAccount] = await provider.send("eth_requestAccounts", []);
@@ -21,10 +23,11 @@ export const connectWallet = async () => {
     provider.getSigner(0)
   );
 
-  console.log(
-    userAccount,
-    Number(ethers.utils.formatEther(userBalance)).toFixed(5)
-  ); // alert
+  let balanceNotification = `${Number(
+    ethers.utils.formatEther(userBalance)
+  ).toFixed(5)} ETH`;
+
+  notificationSuccess({ userAccount, balanceNotification });
 
   return { userAccount, userBalance, contract };
 };

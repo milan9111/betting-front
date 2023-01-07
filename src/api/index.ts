@@ -1,4 +1,5 @@
 import axios from "axios";
+import { notificationError } from "../helpers/notificationError";
 import { ILeaguesInFederationState } from "../types/leagues";
 import {
   IFinishedTodayMatch,
@@ -66,7 +67,7 @@ export class MatchesApi {
       const res = await axios.post(`${host}matches`, payload);
       return res.data;
     } catch (error) {
-      console.log(error); //alert
+      notificationError(error);
     }
   }
 
@@ -89,7 +90,7 @@ export class MatchesApi {
       const res = await axios.put(`${host}matches/${_idMongo}`, payload);
       return res.data;
     } catch (error) {
-      console.log(error); //alert
+      notificationError(error);
     }
   }
 }

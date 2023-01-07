@@ -1,5 +1,7 @@
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
 import { LeaguesApi, MatchesApi } from "../../api";
+import { notificationError } from "../../helpers/notificationError";
+import { notificationSuccess } from "../../helpers/notificationSuccess";
 import { IEthersAction, IEthersActionTypes } from "../../types/ethers";
 import {
   IGetAction,
@@ -35,7 +37,7 @@ function* sagaGetLeagues(
       payload: leagues.result,
     });
   } catch (error) {
-    console.log(error);
+    notificationError(error);
   }
 }
 
@@ -61,7 +63,7 @@ function* sagaGetMatches(
       payload: { todayMatches, todayOdds, todayCreatedMatches },
     });
   } catch (error) {
-    console.log(error);
+    notificationError(error);
   }
 }
 
@@ -104,9 +106,9 @@ function* sagaGetItemCreateGameModal(
 function* sagaCreateGame(action: ICreateGameAction): Generator<Effect, void> {
   try {
     const tx = yield call(createGameInContract, action.payload);
-    console.log(tx); // alert
+    notificationSuccess(tx);
   } catch (error) {
-    console.log(error);
+    notificationError(error);
   }
 }
 
@@ -129,9 +131,9 @@ function* sagaGetItemBetModal(
 function* sagaBidMatch(action: IBidMatchAction): Generator<Effect, void> {
   try {
     const tx = yield call(betMatchInContract, action.payload);
-    console.log(tx); // alert
+    notificationSuccess(tx); 
   } catch (error) {
-    console.log(error);
+    notificationError(error);
   }
 }
 
@@ -140,9 +142,9 @@ function* sagaDistributePrizes(
 ): Generator<Effect, void> {
   try {
     const tx = yield call(distributePrizesInContract, action.payload);
-    console.log(tx); // alert
+    notificationSuccess(tx); 
   } catch (error) {
-    console.log(error);
+    notificationError(error);
   }
 }
 
@@ -154,7 +156,7 @@ function* sagaGetUserAccount(action: IEthersAction): Generator<Effect, void> {
       payload: accountUser,
     });
   } catch (error) {
-    console.log(error);
+    notificationError(error);
   }
 }
 
