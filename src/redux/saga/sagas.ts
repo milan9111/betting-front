@@ -131,7 +131,7 @@ function* sagaGetItemBetModal(
 function* sagaBidMatch(action: IBidMatchAction): Generator<Effect, void> {
   try {
     const tx = yield call(betMatchInContract, action.payload);
-    notificationSuccess(tx); 
+    notificationSuccess(tx);
   } catch (error) {
     notificationError(error);
   }
@@ -142,7 +142,7 @@ function* sagaDistributePrizes(
 ): Generator<Effect, void> {
   try {
     const tx = yield call(distributePrizesInContract, action.payload);
-    notificationSuccess(tx); 
+    notificationSuccess(tx);
   } catch (error) {
     notificationError(error);
   }

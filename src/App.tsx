@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { appContent } from "./content/appContent";
+import { getUserAccount } from "./redux/actions";
 import MainLayouts from "./layouts/MainLayouts";
 import HomeContainer from "./pages/Home/HomeContainer";
 import AboutUsContainer from "./pages/AboutUs/AboutUsContainer";
@@ -13,16 +14,17 @@ import LeagueContainer from "./pages/League/LeagueContainer";
 import SignupContainer from "./pages/Signup/SignupContainer";
 import LoginContainer from "./pages/Login/LoginContainer";
 import OpenedLeagueContainer from "./pages/League/OpenedLeagueContainer";
-import { getUserAccount } from "./redux/actions";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUserAccount());
-    window.ethereum.on("accountsChanged", async () => {
-      dispatch(getUserAccount());
-    });
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", async () => {
+        dispatch(getUserAccount());
+      });
+    }
   }, [dispatch]);
 
   const leaguesPaths = appContent.paths.map(({ path }, index) => (

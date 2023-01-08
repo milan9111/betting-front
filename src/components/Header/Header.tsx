@@ -15,14 +15,6 @@ const Header: React.FC<HeaderProps> = ({ headerContent }) => {
     );
   });
 
-  const buttons = headerContent.buttons.map((item) => {
-    return (
-      <li key={item.id} className="header__button">
-        <NavLink to={item.link}>{item.name}</NavLink>
-      </li>
-    );
-  });
-
   return (
     <header className="header">
       <div className="header__container">
@@ -37,9 +29,6 @@ const Header: React.FC<HeaderProps> = ({ headerContent }) => {
         </div>
         <nav className="header__menu">
           <ul>{menuLinks}</ul>
-        </nav>
-        <nav className="header__buttons">
-          <ul>{buttons}</ul>
         </nav>
       </div>
     </header>

@@ -24,20 +24,4 @@
       font-weight: 600;
     }
   }
-  &__buttons {
-    ul {
-      display: flex;
-    }
-  }
-  &__button {
-    margin: 0px 15px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: rgb(255, 255, 0);
-    a {
-      color: #160f1f;
-      font-size: 16px;
-      font-weight: 600;
-    }
-  }
 }

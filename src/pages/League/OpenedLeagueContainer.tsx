@@ -22,17 +22,17 @@ const OpenedLeagueContainer = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  socket.on("createdMatch", (data: ISocketEventCreatedGame) => {
-    console.log(data);
-    setIdCreatedGame(data.odds_id);
-    notificationSuccess(data);
-  });
-  socket.on("updatedMatch", (data: ISocketEventUpdatedGame) => {
-    setUpdateTimeGame(data.updateTime);
-    notificationSuccess(data);
-  });
-
   useEffect(() => {
+    socket.on("createdMatch", (data: ISocketEventCreatedGame) => {
+      console.log(data);
+      setIdCreatedGame(data.odds_id);
+      notificationSuccess(data);
+    });
+    socket.on("updatedMatch", (data: ISocketEventUpdatedGame) => {
+      setUpdateTimeGame(data.updateTime);
+      notificationSuccess(data);
+    });
+
     const date = new Date().toISOString().split("T")[0];
     const page = menuContent.links.find(
       (item) => item.link === `/${location.pathname.split("/")[1]}`
@@ -40,6 +40,11 @@ const OpenedLeagueContainer = () => {
     const leagueId = location.pathname.split("/")[2];
 
     page?.countryId && dispatch(getMatches(date, page.countryId, leagueId));
+
+    return () => {
+      socket.off("createdMatch");
+      socket.off("updatedMatch");
+    };
   }, [location.pathname, dispatch, idCreatedGame, updateTimeGame]);
 
   return (

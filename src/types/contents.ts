@@ -9,16 +9,9 @@ interface IHeaderLink {
   link: string;
 }
 
-interface IHeaderButtons {
-  id: number;
-  name: string;
-  link: string;
-}
-
 export interface IHeaderContent {
   logo: IHeaderLogo;
-  links: IHeaderLink[];
-  buttons: IHeaderButtons[];
+  links: IHeaderLink[];  
 }
 
 interface IMenuLink {

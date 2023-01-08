@@ -34,16 +34,4 @@ export const headerContent: IHeaderContent = {
       link: "/contact",
     },
   ],
-  buttons: [
-    {
-      id: 0,
-      link: "/signup",
-      name: "Signup",
-    },
-    {
-      id: 1,
-      link: "/login",
-      name: "Login",
-    },
-  ],
 };

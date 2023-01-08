@@ -7,13 +7,15 @@ const contractAddress = "0xf2bdC8E5fECa33Ab8C3Bfd32c89D8551f22d8dA4";
 
 export const connectWallet = async () => {
   let userAccount: string = "";
-  let userBalance: string = "";
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  let userBalance: string = "0";
 
   if (window.ethereum === undefined) {
     notificationError({ message: "Please install Metamask!" });
-    return;
+    return { userAccount, userBalance };
   }
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+
   [userAccount] = await provider.send("eth_requestAccounts", []);
   userBalance = (await provider.getBalance(userAccount)).toString();
 
