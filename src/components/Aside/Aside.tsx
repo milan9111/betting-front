@@ -30,7 +30,6 @@ const Aside: React.FC<asideProps> = ({
         </div>
         <div className="aside__user-info">
           <div className="aside__user-info_title">{asideContent.userTitle}</div>
-          <div className="aside__user-info_email">Email: milan9111@ukr.net</div>
           <div className="aside__user-info_account">
             Account: {editedAccount}
           </div>

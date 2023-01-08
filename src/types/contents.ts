@@ -11,7 +11,7 @@ interface IHeaderLink {
 
 export interface IHeaderContent {
   logo: IHeaderLogo;
-  links: IHeaderLink[];  
+  links: IHeaderLink[];
 }
 
 interface IMenuLink {
@@ -25,6 +25,18 @@ interface IMenuLink {
 export interface IMenuContent {
   title: string;
   links: IMenuLink[];
+}
+
+interface IMenuLinkUndistributed {
+  id: number;
+  logo: string;
+  name: string;
+  link: string;
+}
+
+export interface IMenuContetentUndistributed {
+  title: string;
+  links: IMenuLinkUndistributed[];
 }
 
 export interface IHomeContent {
@@ -62,5 +74,9 @@ export interface IOpenedLeagueContent {
   titleNextMatches: string;
   titleFinishedMatches: string;
   titleLiveMatches: string;
-  textDistributePrizesModal: string,
+  textDistributePrizesModal: string;
+}
+
+export interface IUndistributedContent {
+  title: string;
 }

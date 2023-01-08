@@ -11,9 +11,8 @@ import TablesContainer from "./pages/Tables/TablesContainer";
 import NewsContainer from "./pages/News/NewsContainer";
 import ContactContainer from "./pages/Contact/ContactContainer";
 import LeagueContainer from "./pages/League/LeagueContainer";
-import SignupContainer from "./pages/Signup/SignupContainer";
-import LoginContainer from "./pages/Login/LoginContainer";
 import OpenedLeagueContainer from "./pages/League/OpenedLeagueContainer";
+import UndistributedContainer from "./pages/Undistributed/UndistributedContainer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,9 +42,8 @@ const App = () => {
           <Route path="/tables" element={<TablesContainer />} />
           <Route path="/news" element={<NewsContainer />} />
           <Route path="/contact" element={<ContactContainer />} />
-          <Route path="/signup" element={<SignupContainer />} />
-          <Route path="/login" element={<LoginContainer />} />
           {leaguesPaths}
+          <Route path="/undistributed-prizes" element={<UndistributedContainer />} />
         </Routes>
       </MainLayouts>
     </Router>

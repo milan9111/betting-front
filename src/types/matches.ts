@@ -18,6 +18,8 @@ export enum IMatchesActionTypes {
   GET_ITEM_BET_MODAL = "GET_ITEM_BET_MODAL",
   SET_ITEM_BET_MODAL = "SET_ITEM_BET_MODAL",
   BID_MATCH = "BID_MATCH",
+  GET_UNDISTRIBUTED_MATCHES = "GET_UNDISTRIBUTED_MATCHES",
+  SET_UNDISTRIBUTED_MATCHES = "SET_UNDISTRIBUTED_MATCHES",
 }
 
 export interface ITodayMatch {
@@ -235,6 +237,7 @@ export interface IMatchesState {
   finishedTodayMatches: IFinishedTodayMatch[];
   liveTodayMatches: IFinishedTodayMatch[];
   oddsTodayMatches: ITodayOdds;
+  unDistributedMatches: IUndistributedMatches[];
   isDistributePrizesModal: boolean;
   itemDistributePizesModal: IFinishedTodayMatch | null;
   isCreateGameModal: boolean;
@@ -254,6 +257,7 @@ export interface IOpenedLeagueState {
   todayCreatedMatches: ITodayCreatedMatches[];
   finishedTodayMatches: IFinishedTodayMatch[];
   liveTodayMatches: IFinishedTodayMatch[];
+  unDistributedMatches: IUndistributedMatches[];
   oddsTodayMatches: ITodayOdds;
   isDistributePrizesModal: boolean;
   itemDistributePizesModal: IFinishedTodayMatch | null;
@@ -267,13 +271,40 @@ export interface IOpenedLeagueReducer {
   openedLeagueReducer: IOpenedLeagueState;
 }
 
+export interface IUndistributedMatches {
+  _id: string;
+  odds_id: number;
+  eth_index: number;
+  home_team: string;
+  away_team: string;
+  event_date: string;
+  event_time: string;
+  finished: boolean;
+  odd_1: number;
+  odd_x: number;
+  odd_2: number;
+  creator: string;
+  winners?: any[];
+  __v: number;
+  creator_bonus?: string;
+  final_result?: string;
+  final_time?: string;
+  penalties_result?: string;
+  team_winner?: number;
+}
+
 export interface IGetMatchesAction {
-  type: IMatchesActionTypes.GET_MATCHES | IMatchesActionTypes.SET_MATCHES;
+  type:
+    | IMatchesActionTypes.GET_MATCHES
+    | IMatchesActionTypes.SET_MATCHES
+    | IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES
+    | IMatchesActionTypes.SET_UNDISTRIBUTED_MATCHES;
   payload:
     | IMatchesParams
     | ITodayMatch[]
     | ITodayCreatedMatches[]
-    | IFinishedTodayMatch[];
+    | IFinishedTodayMatch[]
+    | IUndistributedMatches[];
 }
 
 export interface IShowModalsAction {

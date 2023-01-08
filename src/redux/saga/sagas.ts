@@ -20,6 +20,7 @@ import {
   IShowModalsAction,
   ITodayCreatedMatches,
   ITodayMatch,
+  IUndistributedMatches,
 } from "../../types/matches";
 import { betMatchInContract } from "../../web3/betMatch";
 import { connectWallet } from "../../web3/connectWallet";
@@ -160,6 +161,21 @@ function* sagaGetUserAccount(action: IEthersAction): Generator<Effect, void> {
   }
 }
 
+
+function* sagaGetUndistributedMatches(
+  action: IGetMatchesAction
+): Generator<Effect, void, IUndistributedMatches> {
+  try {
+    const matches = yield call(MatchesApi.getUndistributedMatches);
+    yield put({
+      type: IMatchesActionTypes.SET_UNDISTRIBUTED_MATCHES,
+      payload: matches,
+    });
+  } catch (error) {
+    notificationError(error);
+  }
+}
+
 export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(ILeaguesActionTypes.GET_LEAGUE, sagaGetLeagues);
   yield takeEvery(IMatchesActionTypes.GET_MATCHES, sagaGetMatches);
@@ -185,4 +201,5 @@ export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(IMatchesActionTypes.GET_ITEM_BET_MODAL, sagaGetItemBetModal);
   yield takeEvery(IMatchesActionTypes.BID_MATCH, sagaBidMatch);
   yield takeEvery(IEthersActionTypes.GET_USER_ACCOUNT, sagaGetUserAccount);
+  yield takeEvery(IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES, sagaGetUndistributedMatches);
 }

@@ -6,6 +6,7 @@ import {
   IMatchesParams,
   ITodayCreatedMatches,
   ITodayMatch,
+  IUndistributedMatches,
 } from "../types/matches";
 
 const APIkey =
@@ -93,4 +94,17 @@ export class MatchesApi {
       notificationError(error);
     }
   }
+
+  static async getUndistributedMatches(): Promise<IUndistributedMatches[]> {
+    const res = await axios.get(`${host}matches`);
+    const msInDay = 86400000;
+    const unDistributedMatches = res.data.filter(
+      (item: IUndistributedMatches) =>
+        item.finished !== true &&
+        new Date(item.event_date).getTime() + msInDay < Date.now()
+    );
+    return unDistributedMatches;
+  }
+
+  //https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=f86061908f5a153edb0b8b9061abd5c144d96290fddb64dea59d106e84ebee5a&matchId=1166191
 }

@@ -107,3 +107,10 @@ export const getUserAccount = () => {
     type: IEthersActionTypes.GET_USER_ACCOUNT,
   };
 };
+
+
+export const getUndistributedMatches = () => {
+  return {
+    type: IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES,
+  }
+}

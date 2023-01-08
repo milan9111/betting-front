@@ -3,7 +3,6 @@ import {
   IMatchesAction,
   IMatchesActionTypes,
   IMatchesState,
-  ITodayCreatedMatches,
   ITodayMatch,
 } from "../types/matches";
 
@@ -13,6 +12,7 @@ export const initialState = {
   finishedTodayMatches: [],
   liveTodayMatches: [],
   oddsTodayMatches: {},
+  unDistributedMatches: [],
   isDistributePrizesModal: false,
   itemDistributePizesModal: null,
   isCreateGameModal: false,
@@ -50,6 +50,8 @@ export const openedLeagueReducer = (
         liveTodayMatches: liveTodayMatches,
         oddsTodayMatches: { ...oddsTodayMatches.todayOdds },
       };
+    case IMatchesActionTypes.SET_UNDISTRIBUTED_MATCHES:
+      return { ...state, unDistributedMatches: action.payload};
     case IMatchesActionTypes.SET_DISTRIBUTE_PRIZES_MODAL:
       return { ...state, isDistributePrizesModal: action.payload };
     case IMatchesActionTypes.SET_ITEM_DISTRIBUTE_PRIZES_MODAL:
