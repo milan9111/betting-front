@@ -106,5 +106,10 @@ export class MatchesApi {
     return unDistributedMatches;
   }
 
-  //https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=f86061908f5a153edb0b8b9061abd5c144d96290fddb64dea59d106e84ebee5a&matchId=1166191
+  static async getResultUndistributedMatch(oddsId: number): Promise<string> {
+    const res = await axios.get(
+      `https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${APIkey}&matchId=${oddsId}`
+    );
+    return res.data.result[0].event_final_result;
+  }
 }

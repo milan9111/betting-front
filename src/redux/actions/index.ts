@@ -5,6 +5,7 @@ import {
   IFinishedTodayMatch,
   IMatchesActionTypes,
   ITodayMatch,
+  IUndistributedMatches,
 } from "../../types/matches";
 
 export const getLeagues = (countryId: string) => {
@@ -32,9 +33,23 @@ export const showDistributePrizesModal = (value: boolean) => {
   };
 };
 
+export const showUnDistributedPrizesModal = (value: boolean) => {
+  return {
+    type: IMatchesActionTypes.SHOW_UNDISTRIBUTED_PRIZES_MODAL,
+    payload: value,
+  };
+};
+
 export const getItemDistributePizesModal = (item: IFinishedTodayMatch) => {
   return {
     type: IMatchesActionTypes.GET_ITEM_DISTRIBUTE_PRIZES_MODAL,
+    payload: item,
+  };
+};
+
+export const getItemUnDistributedPizesModal = (item: IUndistributedMatches) => {
+  return {
+    type: IMatchesActionTypes.GET_ITEM_UNDISTRIBUTED_PRIZES_MODAL,
     payload: item,
   };
 };
@@ -48,6 +63,17 @@ export const distributePrizes = (
   return {
     type: IMatchesActionTypes.DISTRIBUTE_PRIZES,
     payload: { _idMongo, ethIndex, winner, contract },
+  };
+};
+
+export const unDistributedPrizes = (
+  ethIndex: number | undefined,
+  oddsId: number | undefined,
+  contract: ethers.Contract | null
+) => {
+  return {
+    type: IMatchesActionTypes.UNDISTRIBUTED_PRIZES,
+    payload: { ethIndex, oddsId, contract },
   };
 };
 

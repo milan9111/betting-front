@@ -20,6 +20,11 @@ export enum IMatchesActionTypes {
   BID_MATCH = "BID_MATCH",
   GET_UNDISTRIBUTED_MATCHES = "GET_UNDISTRIBUTED_MATCHES",
   SET_UNDISTRIBUTED_MATCHES = "SET_UNDISTRIBUTED_MATCHES",
+  GET_ITEM_UNDISTRIBUTED_PRIZES_MODAL = "GET_ITEM_UNDISTRIBUTED_PRIZES_MODAL",
+  SET_ITEM_UNDISTRIBUTED_PRIZES_MODAL = "SET_ITEM_UNDISTRIBUTED_PRIZES_MODAL",
+  SHOW_UNDISTRIBUTED_PRIZES_MODAL = "SHOW_UNDISTRIBUTED_PRIZES_MODAL",
+  UNDISTRIBUTED_PRIZES = "UNDISTRIBUTED_PRIZES",
+  SET_UNDISTRIBUTED_PRIZES_MODAL = "SET_UNDISTRIBUTED_PRIZES_MODAL",
 }
 
 export interface ITodayMatch {
@@ -244,6 +249,8 @@ export interface IMatchesState {
   itemCreateGameModal: ITodayMatch | null;
   isBetModal: boolean;
   itemBetModal: ITodayMatch | null;
+  isUnDistributebPrizesModal: boolean;
+  itemUnDistributedPizesModal: IUndistributedMatches | null;
 }
 
 export interface IMatchesParams {
@@ -265,6 +272,8 @@ export interface IOpenedLeagueState {
   itemCreateGameModal: ITodayMatch | null;
   isBetModal: boolean;
   itemBetModal: ITodayMatch | null;
+  isUnDistributebPrizesModal: boolean;
+  itemUnDistributedPizesModal: IUndistributedMatches | null;
 }
 
 export interface IOpenedLeagueReducer {
@@ -314,7 +323,9 @@ export interface IShowModalsAction {
     | IMatchesActionTypes.SHOW_CREATE_GAME_MODAL
     | IMatchesActionTypes.SET_CREATE_GAME_MODAL
     | IMatchesActionTypes.SHOW_BET_MODAL
-    | IMatchesActionTypes.SET_BET_MODAL;
+    | IMatchesActionTypes.SET_BET_MODAL
+    | IMatchesActionTypes.SHOW_UNDISTRIBUTED_PRIZES_MODAL
+    | IMatchesActionTypes.SET_UNDISTRIBUTED_PRIZES_MODAL;
   payload: boolean;
 }
 
@@ -325,8 +336,10 @@ export interface IGetItemModalsAction {
     | IMatchesActionTypes.GET_ITEM_CREATE_GAME_MODAL
     | IMatchesActionTypes.SET_ITEM_CREATE_GAME_MODAL
     | IMatchesActionTypes.GET_ITEM_BET_MODAL
-    | IMatchesActionTypes.SET_ITEM_BET_MODAL;
-  payload: IFinishedTodayMatch;
+    | IMatchesActionTypes.SET_ITEM_BET_MODAL
+    | IMatchesActionTypes.GET_ITEM_UNDISTRIBUTED_PRIZES_MODAL
+    | IMatchesActionTypes.SET_ITEM_UNDISTRIBUTED_PRIZES_MODAL;
+  payload: IFinishedTodayMatch | IUndistributedMatches;
 }
 
 export interface ICreateGamePayload {
@@ -362,6 +375,17 @@ export interface IDistributePrizesPayload {
 export interface IDistributePrizesAction {
   type: IMatchesActionTypes.DISTRIBUTE_PRIZES;
   payload: IDistributePrizesPayload;
+}
+
+export interface IUnDistributedPrizesPayload {
+  ethIndex: number;
+  oddsId: number;
+  contract: ethers.Contract;
+}
+
+export interface IUnDistributedPrizesAction {
+  type: IMatchesActionTypes.UNDISTRIBUTED_PRIZES;
+  payload: IUnDistributedPrizesPayload;
 }
 
 export type IMatchesAction =

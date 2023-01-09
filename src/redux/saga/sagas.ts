@@ -21,6 +21,7 @@ import {
   ITodayCreatedMatches,
   ITodayMatch,
   IUndistributedMatches,
+  IUnDistributedPrizesAction,
 } from "../../types/matches";
 import { betMatchInContract } from "../../web3/betMatch";
 import { connectWallet } from "../../web3/connectWallet";
@@ -176,6 +177,37 @@ function* sagaGetUndistributedMatches(
   }
 }
 
+function* sagaShowUnDistributedPrizesModal(
+  action: IShowModalsAction
+): Generator<Effect, void> {
+  yield put({
+    type: IMatchesActionTypes.SET_UNDISTRIBUTED_PRIZES_MODAL,
+    payload: action.payload,
+  });
+}
+
+function* sagaGetItemUnDistributedPizesModal(
+  action: IGetItemModalsAction
+): Generator<Effect, void> {
+  yield put({
+    type: IMatchesActionTypes.SET_ITEM_UNDISTRIBUTED_PRIZES_MODAL,
+    payload: action.payload,
+  });
+}
+
+function* sagaUnDistributePrizes(
+  action: IUnDistributedPrizesAction
+): Generator<Effect, void, string> {
+  try {
+    const resultMatch = yield call(MatchesApi.getResultUndistributedMatch, action.payload.oddsId);
+    console.log(resultMatch);
+    //const tx = yield call(distributePrizesInContract, action.payload);
+    //notificationSuccess(tx);
+  } catch (error) {
+    notificationError(error);
+  }
+}
+
 export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(ILeaguesActionTypes.GET_LEAGUE, sagaGetLeagues);
   yield takeEvery(IMatchesActionTypes.GET_MATCHES, sagaGetMatches);
@@ -202,4 +234,13 @@ export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(IMatchesActionTypes.BID_MATCH, sagaBidMatch);
   yield takeEvery(IEthersActionTypes.GET_USER_ACCOUNT, sagaGetUserAccount);
   yield takeEvery(IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES, sagaGetUndistributedMatches);
+  yield takeEvery(
+    IMatchesActionTypes.SHOW_UNDISTRIBUTED_PRIZES_MODAL,
+    sagaShowUnDistributedPrizesModal
+  );
+  yield takeEvery(
+    IMatchesActionTypes.GET_ITEM_UNDISTRIBUTED_PRIZES_MODAL,
+    sagaGetItemUnDistributedPizesModal
+  );
+  yield takeEvery(IMatchesActionTypes.UNDISTRIBUTED_PRIZES, sagaUnDistributePrizes);
 }

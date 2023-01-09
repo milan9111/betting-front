@@ -75,6 +75,7 @@ export interface IOpenedLeagueContent {
   titleFinishedMatches: string;
   titleLiveMatches: string;
   textDistributePrizesModal: string;
+  textUndistributedPrizesModal: string;
 }
 
 export interface IUndistributedContent {
