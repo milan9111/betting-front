@@ -8,9 +8,11 @@ import {
   ITodayMatch,
   IUndistributedMatches,
 } from "../types/matches";
+import { INews } from "../types/news";
 
 const APIkey =
   "f86061908f5a153edb0b8b9061abd5c144d96290fddb64dea59d106e84ebee5a";
+const ApiTokenNews = "YQnZcZDCEbDy6yyVB02ir9Airuo5fPW3BigGKyQh";
 const host = "http://localhost:5000/";
 
 export class LeaguesApi {
@@ -111,5 +113,15 @@ export class MatchesApi {
       `https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${APIkey}&matchId=${oddsId}`
     );
     return res.data.result[0].event_final_result;
+  }
+}
+
+export class NewsApi {
+  static async getNews(): Promise<INews[]> {
+    const date = new Date().toISOString().split("T")[0];
+    const res = await axios.get(
+      `https://api.thenewsapi.com/v1/news/all?api_token=${ApiTokenNews}&language=en&categories=sports&limit=5&published_on=${date}&search=football`
+    );
+    return res.data.data;
   }
 }

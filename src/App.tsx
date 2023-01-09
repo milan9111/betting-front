@@ -6,7 +6,7 @@ import { appContent } from "./content/appContent";
 import { getUserAccount } from "./redux/actions";
 import MainLayouts from "./layouts/MainLayouts";
 import HomeContainer from "./pages/Home/HomeContainer";
-import AboutUsContainer from "./pages/AboutUs/AboutUsContainer";
+import GuideContainer from "./pages/Guide/GuideContainer";
 import TablesContainer from "./pages/Tables/TablesContainer";
 import NewsContainer from "./pages/News/NewsContainer";
 import ContactContainer from "./pages/Contact/ContactContainer";
@@ -38,7 +38,7 @@ const App = () => {
       <MainLayouts>
         <Routes>
           <Route path="/" element={<HomeContainer />} />
-          <Route path="/about-us" element={<AboutUsContainer />} />
+          <Route path="/guide" element={<GuideContainer />} />
           <Route path="/tables" element={<TablesContainer />} />
           <Route path="/news" element={<NewsContainer />} />
           <Route path="/contact" element={<ContactContainer />} />

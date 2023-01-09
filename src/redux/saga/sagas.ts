@@ -1,5 +1,5 @@
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
-import { LeaguesApi, MatchesApi } from "../../api";
+import { LeaguesApi, MatchesApi, NewsApi } from "../../api";
 import { notificationError } from "../../helpers/notificationError";
 import { notificationSuccess } from "../../helpers/notificationSuccess";
 import { IEthersAction, IEthersActionTypes } from "../../types/ethers";
@@ -23,6 +23,7 @@ import {
   IUndistributedMatches,
   IUnDistributedPrizesAction,
 } from "../../types/matches";
+import { INews, INewsAction, INewsActionTypes } from "../../types/news";
 import { betMatchInContract } from "../../web3/betMatch";
 import { connectWallet } from "../../web3/connectWallet";
 import { createGameInContract } from "../../web3/createGame";
@@ -215,6 +216,18 @@ function* sagaUnDistributePrizes(
   }
 }
 
+function* sagaNews(action: INewsAction):Generator<Effect, void, INews[]> {
+  try{
+    const result = yield call(NewsApi.getNews);
+    yield put({
+      type: INewsActionTypes.SET_NEWS,
+      payload: result,
+    });
+  }catch(error) {
+    notificationError(error);
+  }
+}
+
 export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(ILeaguesActionTypes.GET_LEAGUE, sagaGetLeagues);
   yield takeEvery(IMatchesActionTypes.GET_MATCHES, sagaGetMatches);
@@ -255,5 +268,9 @@ export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(
     IMatchesActionTypes.UNDISTRIBUTED_PRIZES,
     sagaUnDistributePrizes
+  );
+  yield takeEvery(
+    INewsActionTypes.GET_NEWS,
+    sagaNews
   );
 }

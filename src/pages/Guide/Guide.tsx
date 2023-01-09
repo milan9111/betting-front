@@ -2,12 +2,12 @@ import React from "react";
 
 
 
-const AboutUs = () => {
+const Guide = () => {
     return(
         <section>
-            ABOUT US
+            Guide
         </section>
     );
 }
 
-export default AboutUs;
+export default Guide;

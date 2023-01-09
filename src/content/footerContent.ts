@@ -10,8 +10,8 @@ export const footerContent: IFooterContent = {
     },
     {
       id: 1,
-      name: "About us",
-      link: "/about-us",
+      name: "Guide",
+      link: "/guide",
     },
     {
       id: 2,

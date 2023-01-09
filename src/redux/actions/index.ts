@@ -7,6 +7,7 @@ import {
   ITodayMatch,
   IUndistributedMatches,
 } from "../../types/matches";
+import { INewsActionTypes } from "../../types/news";
 
 export const getLeagues = (countryId: string) => {
   return {
@@ -139,5 +140,11 @@ export const getUserAccount = () => {
 export const getUndistributedMatches = () => {
   return {
     type: IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES,
+  }
+}
+
+export const getNews = () => {
+  return {
+    type: INewsActionTypes.GET_NEWS,
   }
 }
