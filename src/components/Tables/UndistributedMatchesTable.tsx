@@ -38,11 +38,12 @@ const UndistributedMatchesTable: React.FC<UndistributedMatchesProps> = ({
 
   const handleOk = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
+    _idMongo: string | undefined,
     ethIndex: number | undefined,
     oddsId: number | undefined,
     contract: ethers.Contract | null
   ) => {
-    dispatch(unDistributedPrizes(ethIndex, oddsId, contract));
+    dispatch(unDistributedPrizes(_idMongo, ethIndex, oddsId, contract));
     dispatch(showUnDistributedPrizesModal(false));
   };
 
@@ -84,7 +85,6 @@ const UndistributedMatchesTable: React.FC<UndistributedMatchesProps> = ({
           type="primary"
           style={{ backgroundColor: "#ff4d00" }}
           onClick={(e) => openModal(e, item)}
-          disabled={false}
         >
           Distribute
         </Button>

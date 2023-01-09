@@ -378,6 +378,7 @@ export interface IDistributePrizesAction {
 }
 
 export interface IUnDistributedPrizesPayload {
+  _idMongo: string;
   ethIndex: number;
   oddsId: number;
   contract: ethers.Contract;

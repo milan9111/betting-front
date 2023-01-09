@@ -67,13 +67,14 @@ export const distributePrizes = (
 };
 
 export const unDistributedPrizes = (
+  _idMongo: string | undefined,
   ethIndex: number | undefined,
   oddsId: number | undefined,
   contract: ethers.Contract | null
 ) => {
   return {
     type: IMatchesActionTypes.UNDISTRIBUTED_PRIZES,
-    payload: { ethIndex, oddsId, contract },
+    payload: {_idMongo, ethIndex, oddsId, contract },
   };
 };
 

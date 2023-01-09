@@ -9,6 +9,7 @@ import { IEthersReducer } from "../../types/ethers";
 interface UnDistributedPrizesModalProps {
   handleOk: (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
+    _idMongo: string | undefined,
     ethIndex: number | undefined,
     oddsId: number | undefined,
     contract: ethers.Contract | null
@@ -35,6 +36,7 @@ const UnDistributedPrizesModal: React.FC<UnDistributedPrizesModalProps> = ({
       onOk={(e) =>
         handleOk(
           e,
+          itemUnDistributedPizesModal?._id,
           itemUnDistributedPizesModal?.eth_index,
           itemUnDistributedPizesModal?.odds_id,
           contract
@@ -42,9 +44,9 @@ const UnDistributedPrizesModal: React.FC<UnDistributedPrizesModalProps> = ({
       }
       onCancel={handleCancel}
     >
-      <div className="distributePrizesModal">
-        <div className="distributePrizesModal__container">
-          <div className="distributePrizesModal__text">
+      <div className="unDistributedPrizesModal">
+        <div className="UnDistributedPrizesModal__container">
+          <div className="UnDistributedPrizesModal__text">
             {openedLeagueContent.textUndistributedPrizesModal}
           </div>
         </div>
