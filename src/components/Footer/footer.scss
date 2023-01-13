@@ -2,7 +2,19 @@
   background: linear-gradient(90deg, #18243d 0%, #160f1f 100%);
   &__container {
     display: flex;
-    justify-content: flex-end;
+    justify-content:space-between;
+  }
+  &__contract {
+    padding: 20px 0px;
+    margin-left: 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    a {
+      color: #ff4d00 ;
+      font-size: 14px;
+      font-weight: 600;
+    }
   }
   &__menu {
     padding: 20px 0px;
