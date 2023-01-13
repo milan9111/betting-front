@@ -2,6 +2,9 @@
   width: 15%;
   &__container {
     margin: 50px 20px;
+    @media (max-width: 1280px) {
+      margin: 50px 10px;
+    }
   }
   &__banner {
     background-color: #ffff00;
@@ -48,6 +51,15 @@
       color: #fff;
       white-space: nowrap;
       overflow: hidden;
+      @media (max-width: 1536px) {
+        font-size: 14px;
+      }
+      @media (max-width: 1366px) {
+        font-size: 12px;
+      }
+      @media (max-width: 1280px) {
+        font-size: 11px;
+      }
     }
     &_balance {
       margin: 25px 0px;
@@ -58,6 +70,15 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      @media (max-width: 1536px) {
+        font-size: 14px;
+      }
+      @media (max-width: 1366px) {
+        font-size: 12px;
+      }
+      @media (max-width: 1280px) {
+        font-size: 11px;
+      }
     }
   }
   &__chat {
@@ -72,14 +93,14 @@
       background-color: #ffff00;
     }
     &_body {
-        margin: 25px 0px;
-        padding-left: 10px;
-        font-size: 16px;
-        font-weight: 600;
-        color: #fff;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      margin: 25px 0px;
+      padding-left: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

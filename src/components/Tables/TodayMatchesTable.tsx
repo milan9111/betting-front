@@ -18,6 +18,7 @@ import {
 } from "../../redux/actions";
 import BetModal from "../Modals/BetModal";
 import { ethers } from "ethers";
+import { Breakpoint } from "antd/es/_util/responsiveObserve";
 
 interface TodayMatchesProps {
   matches: ITodayMatch[];
@@ -148,6 +149,7 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
         <Image height={30} src={item.home_team_logo} />
       ),
       align: "center" as "center",
+      responsive: ["xl"] as Breakpoint[],
     },
     {
       title: "Home team",
@@ -163,6 +165,7 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
         <Image height={30} src={item.away_team_logo} />
       ),
       align: "center" as "center",
+      responsive: ["xl"] as Breakpoint[],
     },
     {
       title: "Away team",
@@ -175,6 +178,7 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
       dataIndex: "event_date",
       key: "event_date",
       align: "center" as "center",
+      responsive: ["lg"] as Breakpoint[],
     },
     {
       title: "Event time",

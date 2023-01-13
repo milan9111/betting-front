@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Image } from "antd";
 import { IFinishedTodayMatch } from "../../types/matches";
+import { Breakpoint } from "antd/es/_util/responsiveObserve";
 
 interface FinishedTodayMatchesProps {
   matches: IFinishedTodayMatch[];
@@ -22,6 +23,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
         <Image height={30} src={item.home_team_logo} />
       ),
       align: "center" as "center",
+      responsive: ["xl"] as Breakpoint[],
     },
     {
       title: "Home team",
@@ -37,6 +39,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
         <Image height={30} src={item.away_team_logo} />
       ),
       align: "center" as "center",
+      responsive: ["xl"] as Breakpoint[],
     },
     {
       title: "Home team",
@@ -49,6 +52,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
       dataIndex: "event_date",
       key: "event_date",
       align: "center" as "center",
+      responsive: ["lg"] as Breakpoint[],
     },
     {
       title: "Live",

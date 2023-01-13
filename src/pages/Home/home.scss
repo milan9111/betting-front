@@ -4,9 +4,14 @@
     padding: 50px 0px;
   }
   &__banner {
-    background: url("./../../assets/images/banner.jpg") 0 0 / cover no-repeat;
+    --ratio: 1920 / 1200;
+    background-image: url("./../../assets/images/banner.jpg");
+    height: calc(25vw * var(--ratio));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
     border-radius: 10px;
-    height: 100vh;
   }
   &__title {
     padding-top: 150px;
@@ -15,6 +20,9 @@
     font-size: 42px;
     font-weight: 600;
     color: #fff;
+    @media (max-width: 1280px) {
+      font-size: 32px;
+    }
   }
   &__subtitle {
     max-width: 500px;
@@ -22,6 +30,9 @@
     font-size: 28px;
     font-weight: 600;
     color: #ff4d00;
+    @media (max-width: 1280px) {
+      font-size: 18px;
+    }
   }
   &__button {
     margin-left: 100px;

@@ -63,6 +63,7 @@ const UndistributedMatchesTable: React.FC<UndistributedMatchesProps> = ({
       dataIndex: "creator",
       key: "creator",
       align: "center" as "center",
+      ellipsis: true,
     },
     {
       title: "Home team",
