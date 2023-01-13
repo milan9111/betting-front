@@ -9,7 +9,7 @@ import HomeContainer from "./pages/Home/HomeContainer";
 import GuideContainer from "./pages/Guide/GuideContainer";
 import TablesContainer from "./pages/Tables/TablesContainer";
 import NewsContainer from "./pages/News/NewsContainer";
-import ContactContainer from "./pages/Contact/ContactContainer";
+import OwnerContainer from "./pages/Contact/OwnerContainer";
 import LeagueContainer from "./pages/League/LeagueContainer";
 import OpenedLeagueContainer from "./pages/League/OpenedLeagueContainer";
 import UndistributedContainer from "./pages/Undistributed/UndistributedContainer";
@@ -41,9 +41,12 @@ const App = () => {
           <Route path="/guide" element={<GuideContainer />} />
           <Route path="/tables" element={<TablesContainer />} />
           <Route path="/news" element={<NewsContainer />} />
-          <Route path="/contact" element={<ContactContainer />} />
+          <Route path="/owner" element={<OwnerContainer />} />
           {leaguesPaths}
-          <Route path="/undistributed-prizes" element={<UndistributedContainer />} />
+          <Route
+            path="/undistributed-prizes"
+            element={<UndistributedContainer />}
+          />
         </Routes>
       </MainLayouts>
     </Router>

@@ -30,22 +30,26 @@ export const guideContent: IGuideContent = {
     },
     {
       id: 6,
-      text: "'Live Matches Now' is a table that shows live matches",
+      text: "Minimum bid - 0.0001 ETH, Maximum bid - 0.01 ETH",
     },
     {
       id: 7,
-      text: "Today's Completed Matches is a table that shows completed matches. Three hours after the start of the match, any user can distribute prizes",
+      text: "'Live Matches Now' is a table that shows live matches",
     },
     {
       id: 8,
-      text: "Matches for which prizes have not been distributed at the end of the current day will be moved to the 'Undistributed' page. The 'Undistributed' page in the menu",
+      text: "Today's Completed Matches is a table that shows completed matches. Three hours after the start of the match, any user can distribute prizes",
     },
     {
       id: 9,
-      text: "On 'Undistibuted' page, users can distribute prizes at any time",
+      text: "Matches for which prizes have not been distributed at the end of the current day will be moved to the 'Undistributed' page. The 'Undistributed' page in the menu",
     },
     {
       id: 10,
+      text: "On 'Undistibuted' page, users can distribute prizes at any time",
+    },
+    {
+      id: 11,
       text: `You can track all smart contract transactions on address: ${contractAddress}`,
     },
   ],

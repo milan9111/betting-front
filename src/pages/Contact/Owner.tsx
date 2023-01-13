@@ -2,12 +2,12 @@ import React from "react";
 
 
 
-const Contact = () => {
+const Owner = () => {
     return(
         <section>
-            Contact
+            Coming soon...
         </section>
     );
 }
 
-export default Contact;
+export default Owner;

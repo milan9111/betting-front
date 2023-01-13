@@ -25,8 +25,8 @@ export const footerContent: IFooterContent = {
     },
     {
       id: 4,
-      name: "Contact",
-      link: "/contact",
+      name: "Owner",
+      link: "/owner",
     },
   ],
 };

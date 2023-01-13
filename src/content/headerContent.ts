@@ -30,8 +30,8 @@ export const headerContent: IHeaderContent = {
     },
     {
       id: 4,
-      name: "Contact",
-      link: "/contact",
+      name: "Owner",
+      link: "/owner",
     },
   ],
 };
