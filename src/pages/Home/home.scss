@@ -1,7 +1,13 @@
 .home {
   width: 70%;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
   &__container {
     padding: 50px 0px;
+    @media (max-width: 1024px) {
+      padding: 0px;
+    }
   }
   &__banner {
     --ratio: 1920 / 1200;
@@ -12,6 +18,16 @@
     background-size: cover;
     position: relative;
     border-radius: 10px;
+    @media (max-width: 1024px) {
+      border-radius: 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 480px) {
+      height: calc(50vw * var(--ratio));
+    }
   }
   &__title {
     padding-top: 150px;
@@ -23,6 +39,17 @@
     @media (max-width: 1280px) {
       font-size: 32px;
     }
+    @media (max-width: 1024px) {
+      padding-top: 0px;
+      margin-left: 0px;
+    }
+    @media (max-width: 550px) {
+      font-size: 24px;
+    }
+    @media (max-width: 460px) {
+      font-size: 18px;
+    }
+    
   }
   &__subtitle {
     max-width: 500px;
@@ -32,6 +59,17 @@
     color: #ff4d00;
     @media (max-width: 1280px) {
       font-size: 18px;
+    }
+    @media (max-width: 1024px) {
+      margin-left: 0px;
+      max-width: 80%;
+       text-align: center;
+    }
+    @media (max-width: 550px) {
+      font-size: 14px;
+    }
+    @media (max-width: 460px) {
+      font-size: 12px;
     }
   }
   &__button {
@@ -43,5 +81,9 @@
     color: #160f1f;
     font-size: 16px;
     font-weight: 600;
+    @media (max-width: 1024px) {
+      margin-left: 0px;
+      width: 50%;
+    }
   }
 }

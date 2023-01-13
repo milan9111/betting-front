@@ -101,6 +101,7 @@ const UndistributedMatchesTable: React.FC<UndistributedMatchesProps> = ({
         dataSource={resultForTable}
         pagination={{ className: "pagination" }}
         locale={{ emptyText: "There are no undistributed matches!" }}
+        scroll={{x: 600}}
       />
       <UnDistributedPrizesModal
         handleOk={handleOk}

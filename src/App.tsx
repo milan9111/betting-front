@@ -9,7 +9,7 @@ import HomeContainer from "./pages/Home/HomeContainer";
 import GuideContainer from "./pages/Guide/GuideContainer";
 import TablesContainer from "./pages/Tables/TablesContainer";
 import NewsContainer from "./pages/News/NewsContainer";
-import OwnerContainer from "./pages/Contact/OwnerContainer";
+import OwnerContainer from "./pages/Owner/OwnerContainer";
 import LeagueContainer from "./pages/League/LeagueContainer";
 import OpenedLeagueContainer from "./pages/League/OpenedLeagueContainer";
 import UndistributedContainer from "./pages/Undistributed/UndistributedContainer";

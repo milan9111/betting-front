@@ -2,25 +2,46 @@
   background: linear-gradient(90deg, #18243d 0%, #160f1f 100%);
   &__container {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
+    @media (max-width: 800px) {
+      flex-direction: column-reverse;
+    }
   }
   &__contract {
-    padding: 20px 0px;
+    padding: 23px 0px;
     margin-left: 20px;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
+    @media (max-width: 800px) {
+      text-align: center;
+      padding: 0px 0px 10px 0px;
+      margin-left: 0px;
+    }
+    @media (max-width: 460px) {
+      font-size: 12px;
+    }
     a {
-      color: #ff4d00 ;
+      color: #ff4d00;
       font-size: 14px;
       font-weight: 600;
+      @media (max-width: 460px) {
+        font-size: 12px;
+      }
     }
   }
   &__menu {
     padding: 20px 0px;
     margin-right: 20px;
+    @media (max-width: 800px) {
+      padding: 10px;
+      margin-right: 0px;
+    }
     ul {
       display: flex;
+      @media (max-width: 800px) {
+        justify-content: center;
+      }
     }
   }
   &__link {

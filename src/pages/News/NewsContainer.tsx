@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import "./news.scss";
 import { getNews } from "../../redux/actions";
@@ -15,6 +16,9 @@ const NewsContainer = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Betting dApp | News</title>
+      </Helmet>
       <News news={news} />
     </>
   );

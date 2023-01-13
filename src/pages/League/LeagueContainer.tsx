@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getLeagues } from "../../redux/actions";
@@ -21,7 +22,14 @@ const LeagueContainer = () => {
     page?.countryId && dispatch(getLeagues(page.countryId));
   }, [location.pathname, dispatch]);
 
-  return <League result={state} />;
+  return (
+    <>
+      <Helmet>
+        <title>Betting dApp | Leagues</title>
+      </Helmet>
+      <League result={state} />
+    </>
+  );
 };
 
 export default LeagueContainer;

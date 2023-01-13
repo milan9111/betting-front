@@ -147,6 +147,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
         dataSource={resultForTable}
         pagination={{ className: "pagination" }}
         locale={{ emptyText: "Today's matches are not over yet!" }}
+        scroll={{x: 600}}
       />
       <DistributePrizesModal
         handleOk={handleOk}

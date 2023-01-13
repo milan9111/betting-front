@@ -77,6 +77,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
       dataSource={resultForTable}
       pagination={{ className: "pagination" }}
       locale={{ emptyText: "There are no live matches!" }}
+      scroll={{x: 600}}
     />
   );
 };

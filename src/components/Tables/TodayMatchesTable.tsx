@@ -248,6 +248,7 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
         dataSource={resultForTable}
         pagination={{ className: "pagination" }}
         locale={{ emptyText: "No matches today!" }}
+        scroll={{x: 600}}
       />
       <CreateGameModal
         handleCreateGameModalOk={handleCreateGameModalOk}

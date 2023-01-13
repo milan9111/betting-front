@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Helmet } from "react-helmet";
 import "./home.scss";
 import { homeContent } from "../../content/homeContent";
 import Home from "./Home";
@@ -14,6 +15,9 @@ const HomeContainer = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Betting dApp | Home</title>
+      </Helmet>
       <Home homeContent={homeContent} connectWallet={connectWallet} />
     </>
   );

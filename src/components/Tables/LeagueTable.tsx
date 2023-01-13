@@ -3,6 +3,7 @@ import { Table, Image, Button } from "antd";
 import { ILeagueInFederation } from "../../types/leagues";
 import uefa from "../../assets/images/uefa.png";
 import { Link } from "react-router-dom";
+import { Breakpoint } from "antd/es/_util/responsiveObserve";
 
 interface LeagueProps {
   result: ILeagueInFederation[];
@@ -22,12 +23,14 @@ const LeagueTable: React.FC<LeagueProps> = ({ result }) => {
         <Image style={{ maxWidth: "30px" }} src={item.country_logo} />
       ),
       align: "center" as "center",
+      responsive: ["sm"] as Breakpoint[],
     },
     {
       title: "Country name",
       dataIndex: "country_name",
       key: "country_name",
       align: "center" as "center",
+      responsive: ["sm"] as Breakpoint[],
     },
     {
       title: "Logo",
