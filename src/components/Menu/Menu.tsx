@@ -42,7 +42,7 @@ const Menu: React.FC<MenuProps> = ({
         <h3 className="menu__title">{menuContent.title}</h3>
         <div className="menu__line"></div>
         <nav className="menu__nav">
-          <ul>{menuLinks}</ul>
+          <ul className="menu__ul">{menuLinks}</ul>
         </nav>
         <h3 className="menu__title">{menuContentUndistributed.title}</h3>
         <div className="menu__line"></div>

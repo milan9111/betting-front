@@ -1,5 +1,5 @@
 .menu {
-  width: 15%;
+  width: 90%;
   &__container {
     padding: 50px 20px;
     @media (max-width: 1280px) {
@@ -18,6 +18,12 @@
     height: 4px;
     background-color: #ffff00;
   }
+  &__ul {
+    @media (max-width: 1024px) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
   &__link {
     margin-bottom: 25px;
     display: flex;
@@ -35,4 +41,10 @@
       }
     }
   }
+}
+
+.menu:hover {
+  @media (max-width: 1024px) {
+    left: 0px;
+  } 
 }
