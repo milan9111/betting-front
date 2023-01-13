@@ -3,7 +3,7 @@ import { notificationError } from "../helpers/notificationError";
 import { notificationSuccess } from "../helpers/notificationSuccess";
 import contractArtifact from "./abi.json";
 
-const contractAddress = "0xf2bdC8E5fECa33Ab8C3Bfd32c89D8551f22d8dA4";
+export const contractAddress = "0xf2bdC8E5fECa33Ab8C3Bfd32c89D8551f22d8dA4";
 
 export const connectWallet = async () => {
   let userAccount: string = "";

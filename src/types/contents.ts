@@ -81,3 +81,13 @@ export interface IOpenedLeagueContent {
 export interface IUndistributedContent {
   title: string;
 }
+
+interface IRuledGuideContent {
+  id: number;
+  text: string;
+}
+
+export interface IGuideContent {
+  title: string;
+  rules: IRuledGuideContent[];
+}
