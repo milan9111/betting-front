@@ -8,11 +8,11 @@ export const createGameInContract = async ({
 }: ICreateGamePayload) => {
 
   contract.once("MatchCreated", (index) => {
-    const createGame = async () => {
-    const result = await MatchesApi.createGame(item, userAccount, Number(index));
-    console.log(result); // alert
-    } 
-    createGame();
+    // const createGame = async () => {
+    // const result = await MatchesApi.createGame(item, userAccount, Number(index));
+    // console.log(result); // alert
+    // } 
+    // createGame();
   });
 
   const coefficientOne =
