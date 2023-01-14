@@ -25,6 +25,12 @@ export const createGameInContract = async ({
     new Date(`${item.event_date} ${item.event_time}`).getTime() / 1000 + 3600; //3600  GMT+2
   const endMatch = startMatch + 10800;
 
+  alert(coefficientOne);
+  alert(coefficientTwo);
+  alert(coefficientDraw);
+  alert(startMatch);
+  alert(endMatch);
+
   // const tx = await contract.createMatch(
   //   coefficientOne,
   //   coefficientTwo,
