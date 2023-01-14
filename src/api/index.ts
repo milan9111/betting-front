@@ -13,7 +13,7 @@ import { INews } from "../types/news";
 const APIkey =
   "f86061908f5a153edb0b8b9061abd5c144d96290fddb64dea59d106e84ebee5a";
 const ApiTokenNews = "YQnZcZDCEbDy6yyVB02ir9Airuo5fPW3BigGKyQh";
-const host = "http://localhost:5000/";
+const host = "https://nestjs-prod-nestjs-7cc7w2.mo4.mogenius.io/";
 
 export class LeaguesApi {
   static async getLeagues(
