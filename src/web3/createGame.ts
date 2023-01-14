@@ -7,13 +7,13 @@ export const createGameInContract = async ({
   userAccount,
 }: ICreateGamePayload) => {
 
-  contract.once("MatchCreated", (index) => {
-    // const createGame = async () => {
-    // const result = await MatchesApi.createGame(item, userAccount, Number(index));
-    // console.log(result); // alert
-    // } 
-    // createGame();
-  });
+  // contract.once("MatchCreated", (index) => {
+  //   const createGame = async () => {
+  //   const result = await MatchesApi.createGame(item, userAccount, Number(index));
+  //   console.log(result); // alert
+  //   } 
+  //   createGame();
+  // });
 
   const coefficientOne =
     item.odds_1 && Math.floor(Number(item.odds_1.toFixed(2)) * 100);
