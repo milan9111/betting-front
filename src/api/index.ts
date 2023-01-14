@@ -51,7 +51,7 @@ export class MatchesApi {
   static async createGame(
     item: ITodayMatch,
     userAccount: string,
-    ethIndex: string
+    ethIndex: number
   ): Promise<any> {
     try {
       const payload = {
