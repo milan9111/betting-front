@@ -26,7 +26,9 @@ export const createGameInContract = async ({
   const endMatch = startMatch + 10800;
 
   
-  alert(new Date());
+  alert(new Date(+item.event_date.split('-')[0], +item.event_date.split('-')[1] - 1, +item.event_date.split('-')[2], +item.event_time.split(':')[0], +item.event_time.split(':')[1], 0));
+  console.log(`${item.event_date} ${item.event_time}`);
+  
   alert(startMatch);
   alert(endMatch);
 
