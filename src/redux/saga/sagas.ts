@@ -108,8 +108,8 @@ function* sagaGetItemCreateGameModal(
 
 function* sagaCreateGame(action: ICreateGameAction): Generator<Effect, void> {
   try {
-    // const tx = yield call(createGameInContract, action.payload);
-    // notificationSuccess(tx);
+    const tx = yield call(createGameInContract, action.payload);
+    notificationSuccess(tx);
   } catch (error) {
     notificationError(error);
   }
