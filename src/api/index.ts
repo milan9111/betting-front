@@ -1,5 +1,6 @@
 import axios from "axios";
 import { notificationError } from "../helpers/notificationError";
+import { IMessage } from "../types/chat";
 import { ILeaguesInFederationState } from "../types/leagues";
 import {
   IFinishedTodayMatch,
@@ -10,10 +11,9 @@ import {
 } from "../types/matches";
 import { INews } from "../types/news";
 
-const APIkey =
-  "f86061908f5a153edb0b8b9061abd5c144d96290fddb64dea59d106e84ebee5a";
-const ApiTokenNews = "YQnZcZDCEbDy6yyVB02ir9Airuo5fPW3BigGKyQh";
-const host = "https://nestjs-prod-nestjs-7cc7w2.mo4.mogenius.io/";
+const APIkey = `${process.env.REACT_APP_API_KEY}`;
+const ApiTokenNews = `${process.env.REACT_APP_API_TOKEN_NEWS}`;
+const host = `${process.env.REACT_APP_BASE_URL}`;
 
 export class LeaguesApi {
   static async getLeagues(
@@ -123,5 +123,12 @@ export class NewsApi {
       `https://api.thenewsapi.com/v1/news/all?api_token=${ApiTokenNews}&language=en&categories=sports&limit=5&published_on=${date}&search=football`
     );
     return res.data.data;
+  }
+}
+
+export class ChatApi {
+  static async getMessages(): Promise<IMessage[]> {
+    const res = await axios.get(`${host}chat`);
+    return res.data;
   }
 }

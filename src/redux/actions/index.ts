@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import { IChatActionTypes, IMessage } from "../../types/chat";
 import { IEthersActionTypes } from "../../types/ethers";
 import { ILeaguesActionTypes } from "../../types/leagues";
 import {
@@ -75,7 +76,7 @@ export const unDistributedPrizes = (
 ) => {
   return {
     type: IMatchesActionTypes.UNDISTRIBUTED_PRIZES,
-    payload: {_idMongo, ethIndex, oddsId, contract },
+    payload: { _idMongo, ethIndex, oddsId, contract },
   };
 };
 
@@ -136,15 +137,27 @@ export const getUserAccount = () => {
   };
 };
 
-
 export const getUndistributedMatches = () => {
   return {
     type: IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES,
-  }
-}
+  };
+};
 
 export const getNews = () => {
   return {
     type: INewsActionTypes.GET_NEWS,
-  }
-}
+  };
+};
+
+export const getMessages = () => {
+  return {
+    type: IChatActionTypes.GET_MESSAGES,
+  };
+};
+
+export const createMessage = (message: IMessage) => {
+  return {
+    type: IChatActionTypes.CREATE_MESSAGE,
+    payload: message,
+  };
+};

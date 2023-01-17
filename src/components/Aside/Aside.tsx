@@ -1,6 +1,7 @@
 import React from "react";
 import { ethers } from "ethers";
 import { IAsideContent } from "../../types/contents";
+import ChatContainer from "../Chat/ChatContainer";
 
 interface asideProps {
   asideContent: IAsideContent;
@@ -39,7 +40,9 @@ const Aside: React.FC<asideProps> = ({
         </div>
         <div className="aside__chat">
           <div className="aside__chat_title">{asideContent.chatTitle}</div>
-          <div className="aside__chat_body">Coming soon...</div>
+          <div className="aside__chat_body">
+            <ChatContainer />
+          </div>
         </div>
       </div>
     </aside>

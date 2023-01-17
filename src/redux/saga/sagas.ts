@@ -1,7 +1,8 @@
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
-import { LeaguesApi, MatchesApi, NewsApi } from "../../api";
+import { ChatApi, LeaguesApi, MatchesApi, NewsApi } from "../../api";
 import { notificationError } from "../../helpers/notificationError";
 import { notificationSuccess } from "../../helpers/notificationSuccess";
+import { IChatAction, IChatActionTypes, IMessage } from "../../types/chat";
 import { IEthersAction, IEthersActionTypes } from "../../types/ethers";
 import {
   IGetAction,
@@ -228,6 +229,18 @@ function* sagaNews(action: INewsAction):Generator<Effect, void, INews[]> {
   }
 }
 
+function* sagaMessages(action: IChatAction):Generator<Effect, void, IMessage[]> {
+  try{
+    const result = yield call(ChatApi.getMessages);
+    yield put({
+      type: IChatActionTypes.SET_MESSAGES,
+      payload: result,
+    })
+  } catch(error) {
+    notificationError(error);
+  }
+}
+
 export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(ILeaguesActionTypes.GET_LEAGUE, sagaGetLeagues);
   yield takeEvery(IMatchesActionTypes.GET_MATCHES, sagaGetMatches);
@@ -272,5 +285,9 @@ export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(
     INewsActionTypes.GET_NEWS,
     sagaNews
+  );
+  yield takeEvery(
+    IChatActionTypes.GET_MESSAGES,
+    sagaMessages
   );
 }
