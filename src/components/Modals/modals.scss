@@ -34,6 +34,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+      font-size: 11px;
+      width: 37%;
+    }
     &_name {
       text-align: center;
     }
@@ -62,6 +66,9 @@
       color: #000;
       font-size: 16px;
       font-weight: 600;
+      @media (max-width: 768px) {
+        font-size: 11px;
+      }
     }
     &_value {
       margin-top: 15px;
@@ -86,6 +93,9 @@
       color: #000;
       font-size: 16px;
       font-weight: 600;
+      @media (max-width: 768px) {
+        font-size: 11px;
+      }
     }
     &_value {
       margin-top: 15px;
@@ -99,14 +109,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+      font-size: 11px;
+    }
     &_name {
       text-align: center;
     }
     &_odds {
-      margin-top: 95px;
+      margin-top: 74px;
       color: #000;
       font-size: 16px;
       font-weight: 600;
+      @media (max-width: 768px) {
+        margin-top: 92px;
+        font-size: 11px;
+      }
+      @media (max-width: 382px) {
+        margin-top: 73px;
+      }
+      @media (max-width: 361px) {
+        margin-top: 66px;
+      }
+      @media (max-width: 321px) {
+        margin-top: 53px;
+      }
     }
     &_value {
       margin-top: 15px;
@@ -130,7 +156,6 @@
     }
   }
 }
-
 
 .distributePrizesModal {
   &__container {

@@ -52,13 +52,16 @@
   table
   thead.ant-table-thead
   .ant-table-cell {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
+  @media (max-width: 1536px) {
+    font-size: 13px;
+  }
   @media (max-width: 1440px) {
-    font-size: 14px;
+    font-size: 12px;
   }
   @media (max-width: 1200px) {
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 

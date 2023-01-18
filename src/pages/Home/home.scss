@@ -86,4 +86,30 @@
       width: 50%;
     }
   }
+  &__banner-web3 {
+    margin-top: 50px;
+    border-radius: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    @media (max-width: 1024px) {
+      display: none;
+    }
+    &_img {
+      --ratio: 456 / 1400;
+      background-image: url("./../../assets/images/web3.webp");
+      height: calc(69vw * var(--ratio));
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      transition: 5s;
+    }
+
+    &_img:hover {
+      filter: none;
+      transform: scale(1.1);
+      transform-origin: center;
+    }
+    
+  }
 }

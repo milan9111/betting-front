@@ -17,6 +17,9 @@ const Home: React.FC<HomeProps> = ({ homeContent, connectWallet }) => {
             {homeContent.button}
           </button>
         </div>
+        <div className="home__banner-web3">
+          <div className="home__banner-web3_img"></div>
+        </div>
       </div>
     </section>
   );
