@@ -1,12 +1,21 @@
-import { Button, Input } from "antd";
 import React from "react";
+import { Button, Input } from "antd";
+import { SendOutlined } from "@ant-design/icons";
 import { IMessage } from "../../types/chat";
 
 interface ChatProps {
   messages: IMessage[];
+  onChangeMessageValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSendMessage: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  messageValue: string;
 }
 
-const Chat: React.FC<ChatProps> = ({ messages }) => {
+const Chat: React.FC<ChatProps> = ({
+  messages,
+  messageValue,
+  onChangeMessageValue,
+  onSendMessage,
+}) => {
   const showMessages = messages.map((item) => {
     return (
       <div key={item._id} className="chat__message">
@@ -20,13 +29,18 @@ const Chat: React.FC<ChatProps> = ({ messages }) => {
     <div className="chat">
       <div className="chat__container">{showMessages}</div>
       <div className="chat__form">
-        <div>
-            <Input />
+        <div className="chat__form_input">
+          <Input
+            onChange={onChangeMessageValue}
+            value={messageValue}
+            placeholder="Your message"
+          />
         </div>
-        <div>
-            <Button type="primary">Send</Button>
+        <div className="chat__form_button">
+          <Button type="primary" onClick={onSendMessage}>
+            <SendOutlined />
+          </Button>
         </div>
-        
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
+import { AnyIfEmpty } from "react-redux";
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
 import { ChatApi, LeaguesApi, MatchesApi, NewsApi } from "../../api";
 import { notificationError } from "../../helpers/notificationError";
 import { notificationSuccess } from "../../helpers/notificationSuccess";
+import { socket } from "../../sockets";
 import { IChatAction, IChatActionTypes, IMessage } from "../../types/chat";
 import { IEthersAction, IEthersActionTypes } from "../../types/ethers";
 import {
@@ -217,26 +219,36 @@ function* sagaUnDistributePrizes(
   }
 }
 
-function* sagaNews(action: INewsAction):Generator<Effect, void, INews[]> {
-  try{
+function* sagaNews(action: INewsAction): Generator<Effect, void, INews[]> {
+  try {
     const result = yield call(NewsApi.getNews);
     yield put({
       type: INewsActionTypes.SET_NEWS,
       payload: result,
     });
-  }catch(error) {
+  } catch (error) {
     notificationError(error);
   }
 }
 
-function* sagaMessages(action: IChatAction):Generator<Effect, void, IMessage[]> {
-  try{
+function* sagaMessages(
+  action: IChatAction
+): Generator<Effect, void, IMessage[]> {
+  try {
     const result = yield call(ChatApi.getMessages);
     yield put({
       type: IChatActionTypes.SET_MESSAGES,
       payload: result,
-    })
-  } catch(error) {
+    });
+  } catch (error) {
+    notificationError(error);
+  }
+}
+
+function* sageCreateMessage(action: IChatAction): Generator<Effect, void> {
+  try {
+    socket.emit("message", action.payload);
+  } catch (error) {
     notificationError(error);
   }
 }
@@ -282,12 +294,7 @@ export function* sagaWatcher(): Generator<Effect, void> {
     IMatchesActionTypes.UNDISTRIBUTED_PRIZES,
     sagaUnDistributePrizes
   );
-  yield takeEvery(
-    INewsActionTypes.GET_NEWS,
-    sagaNews
-  );
-  yield takeEvery(
-    IChatActionTypes.GET_MESSAGES,
-    sagaMessages
-  );
+  yield takeEvery(INewsActionTypes.GET_NEWS, sagaNews);
+  yield takeEvery(IChatActionTypes.GET_MESSAGES, sagaMessages);
+  yield takeEvery(IChatActionTypes.CREATE_MESSAGE, sageCreateMessage);
 }

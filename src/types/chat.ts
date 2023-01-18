@@ -23,5 +23,5 @@ export interface IChatAction {
     | IChatActionTypes.GET_MESSAGES
     | IChatActionTypes.SET_MESSAGES
     | IChatActionTypes.CREATE_MESSAGE;
-  payload: IMessage | IMessage[];
+  payload: IMessage | IMessage[] | string;
 }

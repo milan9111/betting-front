@@ -24,7 +24,6 @@ const OpenedLeagueContainer = () => {
 
   useEffect(() => {
     socket.on("createdMatch", (data: ISocketEventCreatedGame) => {
-      console.log(data);
       setIdCreatedGame(data.odds_id);
       notificationSuccess(data);
     });

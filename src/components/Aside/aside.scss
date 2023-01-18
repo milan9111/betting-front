@@ -96,12 +96,11 @@
       background-color: #ffff00;
     }
     &_body {
-      margin: 25px 0px;
+      margin: 25px 0px 5px 0px;
       padding-left: 10px;
       font-size: 16px;
       font-weight: 600;
       color: #fff;
-      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }

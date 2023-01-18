@@ -155,7 +155,7 @@ export const getMessages = () => {
   };
 };
 
-export const createMessage = (message: IMessage) => {
+export const createMessage = (message: string) => {
   return {
     type: IChatActionTypes.CREATE_MESSAGE,
     payload: message,
