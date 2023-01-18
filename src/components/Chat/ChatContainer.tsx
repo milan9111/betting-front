@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './chat.scss';
+import "./chat.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { notificationError } from "../../helpers/notificationError";
 import { createMessage, getMessages } from "../../redux/actions";
@@ -57,6 +57,7 @@ const ChatContainer = () => {
       onChangeMessageValue={onChangeMessageValue}
       onSendMessage={onSendMessage}
       messageValue={messageValue}
+      eventValue={eventValue}
     />
   );
 };
