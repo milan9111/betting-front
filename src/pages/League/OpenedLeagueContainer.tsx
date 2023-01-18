@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { socket } from "../../sockets";
 import { menuContent } from "../../content/menuContent";
-import { getMatches } from "../../redux/actions";
+import { getMatches, getStandings } from "../../redux/actions";
 import {
   IOpenedLeagueReducer,
   ISocketEventCreatedGame,
@@ -38,7 +38,10 @@ const OpenedLeagueContainer = () => {
     );
     const leagueId = location.pathname.split("/")[2];
 
-    page?.countryId && dispatch(getMatches(date, page.countryId, leagueId));
+    if (page?.countryId) {
+      dispatch(getMatches(date, page.countryId, leagueId));
+      dispatch(getStandings(leagueId));
+    }
 
     return () => {
       socket.off("createdMatch");

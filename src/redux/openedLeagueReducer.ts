@@ -12,6 +12,7 @@ export const initialState = {
   finishedTodayMatches: [],
   liveTodayMatches: [],
   oddsTodayMatches: {},
+  standings: [],
   unDistributedMatches: [],
   isDistributePrizesModal: false,
   itemDistributePizesModal: null,
@@ -52,6 +53,8 @@ export const openedLeagueReducer = (
         liveTodayMatches: liveTodayMatches,
         oddsTodayMatches: { ...oddsTodayMatches.todayOdds },
       };
+    case IMatchesActionTypes.SET_STANDINGS:
+      return {...state, standings: action.payload};
     case IMatchesActionTypes.SET_UNDISTRIBUTED_MATCHES:
       return { ...state, unDistributedMatches: action.payload};
     case IMatchesActionTypes.SET_DISTRIBUTE_PRIZES_MODAL:

@@ -21,6 +21,7 @@ import {
   IMatchesActionTypes,
   IMatchesParams,
   IShowModalsAction,
+  IStandings,
   ITodayCreatedMatches,
   ITodayMatch,
   IUndistributedMatches,
@@ -67,6 +68,23 @@ function* sagaGetMatches(
     yield put({
       type: IMatchesActionTypes.SET_MATCHES,
       payload: { todayMatches, todayOdds, todayCreatedMatches },
+    });
+  } catch (error) {
+    notificationError(error);
+  }
+}
+
+function* sagaGetStandings(
+  action: IGetMatchesAction
+): Generator<Effect, void, IStandings[]> {
+  try {
+    const standings = yield call(
+      MatchesApi.getStandings,
+      action.payload as string
+    );
+    yield put({
+      type: IMatchesActionTypes.SET_STANDINGS,
+      payload: standings,
     });
   } catch (error) {
     notificationError(error);
@@ -256,6 +274,7 @@ function* sageCreateMessage(action: IChatAction): Generator<Effect, void> {
 export function* sagaWatcher(): Generator<Effect, void> {
   yield takeEvery(ILeaguesActionTypes.GET_LEAGUE, sagaGetLeagues);
   yield takeEvery(IMatchesActionTypes.GET_MATCHES, sagaGetMatches);
+  yield takeEvery(IMatchesActionTypes.GET_STANDINGS, sagaGetStandings);
   yield takeEvery(
     IMatchesActionTypes.SHOW_DISTRIBUTE_PRIZES_MODAL,
     sagaShowDistributePrizesModal

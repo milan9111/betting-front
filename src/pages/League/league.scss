@@ -37,6 +37,17 @@
       margin-top: 10px;
     }
   }
+  &__title-group {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    @media (max-width: 1024px) {
+      margin-top: 10px;
+    }
+  }
   &__table {
     margin-bottom: 50px;
     @media (max-width: 1024px) {

@@ -28,6 +28,15 @@ export const getMatches = (
   };
 };
 
+export const getStandings = (
+  leagueId: string
+) => {
+  return {
+    type: IMatchesActionTypes.GET_STANDINGS,
+    payload: leagueId,
+  };
+};
+
 export const showDistributePrizesModal = (value: boolean) => {
   return {
     type: IMatchesActionTypes.SHOW_DISTRIBUTE_PRIZES_MODAL,

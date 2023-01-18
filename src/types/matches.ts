@@ -3,6 +3,8 @@ import { ethers } from "ethers";
 export enum IMatchesActionTypes {
   GET_MATCHES = "GET_MATCHES",
   SET_MATCHES = "SET_MATCHES",
+  GET_STANDINGS = "GET_STANDINGS",
+  SET_STANDINGS = "SET_STANDINGS",
   SHOW_DISTRIBUTE_PRIZES_MODAL = "SHOW_DISTRIBUTE_PRIZES_MODAL",
   SET_DISTRIBUTE_PRIZES_MODAL = "SET_DISTRIBUTE_PRIZES_MODAL",
   GET_ITEM_DISTRIBUTE_PRIZES_MODAL = "GET_ITEM_DISTRIBUTE_PRIZES_MODAL",
@@ -242,6 +244,7 @@ export interface IMatchesState {
   finishedTodayMatches: IFinishedTodayMatch[];
   liveTodayMatches: IFinishedTodayMatch[];
   oddsTodayMatches: ITodayOdds;
+  standings: IStandings[];
   unDistributedMatches: IUndistributedMatches[];
   isDistributePrizesModal: boolean;
   itemDistributePizesModal: IFinishedTodayMatch | null;
@@ -266,6 +269,7 @@ export interface IOpenedLeagueState {
   liveTodayMatches: IFinishedTodayMatch[];
   unDistributedMatches: IUndistributedMatches[];
   oddsTodayMatches: ITodayOdds;
+  standings: IStandings[];
   isDistributePrizesModal: boolean;
   itemDistributePizesModal: IFinishedTodayMatch | null;
   isCreateGameModal: boolean;
@@ -302,18 +306,43 @@ export interface IUndistributedMatches {
   team_winner?: number;
 }
 
+export interface IStandings {
+  standing_place: number;
+  standing_place_type: string;
+  standing_team: string;
+  standing_P: number;
+  standing_W: number;
+  standing_D: number;
+  standing_L: number;
+  standing_F: number;
+  standing_A: number;
+  standing_GD: number;
+  standing_PTS: number;
+  team_key: number;
+  league_key: number;
+  league_season: string;
+  league_round: string;
+  standing_updated: string;
+  fk_stage_key: number;
+  stage_name: string;
+}
+
 export interface IGetMatchesAction {
   type:
     | IMatchesActionTypes.GET_MATCHES
     | IMatchesActionTypes.SET_MATCHES
+    | IMatchesActionTypes.GET_STANDINGS
+    | IMatchesActionTypes.SET_STANDINGS
     | IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES
     | IMatchesActionTypes.SET_UNDISTRIBUTED_MATCHES;
   payload:
     | IMatchesParams
+    | string
     | ITodayMatch[]
     | ITodayCreatedMatches[]
     | IFinishedTodayMatch[]
-    | IUndistributedMatches[];
+    | IUndistributedMatches[]
+    | IStandings[];
 }
 
 export interface IShowModalsAction {

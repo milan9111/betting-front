@@ -5,6 +5,7 @@ import { ILeaguesInFederationState } from "../types/leagues";
 import {
   IFinishedTodayMatch,
   IMatchesParams,
+  IStandings,
   ITodayCreatedMatches,
   ITodayMatch,
   IUndistributedMatches,
@@ -34,6 +35,13 @@ export class MatchesApi {
       `https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${APIkey}&from=${params.date}&to=${params.date}&countryId=${params.countryId}&leagueId=${params.leagueId}`
     );
     return res.data.result;
+  }
+
+  static async getStandings(leagueId: string): Promise<IStandings[]> {
+    const res = await axios.get(
+      `https://apiv2.allsportsapi.com/football/?met=Standings&APIkey=${APIkey}&leagueId=${leagueId}`
+    );
+    return res.data.result.total;
   }
 
   static async getTodayCreatedMatches(): Promise<ITodayCreatedMatches[]> {

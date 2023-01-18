@@ -1,6 +1,7 @@
 import React from "react";
 import FinishedTodayMatchesTable from "../../components/Tables/FinishedTodayMatchesTable";
 import LiveTodayMatchesTable from "../../components/Tables/LiveTodayMatchesTable";
+import StandingTables from "../../components/Tables/StandingTables";
 import TodayMatchesTable from "../../components/Tables/TodayMatchesTable";
 import { IOpenedLeagueContent } from "../../types/contents";
 import { IOpenedLeagueState } from "../../types/matches";
@@ -41,6 +42,9 @@ const OpenedLeague: React.FC<OpenedLeagueProps> = ({
             matches={matches.finishedTodayMatches}
             createdMatches={matches.todayCreatedMatches}
           />
+        </div>
+        <div className="openedLeague__table">
+          <StandingTables standings={matches.standings} />
         </div>
       </div>
     </div>
