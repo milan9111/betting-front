@@ -7,7 +7,6 @@ import { getUserAccount } from "./redux/actions";
 import MainLayouts from "./layouts/MainLayouts";
 import HomeContainer from "./pages/Home/HomeContainer";
 import GuideContainer from "./pages/Guide/GuideContainer";
-import TablesContainer from "./pages/Tables/TablesContainer";
 import NewsContainer from "./pages/News/NewsContainer";
 import OwnerContainer from "./pages/Owner/OwnerContainer";
 import LeagueContainer from "./pages/League/LeagueContainer";
@@ -39,7 +38,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomeContainer />} />
           <Route path="/guide" element={<GuideContainer />} />
-          <Route path="/tables" element={<TablesContainer />} />
           <Route path="/news" element={<NewsContainer />} />
           <Route path="/owner" element={<OwnerContainer />} />
           {leaguesPaths}

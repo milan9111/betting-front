@@ -20,16 +20,11 @@ export const headerContent: IHeaderContent = {
     },
     {
       id: 2,
-      name: "Tables",
-      link: "/tables",
-    },
-    {
-      id: 3,
       name: "News",
       link: "/news",
     },
     {
-      id: 4,
+      id: 3,
       name: "Owner",
       link: "/owner",
     },
