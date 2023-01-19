@@ -12,17 +12,17 @@ const News: React.FC<NewsProps> = ({ news }) => {
         <div className="news__item_date">
           {new Date(item.published_at).toLocaleString()}
         </div>
-        <div className="news__item_title">{item.title}</div>
+        <h3 className="news__item_title">{item.title}</h3>
         <div className="news__item_img">
           <img src={item.image_url} alt="image_news" />
         </div>
-        <div className="news__item_description">{item.description}</div>
+        <p className="news__item_description">{item.description}</p>
         <div className="news__item_link">
           <a href={item.url} target="_blank" rel="noreferrer">
             Read more
           </a>
         </div>
-        <div className="news__item_source">Source: {item.source}</div>
+        <p className="news__item_source">Source: {item.source}</p>
       </div>
     );
   });
@@ -30,11 +30,11 @@ const News: React.FC<NewsProps> = ({ news }) => {
   return (
     <section className="news">
       <div className="news__container">
-        <div className="news__title">Breaking news</div>
+        <h2 className="news__title">Breaking news</h2>
         {news.length > 0 ? (
           showNews
         ) : (
-          <div className="news__empty">There are not news!</div>
+          <p className="news__empty">There are not news!</p>
         )}
       </div>
     </section>

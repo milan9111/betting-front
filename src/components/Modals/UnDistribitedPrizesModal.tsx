@@ -46,9 +46,9 @@ const UnDistributedPrizesModal: React.FC<UnDistributedPrizesModalProps> = ({
     >
       <div className="unDistributedPrizesModal">
         <div className="UnDistributedPrizesModal__container">
-          <div className="UnDistributedPrizesModal__text">
+          <p className="UnDistributedPrizesModal__text">
             {openedLeagueContent.textUndistributedPrizesModal}
-          </div>
+          </p>
         </div>
       </div>
     </Modal>

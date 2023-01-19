@@ -16,11 +16,11 @@ const OpenedLeague: React.FC<OpenedLeagueProps> = ({
   openedLeagueContent,
 }) => {
   return (
-    <div className="openedLeague">
+    <section className="openedLeague">
       <div className="openedLeague__container">
-        <div className="openedLeague__title">
+        <h2 className="openedLeague__title">
           {openedLeagueContent.titleNextMatches}
-        </div>
+        </h2>
         <div className="openedLeague__table">
           <TodayMatchesTable
             matches={matches.todayMatches}
@@ -28,15 +28,15 @@ const OpenedLeague: React.FC<OpenedLeagueProps> = ({
             createdMatches={matches.todayCreatedMatches}
           />
         </div>
-        <div className="openedLeague__title">
+        <h2 className="openedLeague__title">
           {openedLeagueContent.titleLiveMatches}
-        </div>
+        </h2>
         <div className="openedLeague__table">
           <LiveTodayMatchesTable matches={matches.liveTodayMatches} />
         </div>
-        <div className="openedLeague__title">
+        <h2 className="openedLeague__title">
           {openedLeagueContent.titleFinishedMatches}
-        </div>
+        </h2>
         <div className="openedLeague__table">
           <FinishedTodayMatchesTable
             matches={matches.finishedTodayMatches}
@@ -47,7 +47,7 @@ const OpenedLeague: React.FC<OpenedLeagueProps> = ({
           <StandingTables standings={matches.standings} />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -13,14 +13,14 @@ const Undistributed: React.FC<UndistributedProps> = ({
   undistributedContent,
 }) => {
   return (
-    <div className="undistributed">
+    <section className="undistributed">
       <div className="undistributed__container">
-        <div className="undistributed__title">{undistributedContent.title}</div>
+        <h2 className="undistributed__title">{undistributedContent.title}</h2>
         <div className="undistributed__table">
           <UndistributedMatchesTable matches={matches} />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

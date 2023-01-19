@@ -24,22 +24,20 @@ const Aside: React.FC<asideProps> = ({
     <aside className="aside">
       <div className="aside__container">
         <div className="aside__banner">
-          <div className="aside__banner_title">{asideContent.title}</div>
+          <h3 className="aside__banner_title">{asideContent.title}</h3>
           <div className="aside__banner_image">
             <img src={asideContent.img} alt="banner" />
           </div>
         </div>
         <div className="aside__user-info">
-          <div className="aside__user-info_title">{asideContent.userTitle}</div>
-          <div className="aside__user-info_account">
-            Account: {editedAccount}
-          </div>
-          <div className="aside__user-info_balance">
+          <h3 className="aside__user-info_title">{asideContent.userTitle}</h3>
+          <p className="aside__user-info_account">Account: {editedAccount}</p>
+          <p className="aside__user-info_balance">
             Balance: {editedBalance} ETH
-          </div>
+          </p>
         </div>
         <div className="aside__chat">
-          <div className="aside__chat_title">{asideContent.chatTitle}</div>
+          <h3 className="aside__chat_title">{asideContent.chatTitle}</h3>
           <div className="aside__chat_body">
             <ChatContainer />
           </div>

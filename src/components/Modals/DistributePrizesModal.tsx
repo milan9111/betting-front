@@ -46,9 +46,9 @@ const DistributePrizesModal: React.FC<DistributePrizesModalProps> = ({
     >
       <div className="distributePrizesModal">
         <div className="distributePrizesModal__container">
-          <div className="distributePrizesModal__text">
+          <p className="distributePrizesModal__text">
             {openedLeagueContent.textDistributePrizesModal}
-          </div>
+          </p>
         </div>
       </div>
     </Modal>

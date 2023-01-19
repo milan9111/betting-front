@@ -58,12 +58,12 @@ const BetModal: React.FC<BetModalProps> = ({
               src={itemBetModal?.home_team_logo}
               style={{ maxWidth: "100px" }}
             />
-            <div className="betModal__home_name">
+            <p className="betModal__home_name">
               {itemBetModal?.event_home_team}
-            </div>
-            <div className="betModal__home_odds">
+            </p>
+            <p className="betModal__home_odds">
               odds_1: {itemBetModal?.odds_1}
-            </div>
+            </p>
             <div className="betModal__home_value">
               <Input
                 placeholder="ETH"
@@ -89,18 +89,18 @@ const BetModal: React.FC<BetModalProps> = ({
             </div>
           </div>
           <div className="betModal__info">
-            <div className="betModal__info_name">
+            <p className="betModal__info_name">
               {itemBetModal?.league_name} - {itemBetModal?.league_season}
-            </div>
-            <div className="betModal__info_round">
+            </p>
+            <p className="betModal__info_round">
               {itemBetModal?.league_round}
-            </div>
-            <div className="betModal__info_time">
+            </p>
+            <p className="betModal__info_time">
               {itemBetModal?.event_time}
-            </div>
-            <div className="betModal__info_odds">
+            </p>
+            <p className="betModal__info_odds">
               odds_x: {itemBetModal?.odds_x}
-            </div>
+            </p>
             <div className="betModal__info_value">
               <Input
                 placeholder="ETH"
@@ -124,7 +124,7 @@ const BetModal: React.FC<BetModalProps> = ({
                 Bid
               </Button>
             </div>
-            <div
+            <p
               className={
                 errorInput
                   ? "betModal__info_error-visible"
@@ -132,19 +132,19 @@ const BetModal: React.FC<BetModalProps> = ({
               }
             >
               Bid value error!
-            </div>
+            </p>
           </div>
           <div className="betModal__away">
             <Image
               src={itemBetModal?.away_team_logo}
               style={{ maxWidth: "100px" }}
             />
-            <div className="betModal__away_name">
+            <p className="betModal__away_name">
               {itemBetModal?.event_away_team}
-            </div>
-            <div className="betModal__away_odds">
+            </p>
+            <p className="betModal__away_odds">
               odds_2: {itemBetModal?.odds_2}
-            </div>
+            </p>
             <div className="betModal__away_value">
               <Input
                 placeholder="ETH"

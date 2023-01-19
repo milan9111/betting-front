@@ -8,9 +8,9 @@ interface LeagueProps {
 
 const League: React.FC<LeagueProps> = ({ result }) => {
   return (
-    <div className="league">
+    <section className="league">
       <LeagueTable result={result} />
-    </div>
+    </section>
   );
 };
 

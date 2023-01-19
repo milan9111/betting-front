@@ -51,30 +51,30 @@ const CreateGameModal: React.FC<CreateGameModalProps> = ({
               src={itemCreateGameModal?.home_team_logo}
               style={{ maxWidth: "100px" }}
             />
-            <div className="createGameModal__home_name">
+            <p className="createGameModal__home_name">
               {itemCreateGameModal?.event_home_team}
-            </div>
+            </p>
           </div>
           <div className="createGameModal__info">
-            <div className="createGameModal__info_name">
+            <p className="createGameModal__info_name">
               {itemCreateGameModal?.league_name} -{" "}
               {itemCreateGameModal?.league_season}
-            </div>
-            <div className="createGameModal__info_round">
+            </p>
+            <p className="createGameModal__info_round">
               {itemCreateGameModal?.league_round}
-            </div>
-            <div className="createGameModal__info_time">
+            </p>
+            <p className="createGameModal__info_time">
               {itemCreateGameModal?.event_time}
-            </div>
+            </p>
           </div>
           <div className="createGameModal__away">
             <Image
               src={itemCreateGameModal?.away_team_logo}
               style={{ maxWidth: "100px" }}
             />
-            <div className="createGameModal__away_name">
+            <p className="createGameModal__away_name">
               {itemCreateGameModal?.event_away_team}
-            </div>
+            </p>
           </div>
         </div>
       </div>

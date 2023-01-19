@@ -81,10 +81,14 @@
     color: #160f1f;
     font-size: 16px;
     font-weight: 600;
+    transition: 0.3s;
     @media (max-width: 1024px) {
       margin-left: 0px;
       width: 50%;
     }
+  }
+  &__button:hover {
+    color:#ff4d00;
   }
   &__banner-web3 {
     margin-top: 50px;

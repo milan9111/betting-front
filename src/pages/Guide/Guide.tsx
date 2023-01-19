@@ -17,7 +17,7 @@ const Guide: React.FC<GuideProps> = ({ guideContent }) => {
   return (
     <section className="guide">
       <div className="guide__container">
-        <div className="guide__title">{guideContent.title}</div>
+        <h2 className="guide__title">{guideContent.title}</h2>
         <ul className="guide__rules">{showRules}</ul>
       </div>
     </section>

@@ -19,7 +19,7 @@ const Footer: React.FC<footerProps> = ({ footerContent, contractAddress }) => {
   return (
     <footer className="footer">
       <div className="footer__container">
-        <div className="footer__contract">
+        <p className="footer__contract">
           Smart Contact:{" "}
           <a
             href={`https://goerli.etherscan.io/address/${contractAddress}`}
@@ -28,7 +28,7 @@ const Footer: React.FC<footerProps> = ({ footerContent, contractAddress }) => {
           >
             {contractAddress}
           </a>
-        </div>
+        </p>
         <nav className="footer__menu">
           <ul>{footerLinks}</ul>
         </nav>
