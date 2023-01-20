@@ -47,112 +47,175 @@
 .betModal {
   &__container {
     display: flex;
+    flex-direction: column;
+    padding: 25px;
+    @media (max-width: 460px) {
+      padding: 5px;
+    }
+  }
+
+  &__logos {
+    display: flex;
     justify-content: space-around;
-    margin-top: 50px;
-  }
-
-  &__home {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    &_name {
-      font-size: 20px;
-      color: #000;
-      font-weight: 600;
-      margin-top: 15px;
-    }
-    &_odds {
-      margin-top: 15px;
-      color: #000;
-      font-size: 16px;
-      font-weight: 600;
-      @media (max-width: 768px) {
-        font-size: 11px;
+    &_info {
+      text-align: center;
+      @media (max-width: 460px) {
+        font-size: 12px;
       }
     }
-    &_value {
+    &_home-name {
+      text-align: center;
       margin-top: 15px;
-    }
-    &_button {
-      margin-top: 15px;
-    }
-  }
-
-  &__away {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    &_name {
-      font-size: 20px;
+      font-size: 18px;
       color: #000;
       font-weight: 600;
-      margin-top: 15px;
     }
-    &_odds {
+    &_away-name {
+      text-align: center;
       margin-top: 15px;
+      font-size: 18px;
       color: #000;
-      font-size: 16px;
       font-weight: 600;
-      @media (max-width: 768px) {
-        font-size: 11px;
-      }
-    }
-    &_value {
-      margin-top: 15px;
-    }
-    &_button {
-      margin-top: 15px;
     }
   }
-
-  &__info {
+  &__odds {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    @media (max-width: 768px) {
-      font-size: 11px;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+  &__bids {
+    display: flex;
+    &_home-value {
+      margin-bottom: 10px;
     }
-    &_name {
+    &_x-value {
+      margin: 0px 5px 10px 5px;
+    }
+    &_away-value {
+      margin-bottom: 10px;
+    }
+    &_home-button {
       text-align: center;
     }
-    &_odds {
-      margin-top: 74px;
-      color: #000;
-      font-size: 16px;
-      font-weight: 600;
-      @media (max-width: 768px) {
-        margin-top: 92px;
-        font-size: 11px;
-      }
-      @media (max-width: 382px) {
-        margin-top: 73px;
-      }
-      @media (max-width: 361px) {
-        margin-top: 66px;
-      }
-      @media (max-width: 321px) {
-        margin-top: 53px;
-      }
+    &_x-button {
+      text-align: center;
     }
-    &_value {
-      margin-top: 15px;
-    }
-    &_button {
-      margin-top: 15px;
+    &_away-button {
+      text-align: center;
     }
     &_error-visible {
+      text-align: center;
       margin-top: 10px;
       color: #ff0000;
       font-size: 16px;
       font-weight: 600;
       visibility: visible;
+      @media (max-width: 460px) {
+        font-size: 12px;
+      }
     }
     &_error-hidden {
+      text-align: center;
       margin-top: 10px;
       color: #ff0000;
       font-size: 16px;
       font-weight: 600;
       visibility: hidden;
+      @media (max-width: 460px) {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.shortBetModal {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    @media (max-width: 460px) {
+      padding: 5px;
+    }
+  }
+
+  &__logos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_info {
+      width: 33.333%;
+      text-align: center;
+      @media (max-width: 460px) {
+        font-size: 12px;
+      }
+    }
+    &_home {
+      width: 33.333%;
+    }
+    &_away {
+      width: 33.333%;
+    }
+    &_home-name {
+      text-align: start;
+      font-size: 18px;
+      color: #000;
+      font-weight: 600;
+    }
+    &_away-name {
+      text-align: end;
+      font-size: 18px;
+      color: #000;
+      font-weight: 600;
+    }
+  }
+  &__odds {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  &__bids {
+    display: flex;
+    &_home-value {
+      margin-bottom: 10px;
+    }
+    &_x-value {
+      margin: 0px 5px 10px 5px;
+    }
+    &_away-value {
+      margin-bottom: 10px;
+    }
+    &_home-button {
+      text-align: center;
+    }
+    &_x-button {
+      text-align: center;
+    }
+    &_away-button {
+      text-align: center;
+    }
+    &_error-visible {
+      text-align: center;
+      margin-top: 10px;
+      color: #ff0000;
+      font-size: 16px;
+      font-weight: 600;
+      visibility: visible;
+      @media (max-width: 460px) {
+        font-size: 12px;
+      }
+    }
+    &_error-hidden {
+      text-align: center;
+      margin-top: 10px;
+      color: #ff0000;
+      font-size: 16px;
+      font-weight: 600;
+      visibility: hidden;
+      @media (max-width: 460px) {
+        font-size: 12px;
+      }
     }
   }
 }

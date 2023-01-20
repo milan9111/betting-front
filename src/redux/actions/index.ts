@@ -3,6 +3,7 @@ import { IChatActionTypes, IMessage } from "../../types/chat";
 import { IEthersActionTypes } from "../../types/ethers";
 import { ILeaguesActionTypes } from "../../types/leagues";
 import {
+  ICreatedGames,
   IFinishedTodayMatch,
   IMatchesActionTypes,
   ITodayMatch,
@@ -28,9 +29,7 @@ export const getMatches = (
   };
 };
 
-export const getStandings = (
-  leagueId: string
-) => {
+export const getStandings = (leagueId: string) => {
   return {
     type: IMatchesActionTypes.GET_STANDINGS,
     payload: leagueId,
@@ -133,9 +132,23 @@ export const showBetModal = (value: boolean) => {
   };
 };
 
+export const showShortBetModal = (value: boolean) => {
+  return {
+    type: IMatchesActionTypes.SHOW_SHORT_BET_MODAL,
+    payload: value,
+  };
+};
+
 export const getItemBetModal = (item: ITodayMatch) => {
   return {
     type: IMatchesActionTypes.GET_ITEM_BET_MODAL,
+    payload: item,
+  };
+};
+
+export const getItemShortBetModal = (item: ICreatedGames) => {
+  return {
+    type: IMatchesActionTypes.GET_ITEM_SHORT_BET_MODAL,
     payload: item,
   };
 };
@@ -149,6 +162,12 @@ export const getUserAccount = () => {
 export const getUndistributedMatches = () => {
   return {
     type: IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES,
+  };
+};
+
+export const getCreatedGames = () => {
+  return {
+    type: IMatchesActionTypes.GET_CREATED_GAMES,
   };
 };
 

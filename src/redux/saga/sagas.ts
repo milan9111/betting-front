@@ -13,6 +13,7 @@ import {
 } from "../../types/leagues";
 import {
   IBidMatchAction,
+  ICreatedGames,
   ICreateGameAction,
   IDistributePrizesAction,
   IFinishedTodayMatch,
@@ -143,11 +144,29 @@ function* sagaShowBetModal(action: IShowModalsAction): Generator<Effect, void> {
   });
 }
 
+function* sagaShowShortBetModal(
+  action: IShowModalsAction
+): Generator<Effect, void> {
+  yield put({
+    type: IMatchesActionTypes.SET_SHORT_BET_MODAL,
+    payload: action.payload,
+  });
+}
+
 function* sagaGetItemBetModal(
   action: IGetItemModalsAction
 ): Generator<Effect, void> {
   yield put({
     type: IMatchesActionTypes.SET_ITEM_BET_MODAL,
+    payload: action.payload,
+  });
+}
+
+function* sagaGetItemShortBetModal(
+  action: IGetItemModalsAction
+): Generator<Effect, void> {
+  yield put({
+    type: IMatchesActionTypes.SET_ITEM_SHORT_BET_MODAL,
     payload: action.payload,
   });
 }
@@ -178,6 +197,20 @@ function* sagaGetUserAccount(action: IEthersAction): Generator<Effect, void> {
     yield put({
       type: IEthersActionTypes.SET_USER_ACCOUNT,
       payload: accountUser,
+    });
+  } catch (error) {
+    notificationError(error);
+  }
+}
+
+function* sagaGetCreatedGames(
+  action: IGetMatchesAction
+): Generator<Effect, void, ICreatedGames> {
+  try {
+    const games = yield call(MatchesApi.getCreatedGames);
+    yield put({
+      type: IMatchesActionTypes.SET_CREATED_GAMES,
+      payload: games,
     });
   } catch (error) {
     notificationError(error);
@@ -294,9 +327,18 @@ export function* sagaWatcher(): Generator<Effect, void> {
   );
   yield takeEvery(IMatchesActionTypes.CREATE_GAME, sagaCreateGame);
   yield takeEvery(IMatchesActionTypes.SHOW_BET_MODAL, sagaShowBetModal);
+  yield takeEvery(
+    IMatchesActionTypes.SHOW_SHORT_BET_MODAL,
+    sagaShowShortBetModal
+  );
   yield takeEvery(IMatchesActionTypes.GET_ITEM_BET_MODAL, sagaGetItemBetModal);
+  yield takeEvery(
+    IMatchesActionTypes.GET_ITEM_SHORT_BET_MODAL,
+    sagaGetItemShortBetModal
+  );
   yield takeEvery(IMatchesActionTypes.BID_MATCH, sagaBidMatch);
   yield takeEvery(IEthersActionTypes.GET_USER_ACCOUNT, sagaGetUserAccount);
+  yield takeEvery(IMatchesActionTypes.GET_CREATED_GAMES, sagaGetCreatedGames);
   yield takeEvery(
     IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES,
     sagaGetUndistributedMatches

@@ -3,6 +3,7 @@ import { notificationError } from "../helpers/notificationError";
 import { IMessage } from "../types/chat";
 import { ILeaguesInFederationState } from "../types/leagues";
 import {
+  ICreatedGames,
   IFinishedTodayMatch,
   IMatchesParams,
   IStandings,
@@ -103,6 +104,22 @@ export class MatchesApi {
     } catch (error) {
       notificationError(error);
     }
+  }
+
+  static async getCreatedGames(): Promise<ICreatedGames[]> {
+    const res = await axios.get(`${host}matches`);
+
+    const createdGames = res.data.filter((item: ICreatedGames) => {
+      const year = +item.event_date.split("-")[0];
+      const month = +item.event_date.split("-")[1] - 1;
+      const day = +item.event_date.split("-")[2];
+      const hours = +item.event_time.split(":")[0];
+      const minutes = +item.event_time.split(":")[1];
+      const startMatch =
+        new Date(year, month, day, hours, minutes, 0).getTime() + 3600000; //GMT+2
+      return item.finished === false && startMatch > Date.now();
+    });
+    return createdGames;
   }
 
   static async getUndistributedMatches(): Promise<IUndistributedMatches[]> {

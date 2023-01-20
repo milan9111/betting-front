@@ -2,7 +2,7 @@ import React from "react";
 import "./menu.scss";
 import {
   menuContent,
-  menuContentUndistributed,
+  menuContentMatches,
 } from "../../content/menuContent";
 import Menu from "./Menu";
 
@@ -11,7 +11,7 @@ const MenuContainer = () => {
     <>
       <Menu
         menuContent={menuContent}
-        menuContentUndistributed={menuContentUndistributed}
+        menuContentMatches={menuContentMatches}
       />
     </>
   );

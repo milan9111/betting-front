@@ -13,6 +13,7 @@ import LeagueContainer from "./pages/League/LeagueContainer";
 import OpenedLeagueContainer from "./pages/League/OpenedLeagueContainer";
 import UndistributedContainer from "./pages/Undistributed/UndistributedContainer";
 import Error from "./pages/Error/Error";
+import CreatedGamesContainer from "./pages/CreatedGames/CreatedGamesContainer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const App = () => {
             path="/undistributed-prizes"
             element={<UndistributedContainer />}
           />
+          <Route path="/created-games" element={<CreatedGamesContainer />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </MainLayouts>

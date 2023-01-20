@@ -27,16 +27,16 @@ export interface IMenuContent {
   links: IMenuLink[];
 }
 
-interface IMenuLinkUndistributed {
+interface IMenuLinkMatches {
   id: number;
   logo: string;
   name: string;
   link: string;
 }
 
-export interface IMenuContetentUndistributed {
+export interface IMenuContetentMatches {
   title: string;
-  links: IMenuLinkUndistributed[];
+  links: IMenuLinkMatches[];
 }
 
 export interface IHomeContent {
@@ -77,6 +77,11 @@ export interface IOpenedLeagueContent {
   textDistributePrizesModal: string;
   textUndistributedPrizesModal: string;
 }
+
+export interface ICreatedGamesContent {
+  title: string;
+}
+
 
 export interface IUndistributedContent {
   title: string;

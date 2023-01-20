@@ -1,19 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {
-  IMenuContent,
-  IMenuContetentUndistributed,
-} from "../../types/contents";
+import { IMenuContent, IMenuContetentMatches } from "../../types/contents";
 
 interface MenuProps {
   menuContent: IMenuContent;
-  menuContentUndistributed: IMenuContetentUndistributed;
+  menuContentMatches: IMenuContetentMatches;
 }
 
-const Menu: React.FC<MenuProps> = ({
-  menuContent,
-  menuContentUndistributed,
-}) => {
+const Menu: React.FC<MenuProps> = ({ menuContent, menuContentMatches }) => {
   const menuLinks = menuContent.links.map((item) => {
     return (
       <li key={item.id} className="menu__link">
@@ -25,7 +19,7 @@ const Menu: React.FC<MenuProps> = ({
     );
   });
 
-  const menuLinksUndistributed = menuContentUndistributed.links.map((item) => {
+  const menuLinksMatches = menuContentMatches.links.map((item) => {
     return (
       <li key={item.id} className="menu__link">
         <img className="menu__link_img" src={item.logo} alt="" />
@@ -44,10 +38,10 @@ const Menu: React.FC<MenuProps> = ({
         <nav className="menu__nav">
           <ul className="menu__ul">{menuLinks}</ul>
         </nav>
-        <h3 className="menu__title">{menuContentUndistributed.title}</h3>
+        <h3 className="menu__title">{menuContentMatches.title}</h3>
         <div className="menu__line"></div>
         <nav className="menu__nav">
-          <ul className="menu__ul">{menuLinksUndistributed}</ul>
+          <ul className="menu__ul">{menuLinksMatches}</ul>
         </nav>
       </div>
     </div>

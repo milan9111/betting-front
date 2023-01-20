@@ -13,6 +13,7 @@ export const initialState = {
   liveTodayMatches: [],
   oddsTodayMatches: {},
   standings: [],
+  createdGames: [],
   unDistributedMatches: [],
   isDistributePrizesModal: false,
   itemDistributePizesModal: null,
@@ -20,6 +21,8 @@ export const initialState = {
   itemCreateGameModal: null,
   isBetModal: false,
   itemBetModal: null,
+  isShortBetModal: false,
+  itemShortBetModal: null,
   isUnDistributebPrizesModal: false,
   itemUnDistributedPizesModal: null,
 };
@@ -54,9 +57,11 @@ export const openedLeagueReducer = (
         oddsTodayMatches: { ...oddsTodayMatches.todayOdds },
       };
     case IMatchesActionTypes.SET_STANDINGS:
-      return {...state, standings: action.payload};
+      return { ...state, standings: action.payload };
+    case IMatchesActionTypes.SET_CREATED_GAMES:
+      return { ...state, createdGames: action.payload };
     case IMatchesActionTypes.SET_UNDISTRIBUTED_MATCHES:
-      return { ...state, unDistributedMatches: action.payload};
+      return { ...state, unDistributedMatches: action.payload };
     case IMatchesActionTypes.SET_DISTRIBUTE_PRIZES_MODAL:
       return { ...state, isDistributePrizesModal: action.payload };
     case IMatchesActionTypes.SET_ITEM_DISTRIBUTE_PRIZES_MODAL:
@@ -69,10 +74,14 @@ export const openedLeagueReducer = (
       return { ...state, isBetModal: action.payload };
     case IMatchesActionTypes.SET_ITEM_BET_MODAL:
       return { ...state, itemBetModal: action.payload };
+    case IMatchesActionTypes.SET_SHORT_BET_MODAL:
+      return { ...state, isShortBetModal: action.payload };
+    case IMatchesActionTypes.SET_ITEM_SHORT_BET_MODAL:
+      return { ...state, itemShortBetModal: action.payload };
     case IMatchesActionTypes.SET_UNDISTRIBUTED_PRIZES_MODAL:
-        return { ...state, isUnDistributebPrizesModal: action.payload };
+      return { ...state, isUnDistributebPrizesModal: action.payload };
     case IMatchesActionTypes.SET_ITEM_UNDISTRIBUTED_PRIZES_MODAL:
-          return { ...state, itemUnDistributedPizesModal: action.payload };
+      return { ...state, itemUnDistributedPizesModal: action.payload };
     default:
       return state;
   }

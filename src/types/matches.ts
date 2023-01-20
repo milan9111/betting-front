@@ -19,7 +19,13 @@ export enum IMatchesActionTypes {
   SET_BET_MODAL = "SET_BET_MODAL",
   GET_ITEM_BET_MODAL = "GET_ITEM_BET_MODAL",
   SET_ITEM_BET_MODAL = "SET_ITEM_BET_MODAL",
+  SHOW_SHORT_BET_MODAL = "SHOW_SHORT_BET_MODAL",
+  SET_SHORT_BET_MODAL = "SET_SHORT_BET_MODAL",
+  GET_ITEM_SHORT_BET_MODAL = "GET_ITEM_SHORT_BET_MODAL",
+  SET_ITEM_SHORT_BET_MODAL = "SET_ITEM_SHORT_BET_MODAL",
   BID_MATCH = "BID_MATCH",
+  GET_CREATED_GAMES = "GET_CREATED_GAMES",
+  SET_CREATED_GAMES = "SET_CREATED_GAMES",
   GET_UNDISTRIBUTED_MATCHES = "GET_UNDISTRIBUTED_MATCHES",
   SET_UNDISTRIBUTED_MATCHES = "SET_UNDISTRIBUTED_MATCHES",
   GET_ITEM_UNDISTRIBUTED_PRIZES_MODAL = "GET_ITEM_UNDISTRIBUTED_PRIZES_MODAL",
@@ -245,6 +251,7 @@ export interface IMatchesState {
   liveTodayMatches: IFinishedTodayMatch[];
   oddsTodayMatches: ITodayOdds;
   standings: IStandings[];
+  createdGames: ICreatedGames[];
   unDistributedMatches: IUndistributedMatches[];
   isDistributePrizesModal: boolean;
   itemDistributePizesModal: IFinishedTodayMatch | null;
@@ -267,6 +274,7 @@ export interface IOpenedLeagueState {
   todayCreatedMatches: ITodayCreatedMatches[];
   finishedTodayMatches: IFinishedTodayMatch[];
   liveTodayMatches: IFinishedTodayMatch[];
+  createdGames: ICreatedGames[];
   unDistributedMatches: IUndistributedMatches[];
   oddsTodayMatches: ITodayOdds;
   standings: IStandings[];
@@ -276,12 +284,31 @@ export interface IOpenedLeagueState {
   itemCreateGameModal: ITodayMatch | null;
   isBetModal: boolean;
   itemBetModal: ITodayMatch | null;
+  isShortBetModal: boolean;
+  itemShortBetModal: ICreatedGames | null;
   isUnDistributebPrizesModal: boolean;
   itemUnDistributedPizesModal: IUndistributedMatches | null;
 }
 
 export interface IOpenedLeagueReducer {
   openedLeagueReducer: IOpenedLeagueState;
+}
+
+export interface ICreatedGames {
+  _id: string;
+  odds_id: number;
+  eth_index: number;
+  home_team: string;
+  away_team: string;
+  event_date: string;
+  event_time: string;
+  finished: boolean;
+  odd_1: number;
+  odd_x: number;
+  odd_2: number;
+  creator: string;
+  winners: any[];
+  __v: number;
 }
 
 export interface IUndistributedMatches {
@@ -333,6 +360,8 @@ export interface IGetMatchesAction {
     | IMatchesActionTypes.SET_MATCHES
     | IMatchesActionTypes.GET_STANDINGS
     | IMatchesActionTypes.SET_STANDINGS
+    | IMatchesActionTypes.GET_CREATED_GAMES
+    | IMatchesActionTypes.SET_CREATED_GAMES
     | IMatchesActionTypes.GET_UNDISTRIBUTED_MATCHES
     | IMatchesActionTypes.SET_UNDISTRIBUTED_MATCHES;
   payload:
@@ -341,6 +370,7 @@ export interface IGetMatchesAction {
     | ITodayMatch[]
     | ITodayCreatedMatches[]
     | IFinishedTodayMatch[]
+    | ICreatedGames[]
     | IUndistributedMatches[]
     | IStandings[];
 }
@@ -353,6 +383,7 @@ export interface IShowModalsAction {
     | IMatchesActionTypes.SET_CREATE_GAME_MODAL
     | IMatchesActionTypes.SHOW_BET_MODAL
     | IMatchesActionTypes.SET_BET_MODAL
+    | IMatchesActionTypes.SET_SHORT_BET_MODAL
     | IMatchesActionTypes.SHOW_UNDISTRIBUTED_PRIZES_MODAL
     | IMatchesActionTypes.SET_UNDISTRIBUTED_PRIZES_MODAL;
   payload: boolean;
@@ -366,9 +397,11 @@ export interface IGetItemModalsAction {
     | IMatchesActionTypes.SET_ITEM_CREATE_GAME_MODAL
     | IMatchesActionTypes.GET_ITEM_BET_MODAL
     | IMatchesActionTypes.SET_ITEM_BET_MODAL
+    | IMatchesActionTypes.GET_ITEM_SHORT_BET_MODAL
+    | IMatchesActionTypes.SET_ITEM_SHORT_BET_MODAL
     | IMatchesActionTypes.GET_ITEM_UNDISTRIBUTED_PRIZES_MODAL
     | IMatchesActionTypes.SET_ITEM_UNDISTRIBUTED_PRIZES_MODAL;
-  payload: IFinishedTodayMatch | IUndistributedMatches;
+  payload: IFinishedTodayMatch | IUndistributedMatches | ICreatedGames;
 }
 
 export interface ICreateGamePayload {

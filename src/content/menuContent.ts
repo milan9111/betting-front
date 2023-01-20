@@ -1,4 +1,4 @@
-import { IMenuContent, IMenuContetentUndistributed } from "../types/contents";
+import { IMenuContent, IMenuContetentMatches } from "../types/contents";
 import fifa from "../assets/images/fifa.png";
 import uefa from "../assets/images/uefa.png";
 import england from "../assets/images/england.png";
@@ -7,6 +7,7 @@ import italy from "../assets/images/italy.png";
 import france from "../assets/images/france.png";
 import germany from "../assets/images/germany.png";
 import ethereum from "../assets/images/ethereum.png";
+import ball from "../assets/images/ball.png";
 
 export const menuContent: IMenuContent = {
   title: "Leagues",
@@ -63,11 +64,17 @@ export const menuContent: IMenuContent = {
   ],
 };
 
-export const menuContentUndistributed: IMenuContetentUndistributed = {
+export const menuContentMatches: IMenuContetentMatches = {
   title: "Matches",
   links: [
     {
       id: 0,
+      logo: ball,
+      name: "Created",
+      link: "/created-games",
+    },
+    {
+      id: 1,
       logo: ethereum,
       name: "Undistributed",
       link: "/undistributed-prizes",
