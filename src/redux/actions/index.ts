@@ -10,6 +10,7 @@ import {
   IUndistributedMatches,
 } from "../../types/matches";
 import { INewsActionTypes } from "../../types/news";
+import { IPreloaderActionTypes } from "../../types/preloader";
 
 export const getLeagues = (countryId: string) => {
   return {
@@ -188,4 +189,8 @@ export const createMessage = (message: string) => {
     type: IChatActionTypes.CREATE_MESSAGE,
     payload: message,
   };
+};
+
+export const onLoading = (value: boolean) => {
+  return { type: IPreloaderActionTypes.GET_PRELOADER, payload: value };
 };
