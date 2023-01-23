@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { socket } from "../../sockets";
 import { menuContent } from "../../content/menuContent";
-import { getMatches, getStandings } from "../../redux/actions";
+import { getMatches, getStandings, onLoading } from "../../redux/actions";
 import {
   IMatchesReducer,
   ISocketEventCreatedGame,
@@ -24,10 +24,12 @@ const OpenedLeagueContainer = () => {
     socket.on("createdMatch", (data: ISocketEventCreatedGame) => {
       setIdCreatedGame(data.odds_id);
       notificationSuccess(data);
+      dispatch(onLoading(false));
     });
     socket.on("updatedMatch", (data: ISocketEventUpdatedGame) => {
       setUpdateTimeGame(data.updateTime);
       notificationSuccess(data);
+      dispatch(onLoading(false));
     });
 
     const date = new Date().toISOString().split("T")[0];

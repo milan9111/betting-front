@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { appContent } from "./content/appContent";
 import { getUserAccount } from "./redux/actions";
 import MainLayouts from "./layouts/MainLayouts";
@@ -14,6 +14,7 @@ import OpenedLeagueContainer from "./pages/League/OpenedLeagueContainer";
 import UndistributedContainer from "./pages/Undistributed/UndistributedContainer";
 import Error from "./pages/Error/Error";
 import CreatedGamesContainer from "./pages/CreatedGames/CreatedGamesContainer";
+import Preloader from "./components/Preloader/Preloader";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,23 +36,26 @@ const App = () => {
   ));
 
   return (
-    <Router>
-      <MainLayouts>
-        <Routes>
-          <Route path="/" element={<HomeContainer />} />
-          <Route path="/guide" element={<GuideContainer />} />
-          <Route path="/news" element={<NewsContainer />} />
-          <Route path="/owner" element={<OwnerContainer />} />
-          {leaguesPaths}
-          <Route
-            path="/undistributed-prizes"
-            element={<UndistributedContainer />}
-          />
-          <Route path="/created-games" element={<CreatedGamesContainer />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </MainLayouts>
-    </Router>
+    <>
+      <Preloader />
+      <Router>
+        <MainLayouts>
+          <Routes>
+            <Route path="/" element={<HomeContainer />} />
+            <Route path="/guide" element={<GuideContainer />} />
+            <Route path="/news" element={<NewsContainer />} />
+            <Route path="/owner" element={<OwnerContainer />} />
+            {leaguesPaths}
+            <Route
+              path="/undistributed-prizes"
+              element={<UndistributedContainer />}
+            />
+            <Route path="/created-games" element={<CreatedGamesContainer />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </MainLayouts>
+      </Router>
+    </>
   );
 };
 

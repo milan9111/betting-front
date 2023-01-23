@@ -14,6 +14,7 @@ import {
 import { betMatchInContract } from "../../web3/betMatch";
 import { createGameInContract } from "../../web3/createGame";
 import { distributePrizesInContract } from "../../web3/distributePrizes";
+import { onLoading } from "../actions";
 
 function* sagaShowDistributePrizesModal(
   action: IShowModalsAction
@@ -36,10 +37,12 @@ function* sagaGetItemDistributePizesModal(
 function* sagaDistributePrizes(
   action: IDistributePrizesAction
 ): Generator<Effect, void> {
+  yield put(onLoading(true));
   try {
     const tx = yield call(distributePrizesInContract, action.payload);
     notificationSuccess(tx);
   } catch (error) {
+    yield put(onLoading(false));
     notificationError(error);
   }
 }
@@ -63,11 +66,13 @@ function* sagaGetItemCreateGameModal(
 }
 
 function* sagaCreateGame(action: ICreateGameAction): Generator<Effect, void> {
+  yield put(onLoading(true));
   try {
     const tx = yield call(createGameInContract, action.payload);
     notificationSuccess(tx);
   } catch (error) {
     notificationError(error);
+    yield put(onLoading(false));
   }
 }
 
@@ -135,6 +140,7 @@ function* sagaGetItemUnDistributedPizesModal(
 function* sagaUnDistributePrizes(
   action: IUnDistributedPrizesAction
 ): Generator<Effect, void, string> {
+  yield put(onLoading(true));
   try {
     const resultMatch = yield call(
       MatchesApi.getResultUndistributedMatch,
@@ -150,6 +156,7 @@ function* sagaUnDistributePrizes(
     notificationSuccess(tx);
   } catch (error) {
     notificationError(error);
+    yield put(onLoading(false));
   }
 }
 

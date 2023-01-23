@@ -12,8 +12,8 @@ export interface IPreloaderState {
 }
 
 export interface IPreloaderAction {
-  type: IPreloaderActionTypes.GET_PRELOADER | IPreloaderActionTypes.SET_PRELOADER;
+  type:
+    | IPreloaderActionTypes.GET_PRELOADER
+    | IPreloaderActionTypes.SET_PRELOADER;
   payload: boolean;
 }
-
-

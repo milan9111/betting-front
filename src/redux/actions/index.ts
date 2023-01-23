@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { IChatActionTypes, IMessage } from "../../types/chat";
+import { IChatActionTypes } from "../../types/chat";
 import { IEthersActionTypes } from "../../types/ethers";
 import { ILeaguesActionTypes } from "../../types/leagues";
 import {
@@ -192,5 +192,8 @@ export const createMessage = (message: string) => {
 };
 
 export const onLoading = (value: boolean) => {
-  return { type: IPreloaderActionTypes.GET_PRELOADER, payload: value };
+  return {
+    type: IPreloaderActionTypes.GET_PRELOADER,
+    payload: value,
+  };
 };

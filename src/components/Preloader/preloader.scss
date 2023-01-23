@@ -1,0 +1,27 @@
+.preloader {
+  &__block {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: #262f59;
+  }
+  &__none {
+    display: none;
+  }
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  &__img {
+    max-width: 100px;
+  }
+  &__text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+  }
+}

@@ -2,8 +2,10 @@ import { call, Effect, put, takeEvery } from "redux-saga/effects";
 import { NewsApi } from "../../api";
 import { notificationError } from "../../helpers/notificationError";
 import { INews, INewsAction, INewsActionTypes } from "../../types/news";
+import { onLoading } from "../actions";
 
 function* sagaNews(action: INewsAction): Generator<Effect, void, INews[]> {
+  yield put(onLoading(true));
   try {
     const result = yield call(NewsApi.getNews);
     yield put({
@@ -12,6 +14,8 @@ function* sagaNews(action: INewsAction): Generator<Effect, void, INews[]> {
     });
   } catch (error) {
     notificationError(error);
+  } finally {
+    yield put(onLoading(false));
   }
 }
 

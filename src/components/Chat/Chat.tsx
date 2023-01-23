@@ -22,9 +22,11 @@ const Chat: React.FC<ChatProps> = ({
 
   useEffect(() => {
     if (chatRef.current) {
-      const offsetBottom =
-        chatRef.current.offsetTop + chatRef.current.offsetHeight;
-      chatRef.current.scrollTo({ top: offsetBottom, behavior: "smooth" });
+      setTimeout(() => {
+        const offsetBottom =
+          chatRef.current.offsetTop + chatRef.current.offsetHeight;
+        chatRef.current.scrollTo({ top: offsetBottom, behavior: "smooth" });
+      }, 1000);
     }
   }, [messages, eventValue]);
 

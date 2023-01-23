@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./createdGames.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { socket } from "../../sockets";
-import { getCreatedGames } from "../../redux/actions";
+import { getCreatedGames, onLoading } from "../../redux/actions";
 import { notificationSuccess } from "../../helpers/notificationSuccess";
 import { createdGamesContent } from "../../content/createdGamesContent";
 import { IMatchesReducer, ISocketEventCreatedGame } from "../../types/matches";
@@ -19,6 +19,7 @@ const CreatedGamesContainer = () => {
     socket.on("createdMatch", (data: ISocketEventCreatedGame) => {
       setIdCreatedGame(data.odds_id);
       notificationSuccess(data);
+      dispatch(onLoading(false));
     });
     dispatch(getCreatedGames());
     return () => {

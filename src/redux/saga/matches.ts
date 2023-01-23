@@ -1,7 +1,7 @@
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
-import { LeaguesApi, MatchesApi, NewsApi } from "../../api";
+import { LeaguesApi, MatchesApi } from "../../api";
 import { notificationError } from "../../helpers/notificationError";
-import { IEthersAction, IEthersActionTypes } from "../../types/ethers";
+
 import {
   IGetAction,
   ILeaguesActionTypes,
@@ -18,21 +18,22 @@ import {
   ITodayMatch,
   IUndistributedMatches,
 } from "../../types/matches";
-import { INews, INewsAction, INewsActionTypes } from "../../types/news";
-import { connectWallet } from "../../web3/connectWallet";
+import { onLoading } from "../actions";
 
 function* sagaGetLeagues(
   action: IGetAction
 ): Generator<Effect, void, ILeaguesInFederationState> {
   try {
+    yield put(onLoading(true));
     const leagues = yield call(LeaguesApi.getLeagues, action.payload as string);
-
     yield put({
       type: ILeaguesActionTypes.SET_LEAGUE,
       payload: leagues.result,
     });
   } catch (error) {
     notificationError(error);
+  } finally {
+    yield put(onLoading(false));
   }
 }
 
@@ -43,6 +44,7 @@ function* sagaGetMatches(
   void,
   ITodayMatch[] | IFinishedTodayMatch[] | ITodayCreatedMatches[]
 > {
+  yield put(onLoading(true));
   try {
     const todayMatches = yield call(
       MatchesApi.getTodayMatches,
@@ -59,6 +61,8 @@ function* sagaGetMatches(
     });
   } catch (error) {
     notificationError(error);
+  } finally {
+    yield put(onLoading(false));
   }
 }
 
@@ -82,6 +86,7 @@ function* sagaGetStandings(
 function* sagaGetCreatedGames(
   action: IGetMatchesAction
 ): Generator<Effect, void, ICreatedGames> {
+  yield put(onLoading(true));
   try {
     const games = yield call(MatchesApi.getCreatedGames);
     yield put({
@@ -90,12 +95,15 @@ function* sagaGetCreatedGames(
     });
   } catch (error) {
     notificationError(error);
+  } finally {
+    yield put(onLoading(false));
   }
 }
 
 function* sagaGetUndistributedMatches(
   action: IGetMatchesAction
 ): Generator<Effect, void, IUndistributedMatches> {
+  yield put(onLoading(true));
   try {
     const matches = yield call(MatchesApi.getUndistributedMatches);
     yield put({
@@ -104,6 +112,8 @@ function* sagaGetUndistributedMatches(
     });
   } catch (error) {
     notificationError(error);
+  } finally {
+    yield put(onLoading(false));
   }
 }
 
