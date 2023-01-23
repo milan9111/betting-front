@@ -269,7 +269,7 @@ export interface IMatchesParams {
   leagueId: string;
 }
 
-export interface IOpenedLeagueState {
+export interface IMatchesState {
   todayMatches: ITodayMatch[];
   todayCreatedMatches: ITodayCreatedMatches[];
   finishedTodayMatches: IFinishedTodayMatch[];
@@ -290,8 +290,8 @@ export interface IOpenedLeagueState {
   itemUnDistributedPizesModal: IUndistributedMatches | null;
 }
 
-export interface IOpenedLeagueReducer {
-  openedLeagueReducer: IOpenedLeagueState;
+export interface IMatchesReducer {
+  matchesReducer: IMatchesState;
 }
 
 export interface ICreatedGames {

@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Image, Button } from "antd";
 import {
   IFinishedTodayMatch,
-  IOpenedLeagueReducer,
+  IMatchesReducer,
   ITodayCreatedMatches,
 } from "../../types/matches";
 import DistributePrizesModal from "../Modals/DistributePrizesModal";
@@ -25,7 +25,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
   createdMatches,
 }) => {
   const { isDistributePrizesModal, itemDistributePizesModal } = useSelector(
-    (state: IOpenedLeagueReducer) => state.openedLeagueReducer
+    (state: IMatchesReducer) => state.matchesReducer
   );
 
   const dispatch = useDispatch();
@@ -147,7 +147,7 @@ const FinishedTodayMatchesTable: React.FC<FinishedTodayMatchesProps> = ({
         dataSource={resultForTable}
         pagination={{ className: "pagination" }}
         locale={{ emptyText: "Today's matches are not over yet!" }}
-        scroll={{x: 600}}
+        scroll={{ x: 600 }}
       />
       <DistributePrizesModal
         handleOk={handleOk}

@@ -1,27 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import { Provider } from 'react-redux';
-import { applyMiddleware, compose, legacy_createStore as createStore} from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import App from './App';
-import { rootReducer } from './redux/rootReducer';
-import { sagaWatcher } from './redux/saga/sagas';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { Provider } from "react-redux";
+import {
+  applyMiddleware,
+  compose,
+  legacy_createStore as createStore,
+} from "redux";
+import createSagaMiddleware from "redux-saga";
+import App from "./App";
+import { rootReducer } from "./redux/rootReducer";
+import { rootWatcher } from "./redux/saga";
 
 const saga = createSagaMiddleware();
 
 const store = createStore(rootReducer, compose(applyMiddleware(saga)));
 
-saga.run(sagaWatcher);
+saga.run(rootWatcher);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <Provider store={store}>
     <App />
   </Provider>
 );
-
- 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Table, Image, Button } from "antd";
 import {
-  IOpenedLeagueReducer,
+  IMatchesReducer,
   ITodayCreatedMatches,
   ITodayMatch,
   ITodayOdds,
@@ -32,7 +32,7 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
   odds,
 }) => {
   const { isCreateGameModal, itemCreateGameModal, isBetModal, itemBetModal } =
-    useSelector((state: IOpenedLeagueReducer) => state.openedLeagueReducer);
+    useSelector((state: IMatchesReducer) => state.matchesReducer);
 
   const [bidValueHomeTeam, setBidValueHomeTeam] = useState<string>("");
   const [bidValueAwayTeam, setBidValueAwayTeam] = useState<string>("");
@@ -248,7 +248,7 @@ const TodayMatchesTable: React.FC<TodayMatchesProps> = ({
         dataSource={resultForTable}
         pagination={{ className: "pagination" }}
         locale={{ emptyText: "No matches today!" }}
-        scroll={{x: 600}}
+        scroll={{ x: 600 }}
       />
       <CreateGameModal
         handleCreateGameModalOk={handleCreateGameModalOk}

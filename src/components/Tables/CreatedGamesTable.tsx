@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Table } from "antd";
 import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
-import { ICreatedGames, IOpenedLeagueReducer } from "../../types/matches";
+import { ICreatedGames, IMatchesReducer } from "../../types/matches";
 import {
   bidMatch,
   getItemShortBetModal,
@@ -16,7 +16,7 @@ interface CreatedGamesProps {
 
 const CreatedGamesTable: React.FC<CreatedGamesProps> = ({ createdGames }) => {
   const { isShortBetModal, itemShortBetModal } = useSelector(
-    (state: IOpenedLeagueReducer) => state.openedLeagueReducer
+    (state: IMatchesReducer) => state.matchesReducer
   );
 
   const [bidValueHomeTeam, setBidValueHomeTeam] = useState<string>("");

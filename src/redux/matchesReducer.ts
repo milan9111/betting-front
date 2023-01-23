@@ -27,7 +27,7 @@ export const initialState = {
   itemUnDistributedPizesModal: null,
 };
 
-export const openedLeagueReducer = (
+export const matchesReducer = (
   state: IMatchesState = initialState,
   action: IMatchesAction
 ) => {

@@ -5,15 +5,12 @@ import { socket } from "../../sockets";
 import { getCreatedGames } from "../../redux/actions";
 import { notificationSuccess } from "../../helpers/notificationSuccess";
 import { createdGamesContent } from "../../content/createdGamesContent";
-import {
-  IOpenedLeagueReducer,
-  ISocketEventCreatedGame,
-} from "../../types/matches";
+import { IMatchesReducer, ISocketEventCreatedGame } from "../../types/matches";
 import CreatedGames from "./CreatedGames";
 
 const CreatedGamesContainer = () => {
   const createdGames = useSelector(
-    (state: IOpenedLeagueReducer) => state.openedLeagueReducer.createdGames
+    (state: IMatchesReducer) => state.matchesReducer.createdGames
   );
   const [idCreatedGame, setIdCreatedGame] = useState<number>(0);
   const dispatch = useDispatch();

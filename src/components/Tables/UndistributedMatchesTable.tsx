@@ -2,10 +2,7 @@ import React from "react";
 import { Button, Table } from "antd";
 import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  IOpenedLeagueReducer,
-  IUndistributedMatches,
-} from "../../types/matches";
+import { IMatchesReducer, IUndistributedMatches } from "../../types/matches";
 import UnDistributedPrizesModal from "../Modals/UnDistribitedPrizesModal";
 import {
   getItemUnDistributedPizesModal,
@@ -21,7 +18,7 @@ const UndistributedMatchesTable: React.FC<UndistributedMatchesProps> = ({
   matches,
 }) => {
   const { isUnDistributebPrizesModal, itemUnDistributedPizesModal } =
-    useSelector((state: IOpenedLeagueReducer) => state.openedLeagueReducer);
+    useSelector((state: IMatchesReducer) => state.matchesReducer);
   const dispatch = useDispatch();
 
   const resultForTable = matches.map((item) => {
@@ -101,7 +98,7 @@ const UndistributedMatchesTable: React.FC<UndistributedMatchesProps> = ({
         dataSource={resultForTable}
         pagination={{ className: "pagination" }}
         locale={{ emptyText: "There are no undistributed matches!" }}
-        scroll={{x: 600}}
+        scroll={{ x: 600 }}
       />
       <UnDistributedPrizesModal
         handleOk={handleOk}

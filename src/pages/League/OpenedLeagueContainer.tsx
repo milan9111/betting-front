@@ -5,7 +5,7 @@ import { socket } from "../../sockets";
 import { menuContent } from "../../content/menuContent";
 import { getMatches, getStandings } from "../../redux/actions";
 import {
-  IOpenedLeagueReducer,
+  IMatchesReducer,
   ISocketEventCreatedGame,
   ISocketEventUpdatedGame,
 } from "../../types/matches";
@@ -14,9 +14,7 @@ import OpenedLeague from "./OpenedLeague";
 import { notificationSuccess } from "../../helpers/notificationSuccess";
 
 const OpenedLeagueContainer = () => {
-  const state = useSelector(
-    (state: IOpenedLeagueReducer) => state.openedLeagueReducer
-  );
+  const state = useSelector((state: IMatchesReducer) => state.matchesReducer);
   const [idCreatedGame, setIdCreatedGame] = useState<number>(0);
   const [updateTimeGame, setUpdateTimeGame] = useState<number>(0);
   const dispatch = useDispatch();

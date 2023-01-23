@@ -4,10 +4,10 @@ import LiveTodayMatchesTable from "../../components/Tables/LiveTodayMatchesTable
 import StandingTables from "../../components/Tables/StandingTables";
 import TodayMatchesTable from "../../components/Tables/TodayMatchesTable";
 import { IOpenedLeagueContent } from "../../types/contents";
-import { IOpenedLeagueState } from "../../types/matches";
+import { IMatchesState } from "../../types/matches";
 
 interface OpenedLeagueProps {
-  matches: IOpenedLeagueState;
+  matches: IMatchesState;
   openedLeagueContent: IOpenedLeagueContent;
 }
 
