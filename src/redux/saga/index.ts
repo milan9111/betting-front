@@ -4,6 +4,7 @@ import { watchChat } from "./chat";
 import { watchMatches } from "./matches";
 import { watchModals } from "./modals";
 import { watchNews } from "./news";
+import { watchOwner } from "./owner";
 import { watchPreloader } from "./preloader";
 
 export function* rootWatcher() {
@@ -13,4 +14,5 @@ export function* rootWatcher() {
   yield spawn(watchAccount);
   yield spawn(watchNews);
   yield spawn(watchPreloader);
+  yield spawn(watchOwner);
 }

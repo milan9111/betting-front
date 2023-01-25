@@ -1,0 +1,29 @@
+.owner {
+  width: 70%;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+  &__container {
+    margin-top: 50px;
+    @media (max-width: 1024px) {
+      margin-top: 0px;
+      text-align: center;
+    }
+  }
+  &__title {
+    &_owner {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+    }
+    &_notOwner {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #ff4d00;
+    }
+  }
+}

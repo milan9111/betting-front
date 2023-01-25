@@ -10,6 +10,7 @@ import {
   IUndistributedMatches,
 } from "../../types/matches";
 import { INewsActionTypes } from "../../types/news";
+import { IOwnerActionTypes } from "../../types/owner";
 import { IPreloaderActionTypes } from "../../types/preloader";
 
 export const getLeagues = (countryId: string) => {
@@ -195,5 +196,12 @@ export const onLoading = (value: boolean) => {
   return {
     type: IPreloaderActionTypes.GET_PRELOADER,
     payload: value,
+  };
+};
+
+export const getOwner = (contract: ethers.Contract | null) => {
+  return {
+    type: IOwnerActionTypes.GET_OWNER_ACCOUNT,
+    payload: contract,
   };
 };

@@ -13,7 +13,6 @@ export const createGameInContract = async ({
         userAccount,
         Number(index)
       );
-      console.log(result); // alert
     };
     createGame();
   });

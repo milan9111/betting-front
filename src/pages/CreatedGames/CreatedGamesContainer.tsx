@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./createdGames.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 import { socket } from "../../sockets";
 import { getCreatedGames, onLoading } from "../../redux/actions";
 import { notificationSuccess } from "../../helpers/notificationSuccess";
@@ -28,10 +29,15 @@ const CreatedGamesContainer = () => {
   }, [dispatch, idCreatedGame]);
 
   return (
-    <CreatedGames
-      createdGamesContent={createdGamesContent}
-      createdGames={createdGames}
-    />
+    <>
+      <Helmet>
+        <title>Betting dApp | Created games</title>
+      </Helmet>
+      <CreatedGames
+        createdGamesContent={createdGamesContent}
+        createdGames={createdGames}
+      />
+    </>
   );
 };
 

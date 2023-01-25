@@ -5,6 +5,7 @@ import { newsReducer } from "./newsReducer";
 import { matchesReducer } from "./matchesReducer";
 import { chatReducer } from "./chatReducer";
 import { preloaderReducer } from "./preloaderReducer";
+import { ownerReducer } from "./ownerReducer";
 
 export const rootReducer = combineReducers({
   leagueReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   newsReducer,
   chatReducer,
   preloaderReducer,
+  ownerReducer,
 });
