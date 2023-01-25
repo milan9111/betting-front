@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { appContent } from "./content/appContent";
 import { getUserAccount } from "./redux/actions";
 import MainLayouts from "./layouts/MainLayouts";
@@ -20,11 +20,13 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserAccount());
     if (window.ethereum) {
+      dispatch(getUserAccount());
       window.ethereum.on("accountsChanged", async () => {
         dispatch(getUserAccount());
       });
+    } else {
+      dispatch(getUserAccount());
     }
   }, [dispatch]);
 

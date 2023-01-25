@@ -5,7 +5,7 @@ import {
 } from "../types/preloader";
 
 export const initialState = {
-  loading: true,
+  loading: false,
 };
 
 export const preloaderReducer = (
