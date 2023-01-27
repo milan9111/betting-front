@@ -3,6 +3,7 @@ import "./owner.scss";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  checkFailedAccountAdress,
   getBalance,
   getOwner,
   sendValueToContract,
@@ -16,10 +17,11 @@ const OwnerContainer: React.FC = () => {
   const { contract, userAccount } = useSelector(
     (state: IEthersReducer) => state.ethersReducer
   );
-  const { ownerAccount, contractBalance } = useSelector(
+  const { ownerAccount, contractBalance, failedDebt } = useSelector(
     (state: IOwnerReducer) => state.ownerReducer
   );
   const [valueToContract, setValueToContract] = useState<string>("");
+  const [faildAccountAddress, setFaildAccountAddress] = useState<string>("");
   const [errorInput, setErrorInput] = useState<boolean>(false);
 
   const dispatch = useDispatch();
@@ -50,6 +52,10 @@ const OwnerContainer: React.FC = () => {
     dispatch(transferBalance(contract));
   };
 
+  const onCheckFailedAccountAddress = () => {
+    dispatch(checkFailedAccountAdress(faildAccountAddress, contract));
+  };
+
   return (
     <>
       <Helmet>
@@ -65,6 +71,10 @@ const OwnerContainer: React.FC = () => {
         setValueToContract={setValueToContract}
         errorInput={errorInput}
         onTransferBalance={onTransferBalance}
+        faildAccountAddress={faildAccountAddress}
+        setFaildAccountAddress={setFaildAccountAddress}
+        onCheckFailedAccountAddress={onCheckFailedAccountAddress}
+        failedDebt={failedDebt}
       />
     </>
   );

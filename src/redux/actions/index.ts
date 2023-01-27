@@ -227,5 +227,15 @@ export const transferBalance = (contract: ethers.Contract | null) => {
   return {
     type: IOwnerActionTypes.TRANSFER_BALANCE,
     payload: contract,
-  }
-}
+  };
+};
+
+export const checkFailedAccountAdress = (
+  failedAccountAddress: string,
+  contract: ethers.Contract | null
+) => {
+  return {
+    type: IOwnerActionTypes.GET_FAILED_ACCOUNT_ADDRESS,
+    payload: { failedAccountAddress, contract },
+  };
+};

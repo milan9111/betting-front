@@ -1,6 +1,7 @@
 import { Button, Input } from "antd";
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
+import { getEthFromWei } from "../../helpers/weiToEth";
 
 interface OwnerProps {
   ownerAccount: string;
@@ -12,6 +13,10 @@ interface OwnerProps {
   setValueToContract: (e: string) => void;
   errorInput: boolean;
   onTransferBalance: () => void;
+  faildAccountAddress: string;
+  setFaildAccountAddress: (e: string) => void;
+  onCheckFailedAccountAddress: () => void;
+  failedDebt: string | null;
 }
 
 const Owner: React.FC<OwnerProps> = ({
@@ -24,11 +29,15 @@ const Owner: React.FC<OwnerProps> = ({
   setValueToContract,
   errorInput,
   onTransferBalance,
+  faildAccountAddress,
+  setFaildAccountAddress,
+  onCheckFailedAccountAddress,
+  failedDebt,
 }) => {
   const [isOwner, setIsOwner] = useState<boolean>(false);
-  const editedBalance = Number(
-    ethers.utils.formatEther(contractBalance)
-  ).toFixed(5);
+
+  const editedBalance = getEthFromWei(contractBalance);
+  const editedDebt = failedDebt && getEthFromWei(failedDebt);
 
   useEffect(() => {
     if (ownerAccount && userAccount) {
@@ -54,7 +63,11 @@ const Owner: React.FC<OwnerProps> = ({
         <p className="owner__title_owner">Owner</p>
         <div className="owner__balance">
           <div className="owner__balance_button">
-            <Button type="primary" onClick={showBalance}>
+            <Button
+              type="primary"
+              className="owner__button"
+              onClick={showBalance}
+            >
               Show a contract balance
             </Button>
           </div>
@@ -62,7 +75,11 @@ const Owner: React.FC<OwnerProps> = ({
         </div>
         <div className="owner__putStorage">
           <div className="owner__putStorage_button">
-            <Button type="primary" onClick={onSendValue}>
+            <Button
+              type="primary"
+              className="owner__button"
+              onClick={onSendValue}
+            >
               Send value to the contract
             </Button>
             <p
@@ -82,11 +99,36 @@ const Owner: React.FC<OwnerProps> = ({
           </div>
         </div>
         <div className="owner__transfer">
-              <div className="owner__transfer_button">
-                <Button type="primary" onClick={onTransferBalance}>
-                  Transfer of the entire bank to the owner
-                </Button>
-              </div>
+          <div className="owner__transfer_button">
+            <Button
+              type="primary"
+              className="owner__button"
+              onClick={onTransferBalance}
+            >
+              Transfer of the entire bank to the owner
+            </Button>
+          </div>
+        </div>
+        <div className="owner__checkFailedPrizes">
+          <div className="owner__checkFailedPrizes_button">
+            <Button
+              type="primary"
+              className="owner__button"
+              onClick={onCheckFailedAccountAddress}
+            >
+              Check debt (failed prize)
+            </Button>
+          </div>
+          <div className="owner__checkFailedPrizes_input">
+            <Input
+              placeholder="Account address"
+              onChange={(e) => setFaildAccountAddress(e.target.value)}
+              value={faildAccountAddress}
+            />
+          </div>
+          <div className="owner__checkFailedPrizes_result">
+            {failedDebt && `${editedDebt} ETH`}
+          </div>
         </div>
       </div>
     </section>

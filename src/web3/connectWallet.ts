@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { notificationError } from "../helpers/notificationError";
 import { notificationSuccess } from "../helpers/notificationSuccess";
+import { getEthFromWei } from "../helpers/weiToEth";
 import contractArtifact from "./abi.json";
 
 export const contractAddress = "0xf2bdC8E5fECa33Ab8C3Bfd32c89D8551f22d8dA4";
@@ -25,9 +26,7 @@ export const connectWallet = async () => {
     provider.getSigner(0)
   );
 
-  let balanceNotification = `${Number(
-    ethers.utils.formatEther(userBalance)
-  ).toFixed(5)} ETH`;
+  let balanceNotification = `${getEthFromWei(userBalance)} ETH`;
 
   notificationSuccess({ userAccount, balanceNotification });
 

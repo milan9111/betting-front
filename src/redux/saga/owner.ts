@@ -4,6 +4,7 @@ import { notificationError } from "../../helpers/notificationError";
 import { notificationSuccess } from "../../helpers/notificationSuccess";
 import { IOwnerAction, IOwnerActionTypes } from "../../types/owner";
 import {
+  checkFaidedAccountAddress,
   getAccountOwner,
   getContactBalance,
   sendValueToContract,
@@ -59,6 +60,20 @@ function* sagaTransferBalance(action: IOwnerAction): Generator<Effect, void> {
   }
 }
 
+function* sagaCheckFailedAccountAddress(
+  action: IOwnerAction
+): Generator<Effect, void> {
+  try {
+    const res = yield call(checkFaidedAccountAddress, action.payload as any);
+    yield put({
+      type: IOwnerActionTypes.SET_FAILED_ACCOUNT_ADDRESS,
+      payload: res,
+    });
+  } catch (error) {
+    notificationError(error);
+  }
+}
+
 export function* watchOwner(): Generator<Effect, void> {
   yield takeEvery(IOwnerActionTypes.GET_OWNER_ACCOUNT, sagaGetOwnerAccount);
   yield takeEvery(
@@ -70,4 +85,8 @@ export function* watchOwner(): Generator<Effect, void> {
     sagaSendValueToContract
   );
   yield takeEvery(IOwnerActionTypes.TRANSFER_BALANCE, sagaTransferBalance);
+  yield takeEvery(
+    IOwnerActionTypes.GET_FAILED_ACCOUNT_ADDRESS,
+    sagaCheckFailedAccountAddress
+  );
 }

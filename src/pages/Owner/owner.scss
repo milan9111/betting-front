@@ -26,4 +26,129 @@
       color: #ff4d00;
     }
   }
+  &__balance {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    @media (max-width: 1024px) {
+      flex-direction: column;
+    }
+    &_button {
+      width: 50%;
+      @media (max-width: 1024px) {
+        width: 100%;
+      }
+    }
+    &_value {
+      width: 50%;
+      text-align: end;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      @media (max-width: 1024px) {
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+      }
+    }
+  }
+  &__putStorage {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    @media (max-width: 1024px) {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    &_button {
+      width: 50%;
+      @media (max-width: 1024px) {
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+      }
+    }
+    &_input {
+      width: 15%;
+      text-align: end;
+      @media (max-width: 1024px) {
+        width: 50%;
+      }
+    }
+  }
+  &__error-visible {
+    text-align: start;
+    margin-top: 10px;
+    color: #ff0000;
+    font-size: 16px;
+    font-weight: 600;
+    visibility: visible;
+    @media (max-width: 460px) {
+      font-size: 12px;
+    }
+  }
+  &__error-hidden {
+    text-align: start;
+    margin-top: 10px;
+    color: #ff0000;
+    font-size: 16px;
+    font-weight: 600;
+    visibility: hidden;
+    @media (max-width: 460px) {
+      font-size: 12px;
+    }
+  }
+  &__transfer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    @media (max-width: 1024px) {
+      flex-direction: column;
+    }
+  }
+  &__checkFailedPrizes {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    @media (max-width: 1024px) {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    &_button {
+      width: 33.333%;
+      @media (max-width: 1024px) {
+        width: 100%;
+      }
+    }
+    &_input {
+      width: 33.333%;
+      @media (max-width: 1024px) {
+        width: 50%;
+        margin-bottom: 20px;
+      }
+    }
+    &_result {
+      width: 33.333%;
+      text-align: end;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      @media (max-width: 1024px) {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &__button {
+    background-color: #ffff00;
+    color: #ff4d00;
+    font-weight: 600;
+    transition: 0.5s;
+  }
+  &__button:hover {
+    background-color: #ff4d00 !important;
+    color: #ffff00;
+  }
 }

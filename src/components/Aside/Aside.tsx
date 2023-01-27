@@ -2,6 +2,7 @@ import React from "react";
 import { ethers } from "ethers";
 import { IAsideContent } from "../../types/contents";
 import ChatContainer from "../Chat/ChatContainer";
+import { getEthFromWei } from "../../helpers/weiToEth";
 
 interface asideProps {
   asideContent: IAsideContent;
@@ -16,9 +17,7 @@ const Aside: React.FC<asideProps> = ({
 }) => {
   const editedAccount =
     userAccount.slice(0, 4) + "...." + userAccount.slice(-4);
-  const editedBalance = Number(ethers.utils.formatEther(userBalance)).toFixed(
-    5
-  );
+  const editedBalance = getEthFromWei(userBalance);
 
   return (
     <aside className="aside">

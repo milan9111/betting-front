@@ -1,5 +1,8 @@
 import { ethers } from "ethers";
-import { IOwnerSendValueToContract } from "../types/owner";
+import {
+  IOwnerCheckFailedAccountAddress,
+  IOwnerSendValueToContract,
+} from "../types/owner";
 
 export const getAccountOwner = async (contract: ethers.Contract) => {
   const accountOwner = await contract.owner();
@@ -26,4 +29,12 @@ export const sendValueToContract = async ({
 export const transferBalance = async (contract: ethers.Contract) => {
   const tx = await contract.transferStorageBetting();
   return tx;
+};
+
+export const checkFaidedAccountAddress = async ({
+  failedAccountAddress,
+  contract,
+}: IOwnerCheckFailedAccountAddress) => {
+  const res = (await contract.failedPrizes(failedAccountAddress)).toString();
+  return res;
 };
