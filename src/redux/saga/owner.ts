@@ -1,8 +1,14 @@
 import { ethers } from "ethers";
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
 import { notificationError } from "../../helpers/notificationError";
+import { notificationSuccess } from "../../helpers/notificationSuccess";
 import { IOwnerAction, IOwnerActionTypes } from "../../types/owner";
-import { getAccountOwner, getContactBalance } from "../../web3/owner";
+import {
+  getAccountOwner,
+  getContactBalance,
+  sendValueToContract,
+  transferBalance,
+} from "../../web3/owner";
 
 function* sagaGetOwnerAccount(action: IOwnerAction): Generator<Effect, void> {
   try {
@@ -33,10 +39,35 @@ function* sagaGetBalanceContract(
   }
 }
 
+function* sagaSendValueToContract(
+  action: IOwnerAction
+): Generator<Effect, void> {
+  try {
+    const tx = yield call(sendValueToContract, action.payload as any);
+    notificationSuccess(tx);
+  } catch (error) {
+    notificationError(error);
+  }
+}
+
+function* sagaTransferBalance(action: IOwnerAction): Generator<Effect, void> {
+  try {
+    const tx = yield call(transferBalance, action.payload as any);
+    notificationSuccess(tx);
+  } catch (error) {
+    notificationError(error);
+  }
+}
+
 export function* watchOwner(): Generator<Effect, void> {
   yield takeEvery(IOwnerActionTypes.GET_OWNER_ACCOUNT, sagaGetOwnerAccount);
   yield takeEvery(
     IOwnerActionTypes.GET_BALANCE_CONTRACT,
     sagaGetBalanceContract
   );
+  yield takeEvery(
+    IOwnerActionTypes.SEND_VALUE_TO_CONTRACT,
+    sagaSendValueToContract
+  );
+  yield takeEvery(IOwnerActionTypes.TRANSFER_BALANCE, sagaTransferBalance);
 }

@@ -210,5 +210,22 @@ export const getBalance = (contract: ethers.Contract | null) => {
   return {
     type: IOwnerActionTypes.GET_BALANCE_CONTRACT,
     payload: contract,
+  };
+};
+
+export const sendValueToContract = (
+  value: string,
+  contract: ethers.Contract | null
+) => {
+  return {
+    type: IOwnerActionTypes.SEND_VALUE_TO_CONTRACT,
+    payload: { value, contract },
+  };
+};
+
+export const transferBalance = (contract: ethers.Contract | null) => {
+  return {
+    type: IOwnerActionTypes.TRANSFER_BALANCE,
+    payload: contract,
   }
 }
