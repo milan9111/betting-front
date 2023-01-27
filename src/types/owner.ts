@@ -3,10 +3,13 @@ import { ethers } from "ethers";
 export enum IOwnerActionTypes {
   GET_OWNER_ACCOUNT = "GET_OWNER_ACCOUNT",
   SET_OWNER_ACCOUNT = "SET_OWNER_ACCOUNT",
+  GET_BALANCE_CONTRACT = "GET_BALANCE_CONTRACT",
+  SET_BALANCE_CONTRACT = "SET_BALANCE_CONTRACT",
 }
 
 export interface IOwnerState {
   ownerAccount: string;
+  contractBalance: string;
 }
 
 export interface IOwnerReducer {
@@ -21,6 +24,8 @@ export interface IOwnerAccount {
 export interface IOwnerAction {
   type:
     | IOwnerActionTypes.GET_OWNER_ACCOUNT
-    | IOwnerActionTypes.SET_OWNER_ACCOUNT;
-  payload: IOwnerAccount | ethers.Contract | null;
+    | IOwnerActionTypes.SET_OWNER_ACCOUNT
+    | IOwnerActionTypes.GET_BALANCE_CONTRACT
+    | IOwnerActionTypes.SET_BALANCE_CONTRACT;
+  payload: IOwnerAccount | ethers.Contract | string | null;
 }

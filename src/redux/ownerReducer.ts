@@ -2,6 +2,7 @@ import { IOwnerAction, IOwnerActionTypes, IOwnerState } from "../types/owner";
 
 export const initialState = {
   ownerAccount: "",
+  contractBalance: "0",
 };
 
 export const ownerReducer = (
@@ -13,6 +14,11 @@ export const ownerReducer = (
       return {
         ...state,
         ownerAccount: action.payload,
+      };
+    case IOwnerActionTypes.SET_BALANCE_CONTRACT:
+      return {
+        ...state,
+        contractBalance: action.payload,
       };
     default:
       return state;

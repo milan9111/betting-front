@@ -205,3 +205,10 @@ export const getOwner = (contract: ethers.Contract | null) => {
     payload: contract,
   };
 };
+
+export const getBalance = (contract: ethers.Contract | null) => {
+  return {
+    type: IOwnerActionTypes.GET_BALANCE_CONTRACT,
+    payload: contract,
+  }
+}
